@@ -5,8 +5,8 @@ import { HomeComponent } from './home/home';
   selector: 'app-root',
   standalone: true,
   imports: [HomeComponent],
-  templateUrl: './app.component.html',
-  styleUrls: ['./app.component.css']
+  templateUrl: './app.html',
+  styleUrls: ['./app.css']
 })
 export class AppComponent {
   title = 'FinalProject_Hotel';
