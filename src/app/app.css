@@ -13,7 +13,7 @@ body, html {
   
   .side-panel {
     flex: 1;
-    background-image: url('/hote_background.png');
+    background-image: url('/hotel_background.png');
     background-repeat: repeat;
     background-position: center;
   }
