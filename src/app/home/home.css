@@ -1,0 +1,63 @@
+.home-container {
+    font-family: 'Comic Sans MS', cursive, sans-serif;
+    background-color: #e0f7fa; 
+    padding: 20px;
+    text-align: center;
+  }
+  
+  .hero-banner {
+    background-color: #fbc02d; 
+    padding: 40px;
+    border-radius: 15px;
+    color: #3e2723;
+    box-shadow: 5px 5px 0px #3e2723;
+  }
+  
+  .alert-box {
+    background-color: #e91e63; 
+    color: white;
+    padding: 15px;
+    margin: 20px auto;
+    border-radius: 8px;
+    max-width: 600px;
+    font-weight: bold;
+  }
+  
+  .rooms-grid {
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+    flex-wrap: wrap;
+    margin-top: 30px;
+  }
+  
+  .adventure-card {
+    background: white;
+    border: 4px solid #3e2723;
+    border-radius: 12px;
+    padding: 20px;
+    width: 280px;
+    box-shadow: 4px 4px 0px #3e2723;
+  }
+  
+  .room-img {
+    width: 100%;
+    height: 180px;
+    object-fit: cover;
+    border-radius: 8px;
+  }
+  
+  button {
+    background-color: #4caf50; 
+    color: white;
+    border: 2px solid #3e2723;
+    padding: 10px 15px;
+    font-weight: bold;
+    cursor: pointer;
+    border-radius: 5px;
+  }
+  
+  button:hover {
+    background-color: #81c784;
+  }
+  

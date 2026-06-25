@@ -1,11 +1,19 @@
-import { Component } from '@angular/core';
+import { Component, Input, Output, EventEmitter } from '@angular/core';
 
 @Component({
   selector: 'app-room-card',
-  imports: [],
-  templateUrl: './room-card.html',
-  styleUrl: './room-card.css',
+  templateUrl: './room-card.component.html',
+  styleUrls: ['./room-card.component.css']
 })
-export class RoomCard {
+export class RoomCardComponent {
+  @Input() roomName: string = '';
+  @Input() description: string = '';
+  @Input() price: number = 0;
+  @Input() image: string = '';
 
+  @Output() bookRoom = new EventEmitter<string>();
+
+  onBookClick() {
+    this.bookRoom.emit(this.roomName);
+  }
 }

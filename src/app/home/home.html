@@ -1,1 +1,23 @@
-<p>home works!</p>
+<div class="home-container">
+    <header class="hero-banner">
+      <h1>{{ welcomeMessage }}</h1>
+      <p>The most algebraic stay in the Land of Ooo!</p>
+    </header>
+  
+    <div *ngIf="selectedRoomMessage" class="alert-box">
+      {{ selectedRoomMessage }}
+    </div>
+  
+    <h2>Available Kingdoms & Rooms</h2>
+    <div class="rooms-grid">
+      <app-room-card 
+        *ngFor="let room of hotelRooms" 
+        [roomName]="room.name"
+        [description]="room.desc"
+        [price]="room.price"
+        [image]="room.img"
+        (bookRoom)="handleBooking($event)">
+      </app-room-card>
+    </div>
+  </div>
+  
