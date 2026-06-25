@@ -13,7 +13,9 @@ body, html {
   
   .side-panel {
     flex: 1;
-    background-color: #5c3a21;
+    background-image: url('/hote_background.png');
+    background-repeat: repeat;
+    background-position: center;
   }
   
   .center-column {
