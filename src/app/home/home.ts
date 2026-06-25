@@ -1,9 +1,13 @@
 import { Component } from '@angular/core';
+import { CommonModule } from '@angular/common';
+import { RoomCardComponent } from '../room-card/room-card';
 
 @Component({
   selector: 'app-home',
-  templateUrl: './home.component.html',
-  styleUrls: ['./home.component.css']
+  standalone: true,
+  imports: [CommonModule, RoomCardComponent],
+  templateUrl: './home.html',
+  styleUrls: ['./home.css']
 })
 export class HomeComponent {
   welcomeMessage = "Welcome to the Coolest Hotel in Ooo!";
@@ -30,7 +34,7 @@ export class HomeComponent {
     }
   ];
 
-  handleBooking(roomName: string) {
+  handleBooking(roomName: any) {
     this.selectedRoomMessage = `Algebraic! You selected to book: ${roomName}. Check your Booking Summary!`;
   }
 }

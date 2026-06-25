@@ -2,8 +2,9 @@ import { Component, Input, Output, EventEmitter } from '@angular/core';
 
 @Component({
   selector: 'app-room-card',
-  templateUrl: './room-card.component.html',
-  styleUrls: ['./room-card.component.css']
+  standalone: true,
+  templateUrl: './room-card.html',
+  styleUrls: ['./room-card.css']
 })
 export class RoomCardComponent {
   @Input() roomName: string = '';
