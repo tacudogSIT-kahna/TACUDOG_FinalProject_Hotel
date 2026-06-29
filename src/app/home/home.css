@@ -45,40 +45,40 @@
 }
 
 .category-block {
-  margin-bottom: 55px;
-  text-align: left;
+  background: rgba(15, 23, 42, 0.45);
+  backdrop-filter: blur(24px);
+  -webkit-backdrop-filter: blur(24px);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 20px;
+  padding: 30px;
+  margin-bottom: 50px;
+  box-shadow: 0 15px 35px rgba(0, 0, 0, 0.3);
+  box-sizing: border-box;
 }
 
 .category-title {
-  display: block;
+  display: flex;
+  align-items: center;
+  justify-content: center;
   width: 100%;
   background-color: #ffffff;
   color: #0f172a;
   font-size: 1.25rem;
   font-weight: 700;
-  text-align: center;
-  padding: 12px 20px;
+  padding: 14px 20px;
   margin: 0 auto 30px auto;
-  border-radius: 6px;
-  border: 1px solid rgba(255, 255, 255, 0.2);
-  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.15);
+  border-radius: 12px;
+  border: none;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.25);
   letter-spacing: -0.01em;
+  box-sizing: border-box;
 }
-
-.regular-title, .deluxe-title, .suite-title {
-  background-color: #ffffff !important;
-  color: #0f172a !important;
-  border: none !important;
-  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2) !important;
-}
-
-.regular-title { background: rgba(56, 189, 248, 0.15); color: #38bdf8; border: 1px solid rgba(56, 189, 248, 0.3); }
-.deluxe-title { background: rgba(45, 212, 191, 0.15); color: #2dd4bf; border: 1px solid rgba(45, 212, 191, 0.3); }
-.suite-title { background: rgba(129, 140, 248, 0.15); color: #818cf8; border: 1px solid rgba(129, 140, 248, 0.3); }
 
 .rooms-row-grid {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
-  gap: 30px;
+  gap: 25px;
+  width: 100%;
   justify-items: center;
+  box-sizing: border-box;
 }
