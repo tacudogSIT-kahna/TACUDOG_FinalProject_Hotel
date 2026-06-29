@@ -12,6 +12,7 @@ import { RoomCardComponent } from '../room-card/room-card';
 export class HomeComponent {
   welcomeMessage = "Welcome to the Coolest Hotel in Ooo!";
   selectedRoomMessage = "";
+  activeTab: string = 'Regular';
 
   hotelRooms = [
     {
@@ -19,65 +20,69 @@ export class HomeComponent {
       category: "Regular",
       desc: "A sweet, basic room guarded safely by the local Banana Guards.",
       price: 20,
-      img: "assets/images/candy-standard.png"
+      img: 'candy-standard.png'
     },
     {
       name: "Slime Kingdom Den",
       category: "Regular",
       desc: "Gooey but cozy! Perfect for travelers looking for a sticky budget stay.",
       price: 15,
-      img: "assets/images/slime-den.png"
+      img: 'slime-den.png'
     },
     {
       name: "Wizard City Hostel",
       category: "Regular",
       desc: "A mystical standard room. Keep your hands off the secret spell books!",
       price: 25,
-      img: "assets/images/wizard-hostel.png"
+      img: 'wizard-hostel.png'
     },
     {
       name: "Wildberry Bungalow",
       category: "Deluxe",
       desc: "Spacious room loaded with fresh giant berries and wild country comfort.",
       price: 45,
-      img: "assets/images/wildberry-bungalow.png"
+      img: 'wildberry-bungalow.png'
     },
     {
       name: "Breakfast Kingdom Diner Suite",
       category: "Deluxe",
       desc: "Smells like fresh maple syrup and pancakes all day long. Cozy beds included.",
       price: 55,
-      img: "assets/images/breakfast-diner.png"
+      img: 'breakfast-diner.png'
     },
     {
       name: "Lumpy Space Studio",
       category: "Deluxe",
       desc: "Totally fresh and lumpy space style room. Watch out for all the drama!",
       price: 60,
-      img: "assets/images/lumpy-studio.png"
+      img: 'lumpy-studio.png'
     },
     {
       name: "The Tree Fort Suite",
       category: "Suite",
       desc: "Live like Finn and Jake! Complete with video games and a treasure room.",
       price: 90,
-      img: "assets/images/tree-fort.png"
+      img: 'tree-fort.png'
     },
     {
       name: "Candy Kingdom Royal Suite",
-      desc: "A sugar-coated grand flat fit for the absolute highest sweet royalty.",
       category: "Suite",
+      desc: "A sugar-coated grand flat fit for the absolute highest sweet royalty.",
       price: 150,
-      img: "assets/images/candy-castle.png"
+      img: 'candy-castle.png'
     },
     {
       name: "Fire Kingdom Flame Suite",
       category: "Suite",
       desc: "A hot, blazing luxury penthouse! High heat levels. Fire protection recommended.",
       price: 130,
-      img: "assets/images/fire-suite.png"
+      img: 'fire-suite.png'
     }
   ];
+
+  selectTab(category: string) {
+    this.activeTab = category;
+  }
 
   handleBooking(roomName: any) {
     this.selectedRoomMessage = `Algebraic! You selected to book: ${roomName}. Check your Booking Summary!`;
