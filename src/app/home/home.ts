@@ -79,7 +79,7 @@ export class HomeComponent {
     }
   ];
 
-  handleBooking(roomName: any) {
+  handleBooking(roomName: string) {
     this.selectedRoomMessage = `Algebraic! You selected to book: ${roomName}. Check your Booking Summary!`;
   }
 }
