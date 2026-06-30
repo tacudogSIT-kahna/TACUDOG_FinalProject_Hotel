@@ -16,7 +16,7 @@ export class HomeComponent {
   roomsBtnText = "Book Now";
 
   diningHeader = "Restaurant and Bar";
-  diningImg = "/Breakfast Kingdom Diner Suite.png"; 
+  diningImg = "/Peppermint Butler.png"; 
   diningDesc = "Stop by our grand tavern dining room deck! Sip on fizzy Gumdrop Soda Pops straight from the Candy Kingdom laboratories, or dig into stacks of Bacon Pancakes cooked with elite baking science magic personally curated by Princess Bubblegum.";
   diningBtnText = "Book a table";
 }
