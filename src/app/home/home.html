@@ -1,12 +1,14 @@
 <div class="home-container">
 
-  <!-- New Grand Welcome Hero Card Block -->
+  <!-- Grand Welcome Hero Card Block -->
   <div class="frosted-showcase-card grand-welcome-card">
+    <!-- Embedded Finn and Jake header illustration -->
+    <img [src]="heroImg" alt="Grand Lodge Hero" class="showcase-icon-graphic contain-fit hero-icon-spacing">
+    
     <h1 class="grand-hero-title">{{ welcomeTitle }}</h1>
     <h3 class="grand-hero-subtitle">{{ welcomeSubtitle }}</h3>
     <p class="showcase-description-text justify-text">{{ welcomeDesc }}</p>
     
-    <!-- Professional Core Lodge Feature Indicators Grid -->
     <div class="amenities-grid-matrix">
       <div class="amenity-pill-box" *ngFor="let item of amenities">
         <strong class="amenity-title">✨ {{ item.title }}</strong>
@@ -17,7 +19,7 @@
 
   <!-- Original Content Showcase 1: Hotel Rooms Showcase Panel -->
   <div class="frosted-showcase-card">
-    <img [src]="roomsImg" alt="Rooms Preview" class="showcase-icon-graphic">
+    <img [src]="roomsImg" alt="Rooms Preview" class="showcase-icon-graphic contain-fit">
     <h2 class="showcase-title-text">{{ roomsHeader }}</h2>
     <p class="showcase-description-text">{{ roomsDesc }}</p>
     <div class="action-wrapper">
@@ -35,7 +37,7 @@
     </div>
   </div>
 
-  <!-- New Professional Summary Information / Operational Rules Block -->
+  <!-- Summary Information / Operational Rules Block -->
   <div class="frosted-showcase-card policy-summary-card">
     <h2 class="policy-main-title">📌 {{ policyTitle }}</h2>
     <div class="policy-rows-wrapper">
