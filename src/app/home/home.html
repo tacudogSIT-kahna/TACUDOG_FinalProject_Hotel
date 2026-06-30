@@ -1,31 +1,20 @@
 <div class="home-container">
 
-  <!-- Section 1: Hotel Rooms Showcase Block -->
-  <div class="showcase-block">
-    <div class="glass-section-banner">{{ roomsHeader }}</div>
-    
-    <div class="inner-display-card">
-      <img [src]="roomsImg" alt="Rooms Preview" class="showcase-img">
-      <p class="showcase-text">{{ roomsDesc }}</p>
-      
-      <div class="action-wrapper">
-        <button routerLink="/stay" class="showcase-btn">{{ roomsBtnText }}</button>
-      </div>
+  <!-- Section 1: Hotel Rooms Showcase Panel -->
+  <div class="frosted-showcase-card">
+    <img [src]="roomsImg" alt="Rooms Preview" class="showcase-icon-graphic">
+    <h2 class="showcase-title-text">{{ roomsHeader }}</h2>
+    <p class="showcase-description-text">{{ roomsDesc }}</p>
+    <div class="action-wrapper">
+      <button routerLink="/stay" class="showcase-btn">{{ roomsBtnText }}</button>
     </div>
   </div>
 
-  <!-- Section 2: Restaurant & Bar Showcase Block -->
-  <div class="showcase-block">
-    <div class="glass-section-banner">{{ diningHeader }}</div>
-    
-    <div class="inner-display-card">
-      <img [src]="diningImg" alt="Dining Preview" class="showcase-img">
-      <p class="showcase-text">{{ diningDesc }}</p>
-      
-      <div class="action-wrapper">
-        <button class="showcase-btn">{{ diningBtnText }}</button>
-      </div>
-    </div>
+  <!-- Section 2: Restaurant & Bar Showcase Panel -->
+  <div class="frosted-showcase-card">
+    <img [src]="diningImg" alt="Dining Preview" class="showcase-icon-graphic contain-fit">
+    <h2 class="showcase-title-text">{{ diningHeader }}</h2>
+    <p class="showcase-description-text">{{ diningDesc }}</p>
   </div>
 
 </div>
