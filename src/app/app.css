@@ -82,8 +82,8 @@ body, html {
 
 .nav-links a:hover, .nav-links a.active {
   color: #ffffff;
-  border-bottom: 2px solid #fbbf24;
-  padding-bottom: 4px;
+  border-bottom: 3px solid #fbbf24;
+  padding-bottom: 6px;
 }
 
 .nav-btn {
