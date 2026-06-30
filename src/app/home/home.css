@@ -3,25 +3,87 @@
   padding: 40px;
   display: flex;
   flex-direction: column;
-  gap: 40px;
+  gap: 50px;
   align-items: center;
 }
 
 .frosted-showcase-card {
   background: rgba(14, 116, 144, 0.35);
-  backdrop-filter: blur(20px);
-  -webkit-backdrop-filter: blur(20px);
-  border: 1px solid rgba(255, 255, 255, 0.2);
+  backdrop-filter: blur(24px);
+  -webkit-backdrop-filter: blur(24px);
+  border: 1px solid rgba(255, 255, 255, 0.18);
   border-radius: 24px;
-  padding: 40px 30px;
+  padding: 45px 35px;
   width: 100%;
-  max-width: 900px;
+  max-width: 950px;
   display: flex;
   flex-direction: column;
   align-items: center;
   text-align: center;
-  box-shadow: 0 15px 35px rgba(0, 0, 0, 0.2);
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.35);
   box-sizing: border-box;
+}
+
+.grand-welcome-card {
+  background: rgba(11, 85, 105, 0.45);
+  border-color: rgba(255, 255, 255, 0.25);
+}
+
+.grand-hero-title {
+  font-family: 'Georgia', serif;
+  font-size: 2.3rem;
+  font-weight: 600;
+  color: #ffffff;
+  margin: 0 0 10px 0;
+  letter-spacing: -0.01em;
+  text-shadow: 0 2px 8px rgba(0, 0, 0, 0.4);
+}
+
+.grand-hero-subtitle {
+  font-size: 1.15rem;
+  font-weight: 500;
+  color: #fbbf24;
+  margin: 0 0 25px 0;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+}
+
+.justify-text {
+  text-align: center;
+  max-width: 820px;
+  font-size: 1rem !important;
+}
+
+.amenities-grid-matrix {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 20px;
+  width: 100%;
+  margin-top: 35px;
+  box-sizing: border-box;
+}
+
+.amenity-pill-box {
+  background: rgba(255, 255, 255, 0.06);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 16px;
+  padding: 16px 20px;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  text-align: left;
+}
+
+.amenity-title {
+  font-size: 0.95rem;
+  color: #ffffff;
+  margin-bottom: 4px;
+}
+
+.amenity-detail {
+  font-size: 0.85rem;
+  color: #cbd5e1;
+  line-height: 1.4;
 }
 
 .showcase-icon-graphic {
@@ -38,7 +100,7 @@
 
 .showcase-title-text {
   font-family: 'Georgia', serif;
-  font-size: 2rem;
+  font-size: 1.9rem;
   font-weight: 500;
   color: #ffffff;
   margin: 0 0 15px 0;
@@ -48,12 +110,57 @@
 
 .showcase-description-text {
   font-size: 0.95rem;
-  font-weight: 600;
+  font-weight: 400;
   color: #f1f5f9;
   line-height: 1.7;
   max-width: 780px;
   margin: 0;
   text-shadow: 0 1px 3px rgba(0, 0, 0, 0.3);
+}
+
+.policy-summary-card {
+  background: rgba(15, 23, 42, 0.25);
+  padding: 35px;
+}
+
+.policy-main-title {
+  font-family: 'Georgia', serif;
+  font-size: 1.4rem;
+  color: #ffffff;
+  margin: 0 0 25px 0;
+}
+
+.policy-rows-wrapper {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+
+.policy-row-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+  padding-bottom: 12px;
+  width: 100%;
+}
+
+.policy-row-item:last-child {
+  border-bottom: none;
+  padding-bottom: 0;
+}
+
+.policy-label-tag {
+  font-size: 0.9rem;
+  font-weight: 600;
+  color: #94a3b8;
+}
+
+.policy-value-text {
+  font-size: 0.9rem;
+  font-weight: 500;
+  color: #ffffff;
 }
 
 .action-wrapper {

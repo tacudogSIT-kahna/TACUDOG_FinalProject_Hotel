@@ -1,6 +1,21 @@
 <div class="home-container">
 
-  <!-- Section 1: Hotel Rooms Showcase Panel -->
+  <!-- New Grand Welcome Hero Card Block -->
+  <div class="frosted-showcase-card grand-welcome-card">
+    <h1 class="grand-hero-title">{{ welcomeTitle }}</h1>
+    <h3 class="grand-hero-subtitle">{{ welcomeSubtitle }}</h3>
+    <p class="showcase-description-text justify-text">{{ welcomeDesc }}</p>
+    
+    <!-- Professional Core Lodge Feature Indicators Grid -->
+    <div class="amenities-grid-matrix">
+      <div class="amenity-pill-box" *ngFor="let item of amenities">
+        <strong class="amenity-title">✨ {{ item.title }}</strong>
+        <span class="amenity-detail">{{ item.detail }}</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- Original Content Showcase 1: Hotel Rooms Showcase Panel -->
   <div class="frosted-showcase-card">
     <img [src]="roomsImg" alt="Rooms Preview" class="showcase-icon-graphic">
     <h2 class="showcase-title-text">{{ roomsHeader }}</h2>
@@ -10,14 +25,24 @@
     </div>
   </div>
 
-  <!-- Section 2: Restaurant & Bar Showcase Panel -->
+  <!-- Original Content Showcase 2: Restaurant & Bar Showcase Panel -->
   <div class="frosted-showcase-card">
     <img [src]="diningImg" alt="Dining Preview" class="showcase-icon-graphic contain-fit">
     <h2 class="showcase-title-text">{{ diningHeader }}</h2>
     <p class="showcase-description-text">{{ diningDesc }}</p>
-    <!-- Appended active reservation button back under content text -->
     <div class="action-wrapper">
       <button class="showcase-btn">{{ diningBtnText }}</button>
+    </div>
+  </div>
+
+  <!-- New Professional Summary Information / Operational Rules Block -->
+  <div class="frosted-showcase-card policy-summary-card">
+    <h2 class="policy-main-title">📌 {{ policyTitle }}</h2>
+    <div class="policy-rows-wrapper">
+      <div class="policy-row-item" *ngFor="let policy of policies">
+        <span class="policy-label-tag">{{ policy.label }}</span>
+        <span class="policy-value-text">{{ policy.value }}</span>
+      </div>
     </div>
   </div>
 
