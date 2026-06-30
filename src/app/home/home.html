@@ -1,29 +1,31 @@
 <div class="home-container">
-  
-  <header class="hero-banner">
-    <h1>{{ welcomeTitle }}</h1>
-    <p>{{ mainIntro }}</p>
-    <p class="sub-intro">{{ subIntro }}</p>
-    
-    <div class="booking-action-box">
-      <button routerLink="/stay" class="checkin-btn">✨ Check-In Now & Explore Rooms</button>
-    </div>
-  </header>
 
-  <section class="category-block">
-    <div class="category-title">{{ menuTitle }}</div>
-    <p class="section-intro-text">{{ menuIntro }}</p>
+  <!-- Section 1: Hotel Rooms Showcase Block -->
+  <div class="showcase-block">
+    <div class="glass-section-banner">{{ roomsHeader }}</div>
     
-    <div class="food-row-grid">
-      <div class="food-card" *ngFor="let food of foodItems">
-        <div class="food-img-placeholder" [ngClass]="food.styleClass">
-          {{ food.icon }}
-        </div>
-        <h3>{{ food.name }}</h3>
-        <p>{{ food.desc }}</p>
-        <span class="price-tag">💰 {{ food.price }} Gold Coins</span>
+    <div class="inner-display-card">
+      <img [src]="roomsImg" alt="Rooms Preview" class="showcase-img">
+      <p class="showcase-text">{{ roomsDesc }}</p>
+      
+      <div class="action-wrapper">
+        <button routerLink="/stay" class="showcase-btn">{{ roomsBtnText }}</button>
       </div>
     </div>
-  </section>
+  </div>
+
+  <!-- Section 2: Restaurant & Bar Showcase Block -->
+  <div class="showcase-block">
+    <div class="glass-section-banner">{{ diningHeader }}</div>
+    
+    <div class="inner-display-card">
+      <img [src]="diningImg" alt="Dining Preview" class="showcase-img">
+      <p class="showcase-text">{{ diningDesc }}</p>
+      
+      <div class="action-wrapper">
+        <button class="showcase-btn">{{ diningBtnText }}</button>
+      </div>
+    </div>
+  </div>
 
 </div>
