@@ -1,0 +1,59 @@
+<div class="home-container">
+    <header class="hero-banner">
+      <h1>{{ welcomeMessage }}</h1>
+      <p>The most algebraic stay in the Land of Ooo!</p>
+    </header>
+  
+    <div *ngIf="selectedRoomMessage" class="alert-box">
+      {{ selectedRoomMessage }}
+    </div>
+  
+    <section class="category-block">
+      <div class="category-title">🏠 Regular Rooms</div>
+      <div class="rooms-row-grid">
+        <ng-container *ngFor="let room of hotelRooms">
+          <app-room-card 
+            *ngIf="room.category === 'Regular'"
+            [roomName]="room.name"
+            [description]="room.desc"
+            [price]="room.price"
+            [image]="'/' + room.img"
+            (bookRoom)="handleBooking($event)">
+          </app-room-card>
+        </ng-container>
+      </div>
+    </section>
+  
+    <section class="category-block">
+      <div class="category-title">⭐ Deluxe Rooms</div>
+      <div class="rooms-row-grid">
+        <ng-container *ngFor="let room of hotelRooms">
+          <app-room-card 
+            *ngIf="room.category === 'Deluxe'"
+            [roomName]="room.name"
+            [description]="room.desc"
+            [price]="room.price"
+            [image]="'/' + room.img"
+            (bookRoom)="handleBooking($event)">
+          </app-room-card>
+        </ng-container>
+      </div>
+    </section>
+  
+    <section class="category-block">
+      <div class="category-title">👑 Luxury Suites</div>
+      <div class="rooms-row-grid">
+        <ng-container *ngFor="let room of hotelRooms">
+          <app-room-card 
+            *ngIf="room.category === 'Suite'"
+            [roomName]="room.name"
+            [description]="room.desc"
+            [price]="room.price"
+            [image]="'/' + room.img"
+            (bookRoom)="handleBooking($event)">
+          </app-room-card>
+        </ng-container>
+      </div>
+    </section>
+  </div>
+  

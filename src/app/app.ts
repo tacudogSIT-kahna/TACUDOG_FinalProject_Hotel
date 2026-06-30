@@ -1,12 +1,12 @@
 import { Component } from '@angular/core';
-import { HomeComponent } from './home/home';
+import { StayComponent } from './stay/stay';
 
 @Component({
   selector: 'app-root',
   standalone: true,
-  imports: [HomeComponent],
-  templateUrl: './app.html',
-  styleUrls: ['./app.css']
+  imports: [StayComponent],
+  templateUrl: './app.component.html',
+  styleUrls: ['./app.component.css']
 })
 export class AppComponent {
   title = 'FinalProject_Hotel';
