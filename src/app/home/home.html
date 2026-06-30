@@ -1,25 +1,16 @@
 <div class="home-container">
 
-  <!-- Grand Welcome Hero Card Block -->
+  <!-- Grand Welcome Hero Card Block (Amenities Grid Removed) -->
   <div class="frosted-showcase-card grand-welcome-card">
-    <!-- Embedded Finn and Jake header illustration -->
-    <img [src]="heroImg" alt="Grand Lodge Hero" class="showcase-icon-graphic contain-fit hero-icon-spacing">
-    
+    <img [src]="heroImg" alt="Grand Lodge Hero" class="showcase-icon-graphic contain-fit hero-icon-large">
     <h1 class="grand-hero-title">{{ welcomeTitle }}</h1>
     <h3 class="grand-hero-subtitle">{{ welcomeSubtitle }}</h3>
     <p class="showcase-description-text justify-text">{{ welcomeDesc }}</p>
-    
-    <div class="amenities-grid-matrix">
-      <div class="amenity-pill-box" *ngFor="let item of amenities">
-        <strong class="amenity-title">✨ {{ item.title }}</strong>
-        <span class="amenity-detail">{{ item.detail }}</span>
-      </div>
-    </div>
   </div>
 
-  <!-- Original Content Showcase 1: Hotel Rooms Showcase Panel -->
+  <!-- Content Showcase 1: Hotel Rooms Showcase Panel -->
   <div class="frosted-showcase-card">
-    <img [src]="roomsImg" alt="Rooms Preview" class="showcase-icon-graphic contain-fit">
+    <img [src]="roomsImg" alt="Rooms Preview" class="showcase-icon-graphic contain-fit room-icon-large">
     <h2 class="showcase-title-text">{{ roomsHeader }}</h2>
     <p class="showcase-description-text">{{ roomsDesc }}</p>
     <div class="action-wrapper">
@@ -27,9 +18,9 @@
     </div>
   </div>
 
-  <!-- Original Content Showcase 2: Restaurant & Bar Showcase Panel -->
+  <!-- Content Showcase 2: Restaurant & Bar Showcase Panel -->
   <div class="frosted-showcase-card">
-    <img [src]="diningImg" alt="Dining Preview" class="showcase-icon-graphic contain-fit">
+    <img [src]="diningImg" alt="Dining Preview" class="showcase-icon-graphic contain-fit dining-icon-large">
     <h2 class="showcase-title-text">{{ diningHeader }}</h2>
     <p class="showcase-description-text">{{ diningDesc }}</p>
     <div class="action-wrapper">

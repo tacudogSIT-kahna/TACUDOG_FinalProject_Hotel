@@ -11,7 +11,7 @@ import { RouterModule } from '@angular/router';
 })
 export class HomeComponent {
   // Added hero image property
-  heroImg = "/finn and jake.png";
+  heroImg = "/Finn and Jake.png";
   welcomeTitle = "Welcome to The Land of Ooo Grand Lodge";
   welcomeSubtitle = "Where Cosmic Luxury Meets Infinite Adventure";
   welcomeDesc = "Experience hospitality redefined in the heart of Ooo. Spanning from the sugary sweet borders of the Candy Kingdom to the majestic peaks of Mt. Cragdor, our sanctuary offers unparalleled comfort for travelers, heroes, and seasonal royalty alike. Unwind after an algebraic quest or seek safe haven from the elements within our masterfully curated glass-frosted architecture.";
@@ -32,7 +32,7 @@ export class HomeComponent {
   ];
 
   roomsHeader = "Hotel Room and Suites";
-  roomsImg = "/finn and jake sleeping.png";
+  roomsImg = "/Finn and Jake Sleeping.png";
   roomsDesc = "Nestled deep within the Land of Ooo, our custom standard rooms, deluxe bunks, and luxury suites offer adventurers, cosmic royalty, and lumpy residents a completely mathematical getaway. Relax after a long sword battle or hide out safely from the Ice King!";
   roomsBtnText = "Book Now";
 
