@@ -1,58 +1,29 @@
 <div class="home-container">
+  
   <header class="hero-banner">
-    <h1>{{ welcomeMessage }}</h1>
-    <p>The most algebraic stay in the Land of Ooo!</p>
+    <h1>{{ welcomeTitle }}</h1>
+    <p>{{ mainIntro }}</p>
+    <p class="sub-intro">{{ subIntro }}</p>
+    
+    <div class="booking-action-box">
+      <button routerLink="/stay" class="checkin-btn">✨ Check-In Now & Explore Rooms</button>
+    </div>
   </header>
 
-  <div *ngIf="selectedRoomMessage" class="alert-box">
-    {{ selectedRoomMessage }}
-  </div>
-
   <section class="category-block">
-    <div class="category-title">🏠 Regular Rooms</div>
-    <div class="rooms-row-grid">
-      <ng-container *ngFor="let room of hotelRooms">
-        <app-room-card 
-          *ngIf="room.category === 'Regular'"
-          [roomName]="room.name"
-          [description]="room.desc"
-          [price]="room.price"
-          [image]="'/' + room.img"
-          (bookRoom)="handleBooking($event)">
-        </app-room-card>
-      </ng-container>
+    <div class="category-title">{{ menuTitle }}</div>
+    <p class="section-intro-text">{{ menuIntro }}</p>
+    
+    <div class="food-row-grid">
+      <div class="food-card" *ngFor="let food of foodItems">
+        <div class="food-img-placeholder" [ngClass]="food.styleClass">
+          {{ food.icon }}
+        </div>
+        <h3>{{ food.name }}</h3>
+        <p>{{ food.desc }}</p>
+        <span class="price-tag">💰 {{ food.price }} Gold Coins</span>
+      </div>
     </div>
   </section>
 
-  <section class="category-block">
-    <div class="category-title">⭐ Deluxe Rooms</div>
-    <div class="rooms-row-grid">
-      <ng-container *ngFor="let room of hotelRooms">
-        <app-room-card 
-          *ngIf="room.category === 'Deluxe'"
-          [roomName]="room.name"
-          [description]="room.desc"
-          [price]="room.price"
-          [image]="'/' + room.img"
-          (bookRoom)="handleBooking($event)">
-        </app-room-card>
-      </ng-container>
-    </div>
-  </section>
-
-  <section class="category-block">
-    <div class="category-title">👑 Luxury Suites</div>
-    <div class="rooms-row-grid">
-      <ng-container *ngFor="let room of hotelRooms">
-        <app-room-card 
-          *ngIf="room.category === 'Suite'"
-          [roomName]="room.name"
-          [description]="room.desc"
-          [price]="room.price"
-          [image]="'/' + room.img"
-          (bookRoom)="handleBooking($event)">
-        </app-room-card>
-      </ng-container>
-    </div>
-  </section>
 </div>
