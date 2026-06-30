@@ -5,8 +5,8 @@
       <div class="nav-left">
         <span class="nav-brand">⚔️ Ooo Booking Engine</span>
         <div class="nav-links">
-          <a href="#" class="active">HOME</a>
-          <a href="#">STAY</a>
+          <a routerLink="/home" routerLinkActive="active">HOME</a>
+          <a routerLink="/stay" routerLinkActive="active">STAY</a>
           <a href="#">RESTO MENU</a>
         </div>
       </div>
@@ -16,7 +16,8 @@
     </nav>
     
     <main class="main-content">
-      <app-stay></app-stay>
+      <!-- Dynamic container that loads components based on the URL -->
+      <router-outlet></router-outlet>
     </main>
 
     <footer class="bottom-footer">

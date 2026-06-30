@@ -1,10 +1,10 @@
 import { Component } from '@angular/core';
-import { StayComponent } from './stay/stay';
+import { RouterModule } from '@angular/router';
 
 @Component({
   selector: 'app-root',
   standalone: true,
-  imports: [StayComponent],
+  imports: [RouterModule],
   templateUrl: './app.html',
   styleUrls: ['./app.css']
 })
