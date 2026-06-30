@@ -1,6 +1,6 @@
 <div class="home-container">
 
-  <!-- Grand Welcome Hero Card Block (Amenities Grid Removed) -->
+  <!-- Grand Welcome Hero Card Block -->
   <div class="frosted-showcase-card grand-welcome-card">
     <img [src]="heroImg" alt="Grand Lodge Hero" class="showcase-icon-graphic contain-fit hero-icon-large">
     <h1 class="grand-hero-title">{{ welcomeTitle }}</h1>
@@ -25,17 +25,6 @@
     <p class="showcase-description-text">{{ diningDesc }}</p>
     <div class="action-wrapper">
       <button class="showcase-btn">{{ diningBtnText }}</button>
-    </div>
-  </div>
-
-  <!-- Summary Information / Operational Rules Block -->
-  <div class="frosted-showcase-card policy-summary-card">
-    <h2 class="policy-main-title">📌 {{ policyTitle }}</h2>
-    <div class="policy-rows-wrapper">
-      <div class="policy-row-item" *ngFor="let policy of policies">
-        <span class="policy-label-tag">{{ policy.label }}</span>
-        <span class="policy-value-text">{{ policy.value }}</span>
-      </div>
     </div>
   </div>
 
