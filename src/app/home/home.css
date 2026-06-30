@@ -71,17 +71,17 @@
 }
 
 .room-icon-large {
-  width: 420px !important;
-  height: 280px !important;
-  margin-bottom: 10px !important;
-  margin-top: 10px !important;
+  width: 560px !important;
+  height: auto !important;
+  margin-top: -65px !important;
+  margin-bottom: -55px !important;
 }
 
 .dining-icon-large {
   width: 330px !important;
-  height: 280px !important;
-  margin-bottom: 10px !important;
+  height: auto !important;
   margin-top: 10px !important;
+  margin-bottom: 10px !important;
 }
 
 .showcase-title-text {
