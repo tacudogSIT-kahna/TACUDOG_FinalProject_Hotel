@@ -8,7 +8,8 @@
     <div class="category-wrapper" *ngFor="let cat of categories">
       <div class="glass-section-header">{{ cat.name }}</div>
       
-      <div class="menu-grid">
+      <!-- Dynamically adds a four-col class for Snacks and Elixirs -->
+      <div class="menu-grid" [ngClass]="{'four-col-grid': cat.name.includes('Sides') || cat.name.includes('Elixirs')}">
         <div class="menu-card" *ngFor="let item of cat.items">
           <div class="menu-img-box">
             <img [src]="item.img" [alt]="item.name" class="menu-item-img">
@@ -17,7 +18,6 @@
           <div class="menu-card-bottom">
             <h3>{{ item.name }}</h3>
             <p>{{ item.desc }}</p>
-            <!-- Price tag span element removed from here -->
           </div>
         </div>
       </div>
