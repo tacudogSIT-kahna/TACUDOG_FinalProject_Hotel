@@ -23,6 +23,12 @@
   font-weight: 700;
   font-size: 1.2rem;
   letter-spacing: -0.01em;
+
+  /* Force blocks the text insertion cursor from appearing on the brand name */
+  user-select: none;
+  -webkit-user-select: none;
+  caret-color: transparent !important;
+  outline: none !important;
 }
 
 .nav-links {
