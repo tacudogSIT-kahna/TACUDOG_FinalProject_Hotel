@@ -2,29 +2,29 @@
 
   <!-- Grand Welcome Hero Card Block -->
   <div class="frosted-showcase-card grand-welcome-card">
-    <img [src]="heroImg" alt="Grand Lodge Hero" class="showcase-icon-graphic contain-fit hero-icon-large">
+    <img [src]="heroImg" alt="Grand Lodge Hero" class="showcase-icon-graphic contain-fit hero-icon-large floating-adventure">
     <h1 class="grand-hero-title">{{ welcomeTitle }}</h1>
     <h3 class="grand-hero-subtitle">{{ welcomeSubtitle }}</h3>
     <p class="showcase-description-text justify-text">{{ welcomeDesc }}</p>
   </div>
 
   <!-- Content Showcase 1: Hotel Rooms Showcase Panel -->
-  <div class="frosted-showcase-card">
-    <img [src]="roomsImg" alt="Rooms Preview" class="showcase-icon-graphic contain-fit room-icon-large">
+  <div class="frosted-showcase-card interactive-hover-card">
+    <img [src]="roomsImg" alt="Rooms Preview" class="showcase-icon-graphic contain-fit room-icon-large target-bright-img">
     <h2 class="showcase-title-text">{{ roomsHeader }}</h2>
     <p class="showcase-description-text">{{ roomsDesc }}</p>
     <div class="action-wrapper">
-      <button routerLink="/stay" class="showcase-btn">{{ roomsBtnText }}</button>
+      <button routerLink="/stay" class="showcase-btn trigger-brightness">{{ roomsBtnText }}</button>
     </div>
   </div>
 
   <!-- Content Showcase 2: Restaurant & Bar Showcase Panel -->
-  <div class="frosted-showcase-card">
-    <img [src]="diningImg" alt="Dining Preview" class="showcase-icon-graphic contain-fit dining-icon-large">
+  <div class="frosted-showcase-card interactive-hover-card">
+    <img [src]="diningImg" alt="Dining Preview" class="showcase-icon-graphic contain-fit dining-icon-large target-bright-img">
     <h2 class="showcase-title-text">{{ diningHeader }}</h2>
     <p class="showcase-description-text">{{ diningDesc }}</p>
     <div class="action-wrapper">
-      <button class="showcase-btn">{{ diningBtnText }}</button>
+      <button class="showcase-btn trigger-brightness">{{ diningBtnText }}</button>
     </div>
   </div>
 
