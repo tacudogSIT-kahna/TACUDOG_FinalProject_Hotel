@@ -89,7 +89,7 @@
   
   .menu-img-box {
     width: 100%;
-    max-width: 180px; /* Keeps your 1x1 image boxes perfectly sized */
+    max-width: 180px;
     aspect-ratio: 1 / 1;
     height: auto;
     border-radius: 12px;
@@ -97,11 +97,14 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    background: rgba(255, 255, 255, 0.02);
-    border: 1px solid rgba(255, 255, 255, 0.05);
+    
+    /* Changed border and background to transparent to hide the outline */
+    background: transparent;
+    border: none;
+    
     box-sizing: border-box;
     contain: paint;
-  }
+  }  
   
   .menu-item-img {
     width: 100%;
