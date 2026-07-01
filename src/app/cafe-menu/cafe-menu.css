@@ -1,4 +1,64 @@
-.menu-grid {
+.menu-container {
+    font-family: 'Plus Jakarta Sans', sans-serif;
+    padding: 40px;
+    display: flex;
+    flex-direction: column;
+    gap: 45px;
+  }
+  
+  .menu-hero {
+    background: rgba(255, 255, 255, 0.07);
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
+    padding: 35px;
+    border-radius: 24px;
+    color: #ffffff;
+    border: 1px solid rgba(255, 255, 255, 0.15);
+    text-align: center;
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+  }
+  
+  .menu-hero h1 {
+    font-family: 'Georgia', serif;
+    font-size: 2.4rem;
+    margin: 0 0 10px 0;
+  }
+  
+  .menu-hero p {
+    color: #cbd5e1;
+    font-size: 1rem;
+    margin: 0;
+  }
+  
+  .category-wrapper {
+    display: flex;
+    flex-direction: column;
+    gap: 30px;
+    width: 100%;
+  }
+  
+  /* Fixed Missing Category Titles: Styled with clear contrast and centering */
+  .glass-section-header {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    background: rgba(14, 116, 144, 0.45) !important;
+    color: #ffffff !important;
+    font-size: 1.3rem;
+    font-weight: 700;
+    padding: 14px 20px;
+    border-radius: 12px;
+    border: 1px solid rgba(255, 255, 255, 0.15) !important;
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2) !important;
+    letter-spacing: -0.01em;
+    box-sizing: border-box;
+    text-align: center;
+  }
+  
+  .menu-grid {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
     gap: 25px;
@@ -10,23 +70,28 @@
     background: rgba(15, 23, 42, 0.35);
     border: 1px solid rgba(255, 255, 255, 0.08);
     border-radius: 16px;
-    padding: 15px;
+    padding: 20px;
     display: flex;
     flex-direction: column;
+    align-items: center; /* Centers all child content */
     justify-content: space-between;
     box-sizing: border-box;
-    height: 440px; /* Increased slightly to accommodate squared items comfortably */
+    min-height: 420px; /* Shifted from strict height to dynamic min-height to fix text cutoff */
     box-shadow: 0 8px 25px rgba(0, 0, 0, 0.2);
-    
-    /* Performance Optimization: Hardware accelerates scrolling transitions over blur layers */
     will-change: transform;
   }
   
-  /* Forces the image box into a perfect, responsive 1x1 square layout wrapper */
+  .menu-card:hover {
+    transform: translateY(-4px);
+    border-color: rgba(255, 255, 255, 0.2);
+    background: rgba(15, 23, 42, 0.45);
+  }
+  
   .menu-img-box {
     width: 100%;
+    max-width: 180px; /* Keeps your 1x1 image boxes perfectly sized */
     aspect-ratio: 1 / 1;
-    height: 180px; /* Set fixed layout constraint */
+    height: auto;
     border-radius: 12px;
     overflow: hidden;
     display: flex;
@@ -35,16 +100,14 @@
     background: rgba(255, 255, 255, 0.02);
     border: 1px solid rgba(255, 255, 255, 0.05);
     box-sizing: border-box;
-    
-    /* Performance Optimization: Limits browser rendering calculation area */
     contain: paint;
   }
   
   .menu-item-img {
     width: 100%;
     height: 100%;
-    object-fit: contain; /* Shows your full 1x1 illustration without cutting it off */
-    transform: translateZ(0); /* Forces GPU layer caching to remove frame drops */
+    object-fit: contain;
+    transform: translateZ(0);
   }
   
   .menu-card:hover .menu-item-img {
@@ -54,33 +117,37 @@
   .menu-card-bottom {
     display: flex;
     flex-direction: column;
-    align-items: center;
+    align-items: center; /* Centers item name, details, and values */
     text-align: center;
     flex-grow: 1;
-    margin-top: 12px;
+    width: 100%;
+    margin-top: 15px;
   }
   
   .menu-card-bottom h3 {
-    font-size: 1.1rem;
+    font-size: 1.15rem;
     font-weight: 600;
     color: #ffffff;
-    margin: 0 0 6px 0;
-    min-height: 40px;
+    margin: 0 0 10px 0;
+    min-height: 44px;
     display: flex;
     align-items: center;
+    justify-content: center;
   }
   
   .menu-card-bottom p {
-    font-size: 0.8rem;
+    font-size: 0.85rem;
     color: #94a3b8;
-    line-height: 1.4;
-    margin: 0 0 10px 0;
+    line-height: 1.5;
+    margin: 0 0 15px 0;
+    max-width: 240px;
   }
   
   .price-tag {
     font-weight: 600;
     color: #2dd4bf;
-    font-size: 0.9rem;
-    margin-top: auto;
+    font-size: 0.95rem;
+    margin-top: auto; /* Locks price to the absolute center bottom */
+    display: inline-block;
   }
   
