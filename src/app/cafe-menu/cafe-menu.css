@@ -75,16 +75,15 @@
     display: flex;
     flex-direction: column;
     align-items: center;
-    justify-content: space-between;
+    justify-content: flex-start; /* Aligns content smoothly to the top */
     box-sizing: border-box;
     
-    /* Hardcoded card dimensions to maintain a strict, uniform grid structure */
     width: 280px; 
-    min-height: 420px;
+    min-height: 460px; /* Increased slightly to handle multi-line text descriptions safely */
     
     box-shadow: 0 8px 25px rgba(0, 0, 0, 0.2);
     will-change: transform;
-  }  
+  }
   
   .menu-card:hover {
     transform: translateY(-4px);
