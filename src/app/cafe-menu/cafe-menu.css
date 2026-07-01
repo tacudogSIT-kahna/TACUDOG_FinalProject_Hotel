@@ -1,60 +1,4 @@
-.menu-container {
-    font-family: 'Plus Jakarta Sans', sans-serif;
-    padding: 40px;
-    display: flex;
-    flex-direction: column;
-    gap: 40px;
-  }
-  
-  .menu-hero {
-    background: rgba(255, 255, 255, 0.07);
-    backdrop-filter: blur(8px);
-    -webkit-backdrop-filter: blur(8px);
-    padding: 35px;
-    border-radius: 24px;
-    color: #ffffff;
-    border: 1px solid rgba(255, 255, 255, 0.15);
-    text-align: center;
-    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
-  }
-  
-  .menu-hero h1 {
-    font-family: 'Georgia', serif;
-    font-size: 2.4rem;
-    margin: 0 0 10px 0;
-  }
-  
-  .menu-hero p {
-    color: #cbd5e1;
-    font-size: 1rem;
-    margin: 0;
-  }
-  
-  .category-wrapper {
-    display: flex;
-    flex-direction: column;
-    gap: 25px;
-  }
-  
-  .glass-section-header {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    width: 100%;
-    background: rgba(14, 116, 144, 0.55);
-    color: #ffffff;
-    font-size: 1.3rem;
-    font-weight: 700;
-    padding: 12px 20px;
-    border-radius: 12px;
-    border: 1px solid rgba(255, 255, 255, 0.15);
-    backdrop-filter: blur(12px);
-    -webkit-backdrop-filter: blur(12px);
-    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15);
-    box-sizing: border-box;
-  }
-  
-  .menu-grid {
+.menu-grid {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
     gap: 25px;
@@ -71,40 +15,41 @@
     flex-direction: column;
     justify-content: space-between;
     box-sizing: border-box;
-    height: 400px;
+    height: 440px; /* Increased slightly to accommodate squared items comfortably */
     box-shadow: 0 8px 25px rgba(0, 0, 0, 0.2);
-    transition: transform 0.2s ease, border-color 0.2s ease;
+    
+    /* Performance Optimization: Hardware accelerates scrolling transitions over blur layers */
+    will-change: transform;
   }
   
-  .menu-card:hover {
-    transform: translateY(-4px);
-    border-color: rgba(255, 255, 255, 0.2);
-    background: rgba(15, 23, 42, 0.45);
-  }
-  
-  /* Outer image box to crop out 6250x6250 whitespace leaks */
+  /* Forces the image box into a perfect, responsive 1x1 square layout wrapper */
   .menu-img-box {
     width: 100%;
-    height: 160px;
+    aspect-ratio: 1 / 1;
+    height: 180px; /* Set fixed layout constraint */
     border-radius: 12px;
     overflow: hidden;
     display: flex;
     align-items: center;
     justify-content: center;
-    background: rgba(255, 255, 255, 0.03);
+    background: rgba(255, 255, 255, 0.02);
     border: 1px solid rgba(255, 255, 255, 0.05);
+    box-sizing: border-box;
+    
+    /* Performance Optimization: Limits browser rendering calculation area */
+    contain: paint;
   }
   
   .menu-item-img {
     width: 100%;
     height: 100%;
-    object-fit: cover; /* Crops the high-res square assets seamlessly to fill the box */
-    transition: transform 0.3s ease;
+    object-fit: contain; /* Shows your full 1x1 illustration without cutting it off */
+    transform: translateZ(0); /* Forces GPU layer caching to remove frame drops */
   }
   
   .menu-card:hover .menu-item-img {
-    transform: scale(1.05); /* Optional subtle zoom effect on hover */
-  }  
+    transform: scale(1.04) translateZ(0);
+  }
   
   .menu-card-bottom {
     display: flex;
@@ -112,30 +57,30 @@
     align-items: center;
     text-align: center;
     flex-grow: 1;
-    margin-top: 15px;
+    margin-top: 12px;
   }
   
   .menu-card-bottom h3 {
-    font-size: 1.15rem;
+    font-size: 1.1rem;
     font-weight: 600;
     color: #ffffff;
-    margin: 0 0 8px 0;
-    min-height: 48px;
+    margin: 0 0 6px 0;
+    min-height: 40px;
     display: flex;
     align-items: center;
   }
   
   .menu-card-bottom p {
-    font-size: 0.85rem;
+    font-size: 0.8rem;
     color: #94a3b8;
-    line-height: 1.5;
-    margin: 0 0 12px 0;
+    line-height: 1.4;
+    margin: 0 0 10px 0;
   }
   
   .price-tag {
     font-weight: 600;
     color: #2dd4bf;
-    font-size: 0.95rem;
+    font-size: 0.9rem;
     margin-top: auto;
   }
   
