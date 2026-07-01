@@ -38,6 +38,6 @@ export class HomeComponent {
 
   diningHeader = "Peppermint Butler's Cafe";
   diningImg = "/Peppermint Butler.png"; 
-  diningDesc = "Welcome to our cozy cafe veranda! Sip on fizzy Gumdrop Soda Pops straight from the Candy Kingdom laboratories, or enjoy stacks of Bacon Pancakes paired with artisanal espresso personally curated by Princess Bubblegum.";
+  diningDesc = "Welcome to our cozy cafe veranda! Sip on fizzy Super Porp straight from the Super Porp Factory, or enjoy stacks of Bacon Pancakes paired with Jake's espresso personally curated by Princess Bubblegum.";
   diningBtnText = "Check Menu";
 }

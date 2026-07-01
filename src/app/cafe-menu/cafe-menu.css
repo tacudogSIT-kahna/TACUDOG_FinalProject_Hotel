@@ -1,0 +1,137 @@
+.menu-container {
+    font-family: 'Plus Jakarta Sans', sans-serif;
+    padding: 40px;
+    display: flex;
+    flex-direction: column;
+    gap: 40px;
+  }
+  
+  .menu-hero {
+    background: rgba(255, 255, 255, 0.07);
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
+    padding: 35px;
+    border-radius: 24px;
+    color: #ffffff;
+    border: 1px solid rgba(255, 255, 255, 0.15);
+    text-align: center;
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+  }
+  
+  .menu-hero h1 {
+    font-family: 'Georgia', serif;
+    font-size: 2.4rem;
+    margin: 0 0 10px 0;
+  }
+  
+  .menu-hero p {
+    color: #cbd5e1;
+    font-size: 1rem;
+    margin: 0;
+  }
+  
+  .category-wrapper {
+    display: flex;
+    flex-direction: column;
+    gap: 25px;
+  }
+  
+  .glass-section-header {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    background: rgba(14, 116, 144, 0.55);
+    color: #ffffff;
+    font-size: 1.3rem;
+    font-weight: 700;
+    padding: 12px 20px;
+    border-radius: 12px;
+    border: 1px solid rgba(255, 255, 255, 0.15);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15);
+    box-sizing: border-box;
+  }
+  
+  .menu-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 25px;
+    width: 100%;
+    box-sizing: border-box;
+  }
+  
+  .menu-card {
+    background: rgba(15, 23, 42, 0.35);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    border-radius: 16px;
+    padding: 15px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    box-sizing: border-box;
+    height: 400px;
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.2);
+    transition: transform 0.2s ease, border-color 0.2s ease;
+  }
+  
+  .menu-card:hover {
+    transform: translateY(-4px);
+    border-color: rgba(255, 255, 255, 0.2);
+    background: rgba(15, 23, 42, 0.45);
+  }
+  
+  /* Outer image box to crop out 6250x6250 whitespace leaks */
+  .menu-img-box {
+    width: 100%;
+    height: 160px;
+    border-radius: 12px;
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: rgba(255, 255, 255, 0.03);
+    border: 1px solid rgba(255, 255, 255, 0.05);
+  }
+  
+  .menu-item-img {
+    width: 140%;
+    height: auto;
+    object-fit: contain;
+    margin-top: -10px; /* Pulls up deep square whitespace */
+  }
+  
+  .menu-card-bottom {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    flex-grow: 1;
+    margin-top: 15px;
+  }
+  
+  .menu-card-bottom h3 {
+    font-size: 1.15rem;
+    font-weight: 600;
+    color: #ffffff;
+    margin: 0 0 8px 0;
+    min-height: 48px;
+    display: flex;
+    align-items: center;
+  }
+  
+  .menu-card-bottom p {
+    font-size: 0.85rem;
+    color: #94a3b8;
+    line-height: 1.5;
+    margin: 0 0 12px 0;
+  }
+  
+  .price-tag {
+    font-weight: 600;
+    color: #2dd4bf;
+    font-size: 0.95rem;
+    margin-top: auto;
+  }
+  

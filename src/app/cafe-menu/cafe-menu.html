@@ -1,0 +1,26 @@
+<div class="menu-container">
+  
+    <header class="menu-hero">
+      <h1>{{ menuTitle }}</h1>
+      <p>{{ menuSubtitle }}</p>
+    </header>
+  
+    <div class="category-wrapper" *ngFor="let cat of categories">
+      <div class="glass-section-header">{{ cat.name }}</div>
+      
+      <div class="menu-grid">
+        <div class="menu-card" *ngFor="let item of cat.items">
+          <div class="menu-img-box">
+            <img [src]="item.img" [alt]="item.name" class="menu-item-img">
+          </div>
+          
+          <div class="menu-card-bottom">
+            <h3>{{ item.name }}</h3>
+            <p>{{ item.desc }}</p>
+            <span class="price-tag">💰 {{ item.price }} Gold Coins</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  
+  </div>  
