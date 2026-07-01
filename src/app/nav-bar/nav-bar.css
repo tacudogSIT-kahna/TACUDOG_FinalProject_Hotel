@@ -40,6 +40,12 @@
   transition: color 0.2s ease;
   position: relative;
   padding-bottom: 4px;
+
+  /* Force blocks the text selection cursor from appearing */
+  user-select: none;
+  -webkit-user-select: none;
+  caret-color: transparent !important;
+  outline: none !important;
 }
 
 .nav-links a:hover, .nav-links a.active {
