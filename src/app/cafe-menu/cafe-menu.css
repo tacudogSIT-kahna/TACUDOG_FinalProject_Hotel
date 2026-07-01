@@ -33,11 +33,10 @@
   .category-wrapper {
     display: flex;
     flex-direction: column;
-    gap: 30px;
+    gap: 20px;
     width: 100%;
   }
   
-  /* Fixed Missing Category Titles: Styled with clear contrast and centering */
   .glass-section-header {
     display: flex;
     align-items: center;
@@ -55,24 +54,42 @@
     box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2) !important;
     letter-spacing: -0.01em;
     box-sizing: border-box;
-    text-align: center;
   }
   
-  /* Standard flexible grid for centering rows with odd item counts */
-.menu-grid {
-    display: flex;
-    justify-content: center;
+  /* Transformed into a single-row horizontal scrolling runway */
+  .menu-grid {
+    display: flex !important;
+    flex-direction: row !important;
+    justify-content: flex-start !important;
     gap: 25px;
-    flex-wrap: wrap;
     width: 100%;
+    padding: 15px 5px;
+    overflow-x: auto; /* Enables horizontal scrollbar navigation */
+    overflow-y: hidden;
     box-sizing: border-box;
+    scroll-behavior: smooth;
+    
+    /* Custom scrollbar properties for modern web browsers */
+    scrollbar-width: thin;
+    scrollbar-color: rgba(255, 255, 255, 0.2) transparent;
   }
   
-  /* New layout rule to lock exactly 4 items into a tight grid row */
-  .four-col-grid {
-    display: grid !important;
-    grid-template-columns: repeat(4, 1fr) !important;
-    justify-items: center;
+  /* Styled scrollbar rails for Chrome, Safari, and Edge engines */
+  .menu-grid::-webkit-scrollbar {
+    height: 8px;
+  }
+  
+  .menu-grid::-webkit-scrollbar-track {
+    background: transparent;
+  }
+  
+  .menu-grid::-webkit-scrollbar-thumb {
+    background: rgba(255, 255, 255, 0.15);
+    border-radius: 10px;
+  }
+  
+  .menu-grid::-webkit-scrollbar-thumb:hover {
+    background: rgba(255, 255, 255, 0.3);
   }
   
   .menu-card {
@@ -86,14 +103,16 @@
     justify-content: flex-start;
     box-sizing: border-box;
     
-    /* Adjusted width bounds to sit flush across both 3-column and 4-column spaces */
-    width: 100%;
-    max-width: 280px;
-    min-height: 460px;
+    /* Locked width limits to prevent cards from squeezing inside the row strip */
+    width: 280px !important;
+    min-width: 280px !important;
+    flex-shrink: 0; /* Prevents cards from condensing down */
+    min-height: 440px;
     
     box-shadow: 0 8px 25px rgba(0, 0, 0, 0.2);
+    transition: transform 0.2s ease, border-color 0.2s ease;
     will-change: transform;
-  }  
+  }
   
   .menu-card:hover {
     transform: translateY(-4px);
@@ -111,14 +130,11 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    
-    /* Changed border and background to transparent to hide the outline */
     background: transparent;
     border: none;
-    
     box-sizing: border-box;
     contain: paint;
-  }  
+  }
   
   .menu-item-img {
     width: 100%;
@@ -127,14 +143,10 @@
     transform: translateZ(0);
   }
   
-  .menu-card:hover .menu-item-img {
-    transform: scale(1.04) translateZ(0);
-  }
-  
   .menu-card-bottom {
     display: flex;
     flex-direction: column;
-    align-items: center; /* Centers item name, details, and values */
+    align-items: center;
     text-align: center;
     flex-grow: 1;
     width: 100%;
@@ -156,15 +168,7 @@
     font-size: 0.85rem;
     color: #94a3b8;
     line-height: 1.5;
-    margin: 0 0 15px 0;
+    margin: 0;
     max-width: 240px;
-  }
-  
-  .price-tag {
-    font-weight: 600;
-    color: #2dd4bf;
-    font-size: 0.95rem;
-    margin-top: auto; /* Locks price to the absolute center bottom */
-    display: inline-block;
   }
   

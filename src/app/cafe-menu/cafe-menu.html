@@ -8,8 +8,7 @@
     <div class="category-wrapper" *ngFor="let cat of categories">
       <div class="glass-section-header">{{ cat.name }}</div>
       
-      <!-- Dynamically adds a four-col class for Snacks and Elixirs -->
-      <div class="menu-grid" [ngClass]="{'four-col-grid': cat.name.includes('Sides') || cat.name.includes('Elixirs')}">
+      <div class="menu-grid">
         <div class="menu-card" *ngFor="let item of cat.items">
           <div class="menu-img-box">
             <img [src]="item.img" [alt]="item.name" class="menu-item-img">
