@@ -1,80 +1,100 @@
 .adventure-card {
-    background: rgba(15, 23, 42, 0.35);
-    border: 1px solid rgba(255, 255, 255, 0.08);
-    border-radius: 16px;
-    padding: 20px;
-    width: 100%;
-    max-width: 100%;
-    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.2);
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-    align-items: center;
-    box-sizing: border-box;
-    transition: transform 0.2s ease, border-color 0.2s ease, background 0.2s ease;
-  }
+  background: rgba(15, 23, 42, 0.35);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 16px;
+  padding: 20px;
+  width: 100%;
+  max-width: 100%;
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.2);
   
-  .adventure-card:hover {
-    transform: translateY(-4px);
-    border-color: rgba(255, 255, 255, 0.2);
-    background: rgba(15, 23, 42, 0.55);
-  }
-  
-  .room-img {
-    width: 100%;
-    height: 200px;
-    object-fit: cover;
-    border-radius: 14px;
-    border: 1px solid rgba(255, 255, 255, 0.1);
-  }
-  
-  h3 {
-    font-family: 'Plus Jakarta Sans', sans-serif;
-    font-size: 1.3rem;
-    font-weight: 600;
-    color: #ffffff;
-    margin: 18px 0 8px 0;
-    text-align: center;
-  }
-  
-  p {
-    font-family: 'Plus Jakarta Sans', sans-serif;
-    font-size: 0.95rem;
-    font-weight: 400;
-    color: #94a3b8;
-    margin: 0 0 18px 0;
-    line-height: 1.5;
-    text-align: center;
-  }
-  
-  .price {
-    font-weight: 600;
-    color: #2dd4bf;
-    margin-bottom: 18px;
-    font-size: 1.05rem;
-  }
-  
-  button {
-    font-family: 'Plus Jakarta Sans', sans-serif;
-    background: rgba(255, 255, 255, 0.08);
-    color: #ffffff;
-    border: 1px solid rgba(255, 255, 255, 0.2);
-    padding: 12px 16px;
-    font-weight: 600;
-    font-size: 0.95rem;
-    cursor: pointer;
-    border-radius: 12px;
-    width: 100%;
-    transition: all 0.2s ease;
-  }
-  
-  button:hover {
-    background: #ffffff;
-    color: #0f172a;
-    box-shadow: 0 0 15px rgba(255, 255, 255, 0.4);
-  }
-  
-  button:active {
-    transform: scale(0.98);
-  }
-  
+  /* Flexbox settings to force identical card dimensions */
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  box-sizing: border-box;
+  height: 480px; /* Locked standard height for card uniformity */
+  transition: transform 0.2s ease, border-color 0.2s ease, background 0.2s ease;
+}
+
+.adventure-card:hover {
+  transform: translateY(-4px);
+  border-color: rgba(255, 255, 255, 0.2);
+  background: rgba(15, 23, 42, 0.55);
+}
+
+.card-content-top {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  flex-grow: 1;
+}
+
+.card-content-bottom {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+  margin-top: auto; /* Forces price and button to lock together at the bottom */
+}
+
+.room-img {
+  width: 100%;
+  height: 180px;
+  object-fit: cover;
+  border-radius: 14px;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+h3 {
+  font-family: 'Plus Jakarta Sans', sans-serif;
+  font-size: 1.15rem;
+  font-weight: 600;
+  color: #ffffff;
+  margin: 16px 0 8px 0;
+  text-align: center;
+  min-height: 44px; /* Gives titles room to wrap without changing card layout */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+p {
+  font-family: 'Plus Jakarta Sans', sans-serif;
+  font-size: 0.9rem;
+  font-weight: 400;
+  color: #94a3b8;
+  margin: 0 0 12px 0;
+  line-height: 1.5;
+  text-align: center;
+}
+
+.price {
+  font-weight: 600;
+  color: #2dd4bf;
+  margin-bottom: 14px;
+  font-size: 1rem;
+}
+
+button {
+  font-family: 'Plus Jakarta Sans', sans-serif;
+  background: rgba(255, 255, 255, 0.08);
+  color: #ffffff;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  padding: 12px 16px;
+  font-weight: 600;
+  font-size: 0.95rem;
+  cursor: pointer;
+  border-radius: 12px;
+  width: 100%;
+  transition: all 0.2s ease;
+}
+
+button:hover {
+  background: #ffffff;
+  color: #0f172a;
+  box-shadow: 0 0 15px rgba(255, 255, 255, 0.4);
+}
+
+button:active {
+  transform: scale(0.98);
+}
