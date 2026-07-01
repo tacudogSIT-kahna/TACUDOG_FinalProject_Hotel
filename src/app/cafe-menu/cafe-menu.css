@@ -59,9 +59,10 @@
   }
   
   .menu-grid {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
+    display: flex;
+    justify-content: center; /* Center-aligns the partial rows perfectly */
     gap: 25px;
+    flex-wrap: wrap; /* Allows cards to wrap into neat, centered rows of 3 */
     width: 100%;
     box-sizing: border-box;
   }
@@ -73,13 +74,17 @@
     padding: 20px;
     display: flex;
     flex-direction: column;
-    align-items: center; /* Centers all child content */
+    align-items: center;
     justify-content: space-between;
     box-sizing: border-box;
-    min-height: 420px; /* Shifted from strict height to dynamic min-height to fix text cutoff */
+    
+    /* Hardcoded card dimensions to maintain a strict, uniform grid structure */
+    width: 280px; 
+    min-height: 420px;
+    
     box-shadow: 0 8px 25px rgba(0, 0, 0, 0.2);
     will-change: transform;
-  }
+  }  
   
   .menu-card:hover {
     transform: translateY(-4px);
