@@ -18,13 +18,14 @@
     </div>
   </div>
 
-  <!-- Content Showcase 2: Restaurant & Bar Showcase Panel -->
-  <div class="frosted-showcase-card interactive-hover-card">
+   <!-- Restaurant & Bar Showcase Panel -->
+   <div class="frosted-showcase-card interactive-hover-card">
     <img [src]="diningImg" alt="Dining Preview" class="showcase-icon-graphic contain-fit dining-icon-large target-bright-img">
     <h2 class="showcase-title-text">{{ diningHeader }}</h2>
     <p class="showcase-description-text">{{ diningDesc }}</p>
     <div class="action-wrapper">
-      <button class="showcase-btn trigger-brightness">{{ diningBtnText }}</button>
+      <!-- Added the missing routerLink directive hook here -->
+      <button routerLink="/cafe-menu" class="showcase-btn trigger-brightness">{{ diningBtnText }}</button>
     </div>
   </div>
 
