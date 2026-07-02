@@ -7,13 +7,11 @@
       <router-outlet></router-outlet>
     </main>
 
-    <!-- Reference footer directly inside structural root canvas blocks -->
     <app-footer #hotelFooter></app-footer>
 
   </div>
 </div>
 
-<!-- Root Level Centered Pop-up Modal View Window Framework -->
 <div class="modal-overlay" *ngIf="hotelFooter.isModalOpen">
   <div class="modal-box-frame">
     <header class="modal-header-row">
