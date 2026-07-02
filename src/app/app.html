@@ -7,8 +7,21 @@
       <router-outlet></router-outlet>
     </main>
 
-    <!-- Render the extracted dedicated footer component here -->
-    <app-footer></app-footer>
+    <!-- Reference footer directly inside structural root canvas blocks -->
+    <app-footer #hotelFooter></app-footer>
 
+  </div>
+</div>
+
+<!-- Root Level Centered Pop-up Modal View Window Framework -->
+<div class="modal-overlay" *ngIf="hotelFooter.isModalOpen">
+  <div class="modal-box-frame">
+    <header class="modal-header-row">
+      <h2>{{ hotelFooter.modalTitle }}</h2>
+      <button class="close-modal-btn" (click)="hotelFooter.closeModal()">×</button>
+    </header>
+    <div class="modal-body-content">
+      <p>{{ hotelFooter.modalContent }}</p>
+    </div>
   </div>
 </div>
