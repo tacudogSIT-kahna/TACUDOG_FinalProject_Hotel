@@ -20,7 +20,7 @@
             [description]="room.desc"
             [price]="room.price"
             [image]="'/' + room.img"
-            (bookRoom)="onFinalCheckoutSubmitted($img)">
+            (bookRoom)="onFinalCheckoutSubmitted($event)">
           </app-room-card>
         </ng-container>
       </div>
