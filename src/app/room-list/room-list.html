@@ -1,17 +1,25 @@
 <div class="room-list-container">
-    <div class="glass-section-header">🏰 Select Your Kingdom Quarters</div>
-    <div class="room-selection-grid">
-      <div 
-        *ngFor="let room of rooms" 
-        class="room-selection-card" 
-        [class.selected]="selectedRoomId === room.name"
-        (click)="selectRoom(room)">
-        <div class="room-selector-dot"></div>
-        <div class="room-details-row">
-          <h3>{{ room.name }}</h3>
-          <span class="price-pill">💰 {{ room.price }} Gold / Night</span>
-        </div>
+  <div class="glass-section-header">🏰 Select Your Kingdom Quarters</div>
+  <div class="room-selection-grid">
+    <div 
+      *ngFor="let room of rooms" 
+      class="room-selection-card" 
+      [class.selected]="selectedRoomId === room.name"
+      (click)="selectRoom(room)">
+      
+      <!-- Added live visual thumbnail matching the suite choice -->
+      <div class="room-thumbnail-frame">
+        <img [src]="'/' + room.img" [alt]="room.name" class="selector-thumb-img">
       </div>
+
+      <div class="room-card-right-details">
+        <div class="selector-indicator-row">
+          <div class="room-selector-dot"></div>
+          <h3>{{ room.name }}</h3>
+        </div>
+        <span class="price-pill">💰 {{ room.price }} Gold / Night</span>
+      </div>
+
     </div>
   </div>
-  
+</div>

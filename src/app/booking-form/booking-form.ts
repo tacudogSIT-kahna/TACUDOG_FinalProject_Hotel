@@ -26,16 +26,17 @@ export class BookingFormComponent {
   nightsCount: number = 1;
   successMessage: string = '';
 
+  // Added img attributes to provide image previews in the selection menu list
   hotelRooms = [
-    { name: "Candy Kingdom Standard", price: 20 },
-    { name: "Slime Kingdom Den", price: 15 },
-    { name: "Wizard City Hostel", price: 25 },
-    { name: "Wildberry Bungalow", price: 45 },
-    { name: "Breakfast Kingdom Diner Suite", price: 55 },
-    { name: "Lumpy Space Studio", price: 60 },
-    { name: "The Tree Fort Suite", price: 90 },
-    { name: "Candy Kingdom Royal Suite", price: 150 },
-    { name: "Fire Kingdom Flame Suite", price: 130 }
+    { name: "Candy Kingdom Standard", price: 20, img: 'Candy Kingdom Standard.png' },
+    { name: "Slime Kingdom Den", price: 15, img: 'Slime Kingdom Den.png' },
+    { name: "Wizard City Hostel", price: 25, img: 'Wizard City Hostel.png' },
+    { name: "Wildberry Bungalow", price: 45, img: 'Wildberry Bungalow.png' },
+    { name: "Breakfast Kingdom Diner Suite", price: 55, img: 'Breakfast Kingdom Diner Suite.png' },
+    { name: "Lumpy Space Studio", price: 60, img: 'Lumpy Space Studio.png' },
+    { name: "The Tree Fort Suite", price: 90, img: 'The Tree Fort Suite.png' },
+    { name: "Candy Kingdom Royal Suite", price: 150, img: 'Candy Kingdom Royal Suite.png' },
+    { name: "Fire Kingdom Flame Suite", price: 130, img: 'Fire Kingdom Flame Suite.png' }
   ];
 
   handleSignIn() {

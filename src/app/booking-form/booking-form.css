@@ -97,13 +97,14 @@
     background: #f59e0b;
   }
   
-  .unlocked-booking-dashboard {
-    width: 100%;
-    max-width: 1100px;
-    display: flex;
-    flex-direction: column;
-    gap: 25px;
-  }
+/* Widened the main layout dashboard and assigned explicit column grid tracks */
+.unlocked-booking-dashboard {
+  width: 100%;
+  max-width: 1200px;
+  display: flex;
+  flex-direction: column;
+  gap: 25px;
+}
   
   .welcome-badge-header {
     background: rgba(255, 255, 255, 0.05);
@@ -137,9 +138,10 @@
   
   .booking-engine-split-grid {
     display: grid;
-    grid-template-columns: 1fr 380px;
-    gap: 30px;
+    grid-template-columns: 1fr 420px; /* Widened from 380px to fix the invoice text truncation */
+    gap: 35px;
     align-items: flex-start;
+    width: 100%;
   }
   
   .selection-controls-column {
