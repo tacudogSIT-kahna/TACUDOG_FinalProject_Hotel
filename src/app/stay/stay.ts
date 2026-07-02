@@ -44,6 +44,11 @@ export class StayComponent {
   }
 
   onFinalCheckoutSubmitted(bookingInvoice: any) {
-    this.checkoutAlertMessage = `Algebraic! Reserved ${bookingInvoice.room.name} for ${bookingInvoice.details.nights} nights. Total: ${bookingInvoice.total} Gold Coins. Invoice logged!`;
+    // If sent from the child card, it passes a string directly
+    const roomName = typeof bookingInvoice === 'string' ? bookingInvoice : bookingInvoice.room.name;
+    const nights = bookingInvoice.details ? bookingInvoice.details.nights : this.bookingConfig.nights;
+    const total = bookingInvoice.total ? bookingInvoice.total : (this.hotelRooms.find(r => r.name === roomName)?.price || 0) * nights;
+
+    this.checkoutAlertMessage = `Algebraic! Reserved ${roomName} for ${nights} nights. Total: ${total} Gold Coins. Invoice logged!`;
   }
 }

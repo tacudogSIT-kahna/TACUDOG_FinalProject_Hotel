@@ -1,13 +1,15 @@
-<div class="home-container">
+<div class="stay-layout-wrapper">
+  
+  <div class="catalog-side-panel">
     <header class="hero-banner">
-      <h1>{{ welcomeMessage }}</h1>
-      <p>The most algebraic stay in the Land of Ooo!</p>
+      <h1>Grand Lodge Kingdom Accommodations</h1>
+      <p>The most algebraic accommodations in the Land of Ooo!</p>
     </header>
-  
-    <div *ngIf="selectedRoomMessage" class="alert-box">
-      {{ selectedRoomMessage }}
+
+    <div *ngIf="checkoutAlertMessage" class="alert-box">
+      {{ checkoutAlertMessage }}
     </div>
-  
+
     <section class="category-block">
       <div class="category-title">🏠 Regular Rooms</div>
       <div class="rooms-row-grid">
@@ -18,12 +20,12 @@
             [description]="room.desc"
             [price]="room.price"
             [image]="'/' + room.img"
-            (bookRoom)="handleBooking($event)">
+            (bookRoom)="onFinalCheckoutSubmitted($img)">
           </app-room-card>
         </ng-container>
       </div>
     </section>
-  
+
     <section class="category-block">
       <div class="category-title">⭐ Deluxe Rooms</div>
       <div class="rooms-row-grid">
@@ -34,12 +36,12 @@
             [description]="room.desc"
             [price]="room.price"
             [image]="'/' + room.img"
-            (bookRoom)="handleBooking($event)">
+            (bookRoom)="onFinalCheckoutSubmitted($event)">
           </app-room-card>
         </ng-container>
       </div>
     </section>
-  
+
     <section class="category-block">
       <div class="category-title">👑 Luxury Suites</div>
       <div class="rooms-row-grid">
@@ -50,33 +52,19 @@
             [description]="room.desc"
             [price]="room.price"
             [image]="'/' + room.img"
-            (bookRoom)="handleBooking($event)">
+            (bookRoom)="onFinalCheckoutSubmitted($event)">
           </app-room-card>
         </ng-container>
       </div>
     </section>
   </div>
-  
-  <div class="stay-layout-wrapper">
-  
-    <!-- Left Side: Catalog Matrix Grid -->
-    <div class="catalog-side-panel">
-      <div *ngIf="checkoutAlertMessage" class="alert-box">
-        {{ checkoutAlertMessage }}
-      </div>
-  
-      <!-- Category headers loop blocks stay here untouched... -->
-      <!-- (Your existing category-block wrappers go here) -->
+
+  <div class="checkout-side-console">
+    <div class="sticky-console-wrapper">
+      <app-room-list [rooms]="hotelRooms" (roomSelected)="onRoomPickedFromList($event)"></app-room-list>
+      <app-booking-form (formChanged)="onFormStateUpdated($event)"></app-booking-form>
+      <app-booking-summary [selectedRoom]="selectedRoom" [config]="bookingConfig" (submitBooking)="onFinalCheckoutSubmitted($event)"></app-booking-summary>
     </div>
-  
-    <!-- Right Side: Sticky Interactive Check-Out Console Panel -->
-    <div class="checkout-side-console">
-      <div class="sticky-console-wrapper">
-        <app-room-list [rooms]="hotelRooms" (roomSelected)="onRoomPickedFromList($event)"></app-room-list>
-        <app-booking-form (formChanged)="onFormStateUpdated($event)"></app-booking-form>
-        <app-booking-summary [selectedRoom]="selectedRoom" [config]="bookingConfig" (submitBooking)="onFinalCheckoutSubmitted($event)"></app-booking-summary>
-      </div>
-    </div>
-  
   </div>
-  
+
+</div>
