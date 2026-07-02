@@ -1,6 +1,167 @@
-.booking-form-box {
+.booking-page-container {
+    font-family: 'Plus Jakarta Sans', sans-serif;
+    padding: 40px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: calc(100vh - 140px);
     width: 100%;
-    margin-bottom: 25px;
+    box-sizing: border-box;
+  }
+  
+  .frosted-auth-card {
+    background: rgba(14, 116, 144, 0.35);
+    backdrop-filter: blur(24px);
+    -webkit-backdrop-filter: blur(24px);
+    border: 1px solid rgba(255, 255, 255, 0.18);
+    border-radius: 24px;
+    padding: 35px;
+    width: 100%;
+    max-width: 480px;
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.35);
+    text-align: center;
+  }
+  
+  .glass-section-header {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    background: rgba(14, 116, 144, 0.45);
+    color: #ffffff;
+    font-size: 1.2rem;
+    font-weight: 700;
+    padding: 12px;
+    border-radius: 12px;
+    border: 1px solid rgba(255, 255, 255, 0.15);
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.15);
+  }
+  
+  .auth-helper-text {
+    font-size: 0.9rem;
+    color: #cbd5e1;
+    margin: 15px 0 25px 0;
+    line-height: 1.5;
+  }
+  
+  .credential-entry-form {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+  }
+  
+  .input-wrapper-field {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    text-align: left;
+  }
+  
+  .input-wrapper-field label {
+    color: #94a3b8;
+    font-size: 0.85rem;
+    font-weight: 600;
+  }
+  
+  .input-wrapper-field input {
+    background: rgba(15, 23, 42, 0.5);
+    border: 1px solid rgba(255, 255, 255, 0.12);
+    border-radius: 10px;
+    padding: 12px 16px;
+    color: #ffffff;
+    font-family: inherit;
+    font-size: 0.95rem;
+    outline: none;
+    transition: border-color 0.2s;
+  }
+  
+  .input-wrapper-field input:focus {
+    border-color: #2dd4bf;
+  }
+  
+  .submit-auth-btn {
+    font-family: 'Plus Jakarta Sans', sans-serif;
+    background: #fbbf24;
+    color: #0f172a;
+    border: none;
+    padding: 14px;
+    border-radius: 10px;
+    font-weight: 700;
+    font-size: 1rem;
+    cursor: pointer;
+    margin-top: 10px;
+    transition: background 0.2s;
+  }
+  
+  .submit-auth-btn:hover {
+    background: #f59e0b;
+  }
+  
+  .unlocked-booking-dashboard {
+    width: 100%;
+    max-width: 1100px;
+    display: flex;
+    flex-direction: column;
+    gap: 25px;
+  }
+  
+  .welcome-badge-header {
+    background: rgba(255, 255, 255, 0.05);
+    border-radius: 16px;
+    padding: 20px;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    text-align: left;
+  }
+  
+  .welcome-badge-header h2 {
+    margin: 0 0 4px 0;
+    color: #ffffff;
+    font-size: 1.4rem;
+  }
+  
+  .welcome-badge-header p {
+    margin: 0;
+    color: #94a3b8;
+    font-size: 0.9rem;
+  }
+  
+  .alert-box-success {
+    background: rgba(45, 212, 191, 0.15);
+    color: #2dd4bf;
+    padding: 20px;
+    border-radius: 16px;
+    border: 1px solid #2dd4bf;
+    font-weight: 500;
+    line-height: 1.6;
+  }
+  
+  .booking-engine-split-grid {
+    display: grid;
+    grid-template-columns: 1fr 380px;
+    gap: 30px;
+    align-items: flex-start;
+  }
+  
+  .selection-controls-column {
+    background: rgba(15, 23, 42, 0.3);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    border-radius: 20px;
+    padding: 25px;
+    display: flex;
+    flex-direction: column;
+    gap: 25px;
+  }
+  
+  .invoice-summary-column {
+    background: rgba(15, 23, 42, 0.45);
+    border: 1px solid rgba(255, 255, 255, 0.12);
+    border-radius: 24px;
+    padding: 25px;
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.35);
+  }
+  
+  .booking-form-box {
+    width: 100%;
   }
   
   .form-inputs-row {

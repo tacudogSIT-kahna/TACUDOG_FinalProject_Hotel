@@ -1,26 +1,75 @@
-<div class="booking-form-box">
-    <div class="glass-section-header">📅 Stay Configuration</div>
-    
-    <div class="form-inputs-row">
-      <!-- Nights Counter -->
-      <div class="counter-field">
-        <label>Length of Stay (Nights)</label>
-        <div class="counter-control">
-          <button type="button" (click)="changeNights(-1)">-</button>
-          <span class="counter-value">{{ nightsCount }}</span>
-          <button type="button" (click)="changeNights(1)">+</button>
+<div class="booking-page-container">
+  
+    <!-- Step 1: Secure Kingdom Credential Input Entry -->
+    <div class="frosted-auth-card" *ngIf="!isUserSignedIn">
+      <div class="glass-section-header">🔑 Adventurer Identification</div>
+      <p class="auth-helper-text">Please input your legal kingdom credentials into the local servers before requesting quarters.</p>
+      
+      <form (ngSubmit)="handleSignIn()" class="credential-entry-form">
+        <div class="input-wrapper-field">
+          <label>Adventurer Full Name</label>
+          <input type="text" [(ngModel)]="guestName" name="name" placeholder="e.g. Finn the Human" required>
         </div>
+  
+        <div class="input-wrapper-field">
+          <label>Crystal Network Email</label>
+          <input type="email" [(ngModel)]="guestEmail" name="email" placeholder="e.g. finn@treefort.ooo" required>
+        </div>
+  
+        <button type="submit" class="submit-auth-btn">Initialize Booking Channel</button>
+      </form>
+    </div>
+  
+    <!-- Step 2: Unlocked Active Room Booking Engine Panel Grid -->
+    <div class="unlocked-booking-dashboard" *ngIf="isUserSignedIn">
+      
+      <div class="welcome-badge-header">
+        <h2>Greetings, {{ guestName }}!</h2>
+        <p>Your session identity is verified. Proceed with your hotel request layout selection below.</p>
       </div>
   
-      <!-- Guests Counter -->
-      <div class="counter-field">
-        <label>Party Size (Adventurers)</label>
-        <div class="counter-control">
-          <button type="button" (click)="changeGuests(-1)">-</button>
-          <span class="counter-value">{{ guestsCount }}</span>
-          <button type="button" (click)="changeGuests(1)">+</button>
-        </div>
+      <div *ngIf="successMessage" class="alert-box-success">
+        {{ successMessage }}
       </div>
+  
+      <div class="booking-engine-split-grid" *ngIf="!successMessage">
+        
+        <div class="selection-controls-column">
+          <app-room-list [rooms]="hotelRooms" (roomSelected)="onRoomPicked($event)"></app-room-list>
+          
+          <!-- Nested Stay Duration Form Controls directly inside main canvas -->
+          <div class="booking-form-box">
+            <div class="glass-section-header">📅 Stay Configuration</div>
+            
+            <div class="form-inputs-row">
+              <div class="counter-field">
+                <label>Length of Stay (Nights)</label>
+                <div class="counter-control">
+                  <button type="button" (click)="changeNights(-1)">-</button>
+                  <span class="counter-value">{{ nightsCount }}</span>
+                  <button type="button" (click)="changeNights(1)">+</button>
+                </div>
+              </div>
+  
+              <div class="counter-field">
+                <label>Party Size (Adventurers)</label>
+                <div class="counter-control">
+                  <button type="button" (click)="changeGuests(-1)">-</button>
+                  <span class="counter-value">{{ guestsCount }}</span>
+                  <button type="button" (click)="changeGuests(1)">+</button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        
+        <div class="invoice-summary-column">
+          <app-booking-summary [selectedRoom]="selectedRoom" [config]="summaryConfig" (submitBooking)="onCheckoutSubmitted($event)"></app-booking-summary>
+        </div>
+        
+      </div>
+  
     </div>
+  
   </div>
   
