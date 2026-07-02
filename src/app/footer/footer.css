@@ -1,5 +1,56 @@
-/* Fixed Modal Backdrop: Spans across the absolute full monitor window */
-.modal-overlay {
+.bottom-footer {
+    background: rgba(13, 30, 37, 0.45);
+    backdrop-filter: blur(16px);
+    -webkit-backdrop-filter: blur(16px);
+    border-top: 1px solid rgba(255, 255, 255, 0.15);
+    padding: 25px 40px; /* Enhanced vertical padding area */
+    flex-shrink: 0;
+    z-index: 10;
+    width: 100%;
+    box-sizing: border-box;
+  }
+  
+  .footer-content {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+    flex-wrap: nowrap; /* Forces content to stay on a single uniform line */
+  }
+  
+  .footer-content p {
+    font-family: 'Plus Jakarta Sans', sans-serif;
+    color: #cbd5e1;
+    font-size: 0.8rem;
+    margin: 0;
+    letter-spacing: 0.01em;
+    text-shadow: 0 1px 2px rgba(0, 0, 0, 0.3);
+  }
+  
+  .footer-links {
+    display: flex;
+    gap: 30px; /* Clean horizontal spacing separation between each link */
+    align-items: center;
+  }
+  
+  .footer-links a {
+    font-family: 'Plus Jakarta Sans', sans-serif;
+    color: #94a3b8;
+    text-decoration: none;
+    font-size: 0.8rem;
+    font-weight: 500;
+    cursor: pointer;
+    transition: color 0.2s ease;
+    white-space: nowrap; /* Prevents individual link names from breaking in half */
+    user-select: none;
+  }
+  
+  .footer-links a:hover {
+    color: #fbbf24;
+  }
+  
+  /* Modal Dark Blurry Overlay background */
+  .modal-overlay {
     position: fixed !important;
     top: 0 !important;
     left: 0 !important;
@@ -11,7 +62,7 @@
     display: flex !important;
     justify-content: center !important;
     align-items: center !important;
-    z-index: 99999 !important; /* Forces the box above all site headers and scrolls */
+    z-index: 99999 !important;
     padding: 20px;
     box-sizing: border-box;
   }
@@ -26,8 +77,57 @@
     padding: 35px;
     box-shadow: 0 30px 60px rgba(0, 0, 0, 0.6);
     box-sizing: border-box;
-    margin: auto !important; /* Extra anchor security lock for dead-centering */
-    
+    margin: auto !important;
     animation: scalePopIn 0.2s cubic-bezier(0.34, 1.56, 0.64, 1) !important;
+  }
+  
+  @keyframes scalePopIn {
+    from { transform: scale(0.95); opacity: 0; }
+    to { transform: scale(1); opacity: 1; }
+  }
+  
+  .modal-header-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    padding-bottom: 15px;
+  }
+  
+  .modal-header-row h2 {
+    font-family: 'Plus Jakarta Sans', sans-serif;
+    color: #ffffff;
+    font-size: 1.4rem;
+    font-weight: 700;
+    margin: 0;
+    letter-spacing: -0.01em;
+  }
+  
+  .close-modal-btn {
+    background: transparent;
+    border: none;
+    color: #ffffff;
+    font-size: 2rem;
+    font-weight: 300;
+    line-height: 1;
+    cursor: pointer;
+    opacity: 0.7;
+    transition: opacity 0.2s ease;
+    padding: 0;
+  }
+  
+  .close-modal-btn:hover {
+    opacity: 1;
+    color: #fbbf24;
+  }
+  
+  .modal-body-content p {
+    font-family: 'Plus Jakarta Sans', sans-serif;
+    color: #e2e8f0;
+    font-size: 1rem;
+    line-height: 1.6;
+    margin: 0;
+    white-space: pre-line;
   }
   
