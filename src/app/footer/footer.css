@@ -1,10 +1,13 @@
 .bottom-footer {
-    background: rgba(10, 23, 28, 0.9);
-    border-top: 1px solid rgba(255, 255, 255, 0.1);
+    background: rgba(13, 30, 37, 0.45); /* Translucent dark tint matching the page panels */
+    backdrop-filter: blur(16px);
+    -webkit-backdrop-filter: blur(16px);
+    border-top: 1px solid rgba(255, 255, 255, 0.15); /* Sleek glass border accent */
     padding: 20px 40px;
     flex-shrink: 0;
     z-index: 10;
     width: 100%;
+    box-sizing: border-box;
   }
   
   .footer-content {
@@ -16,14 +19,16 @@
   
   .footer-content p {
     font-family: 'Plus Jakarta Sans', sans-serif;
-    color: #64748b;
+    color: #cbd5e1; /* Brightened text for better readability over blur layers */
     font-size: 0.8rem;
     margin: 0;
+    letter-spacing: 0.01em;
+    text-shadow: 0 1px 2px rgba(0, 0, 0, 0.3);
   }
   
   .footer-links {
     display: flex;
-    gap: 20px;
+    gap: 24px;
   }
   
   .footer-links a {
@@ -31,10 +36,11 @@
     color: #94a3b8;
     text-decoration: none;
     font-size: 0.8rem;
+    font-weight: 500;
     transition: color 0.2s ease;
   }
   
   .footer-links a:hover {
-    color: #ffffff;
+    color: #fbbf24; /* Highlights links to gold on hover */
   }
   
