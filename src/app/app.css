@@ -10,14 +10,9 @@ body, html {
   width: 100%;
   height: 100%;
   overflow-x: hidden;
-  background-image: url('/hotel_background.png');
-  background-repeat: no-repeat;
-  background-size: cover;
-  background-position: center;
-  background-attachment: fixed;
-  background-color: #0d1e25;
 }
 
+/* Master Positioning Canvas: Houses the backdrop graphic asset securely */
 .site-container {
   position: fixed;
   top: 0;
@@ -26,7 +21,10 @@ body, html {
   height: 100%;
   display: flex;
   justify-content: center;
-  background: transparent !important;
+  background-image: url('/hotel_background.png') !important;
+  background-repeat: no-repeat !important;
+  background-size: cover !important;
+  background-position: center !important;
 }
 
 .center-column {
@@ -48,6 +46,7 @@ body, html {
   overflow-x: hidden;
 }
 
+/* Root Level Centered Pop-up Modal Dark Overlay */
 .modal-overlay {
   position: fixed !important;
   top: 0 !important;
@@ -63,6 +62,7 @@ body, html {
   z-index: 999999 !important;
 }
 
+/* Centered Glass Container Box Card Frame */
 .modal-box-frame {
   background: rgba(14, 45, 56, 0.94) !important;
   border: 1px solid rgba(255, 255, 255, 0.2) !important;
