@@ -6,10 +6,6 @@
       <p>The most algebraic accommodations in the Land of Ooo!</p>
     </header>
 
-    <div *ngIf="checkoutAlertMessage" class="alert-box">
-      {{ checkoutAlertMessage }}
-    </div>
-
     <section class="category-block">
       <div class="category-title">🏠 Regular Rooms</div>
       <div class="rooms-row-grid">
@@ -20,7 +16,7 @@
             [description]="room.desc"
             [price]="room.price"
             [image]="'/' + room.img"
-            (bookRoom)="onFinalCheckoutSubmitted($event)">
+            (bookRoom)="onFinalCheckoutSubmitted()">
           </app-room-card>
         </ng-container>
       </div>
@@ -36,7 +32,7 @@
             [description]="room.desc"
             [price]="room.price"
             [image]="'/' + room.img"
-            (bookRoom)="onFinalCheckoutSubmitted($event)">
+            (bookRoom)="onFinalCheckoutSubmitted()">
           </app-room-card>
         </ng-container>
       </div>
@@ -52,19 +48,11 @@
             [description]="room.desc"
             [price]="room.price"
             [image]="'/' + room.img"
-            (bookRoom)="onFinalCheckoutSubmitted($event)">
+            (bookRoom)="onFinalCheckoutSubmitted()">
           </app-room-card>
         </ng-container>
       </div>
     </section>
-  </div>
-
-  <div class="checkout-side-console">
-    <div class="sticky-console-wrapper">
-      <app-room-list [rooms]="hotelRooms" (roomSelected)="onRoomPickedFromList($event)"></app-room-list>
-      <!-- Removed old isolated app-booking-form tag to prevent template rendering crashes -->
-      <app-booking-summary [selectedRoom]="selectedRoom" [config]="bookingConfig" (submitBooking)="onFinalCheckoutSubmitted($event)"></app-booking-summary>
-    </div>
   </div>
 
 </div>

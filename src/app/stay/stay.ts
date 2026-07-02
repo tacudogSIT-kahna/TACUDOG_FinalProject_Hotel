@@ -1,25 +1,21 @@
 import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { Router } from '@angular/router';
 import { RoomCardComponent } from '../room-card/room-card';
-import { RoomListModule } from '../room-list/room-list';
-import { BookingSummaryModule } from '../booking-summary/booking-summary';
 
 @Component({
   selector: 'app-stay',
   standalone: true,
   imports: [
     CommonModule, 
-    RoomCardComponent, 
-    RoomListModule, 
-    BookingSummaryModule
+    RoomCardComponent
   ],
   templateUrl: './stay.html',
   styleUrls: ['./stay.css']
 })
 export class StayComponent {
-  selectedRoom: any = null;
-  bookingConfig: any = { guests: 1, nights: 1 };
-  checkoutAlertMessage: string = '';
+
+  constructor(private router: Router) {}
 
   hotelRooms = [
     { name: "Candy Kingdom Standard", category: "Regular", desc: "A sweet, basic room guarded safely by the local Banana Guards.", price: 20, img: 'Candy Kingdom Standard.png' },
@@ -33,19 +29,8 @@ export class StayComponent {
     { name: "Fire Kingdom Flame Suite", category: "Suite", desc: "A hot, blazing luxury penthouse! High heat levels. Fire protection recommended.", price: 130, img: 'Fire Kingdom Flame Suite.png' }
   ];
 
-  onRoomPickedFromList(room: any) {
-    this.selectedRoom = room;
-  }
-
-  onFormStateUpdated(formData: any) {
-    this.bookingConfig = formData;
-  }
-
-  onFinalCheckoutSubmitted(bookingInvoice: any) {
-    const roomName = typeof bookingInvoice === 'string' ? bookingInvoice : bookingInvoice.room.name;
-    const nights = bookingInvoice.details ? bookingInvoice.details.nights : this.bookingConfig.nights;
-    const total = bookingInvoice.total ? bookingInvoice.total : (this.hotelRooms.find(r => r.name === roomName)?.price || 0) * nights;
-
-    this.checkoutAlertMessage = `Algebraic! Reserved ${roomName} for ${nights} nights. Total: ${total} Gold Coins. Invoice logged!`;
+  onFinalCheckoutSubmitted() {
+    // Automatically navigates the traveler straight to the booking-form authentication gateway tab
+    this.router.navigate(['/booking-form']);
   }
 }
