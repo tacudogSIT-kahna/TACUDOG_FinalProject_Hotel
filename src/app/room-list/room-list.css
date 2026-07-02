@@ -1,0 +1,68 @@
+.room-list-container {
+    width: 100%;
+    margin-bottom: 25px;
+  }
+  
+  .room-selection-grid {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    margin-top: 15px;
+  }
+  
+  .room-selection-card {
+    background: rgba(255, 255, 255, 0.05);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 12px;
+    padding: 16px 20px;
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    cursor: pointer;
+    transition: all 0.2s ease;
+  }
+  
+  .room-selection-card:hover {
+    background: rgba(255, 255, 255, 0.1);
+    border-color: rgba(255, 255, 255, 0.2);
+  }
+  
+  .room-selection-card.selected {
+    background: rgba(14, 116, 144, 0.4);
+    border-color: #2dd4bf;
+    box-shadow: 0 0 15px rgba(45, 212, 191, 0.2);
+  }
+  
+  .room-selector-dot {
+    width: 14px;
+    height: 14px;
+    border: 2px solid rgba(255, 255, 255, 0.4);
+    border-radius: 50%;
+    position: relative;
+  }
+  
+  .room-selection-card.selected .room-selector-dot {
+    border-color: #2dd4bf;
+    background-color: #2dd4bf;
+  }
+  
+  .room-details-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+  }
+  
+  .room-details-row h3 {
+    margin: 0;
+    color: #ffffff;
+    font-size: 1rem;
+    font-weight: 600;
+  }
+  
+  .price-pill {
+    color: #2dd4bf;
+    font-size: 0.9rem;
+    font-weight: 600;
+  }
+  

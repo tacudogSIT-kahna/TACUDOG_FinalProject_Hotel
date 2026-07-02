@@ -1,1 +1,34 @@
-<p>booking-summary works!</p>
+<div class="summary-container">
+    <div class="glass-section-header">🧾 Adventure Invoice Summary</div>
+    
+    <div class="summary-card-body">
+      <div *ngIf="!selectedRoom" class="empty-summary-text">
+        Please select a kingdom suite above to view your checkout calculations.
+      </div>
+  
+      <div *ngIf="selectedRoom" class="invoice-data-lines">
+        <div class="invoice-row">
+          <span>Selected Room:</span>
+          <strong>{{ selectedRoom.name }}</strong>
+        </div>
+        <div class="invoice-row">
+          <span>Duration:</span>
+          <strong>{{ config.nights }} Night(s)</strong>
+        </div>
+        <div class="invoice-row">
+          <span>Party Size:</span>
+          <strong>{{ config.guests }} Guest(s)</strong>
+        </div>
+        <div class="invoice-divider"></div>
+        <div class="invoice-row total-row">
+          <span>Total Cost:</span>
+          <strong class="glowing-total">💰 {{ totalPrice }} Gold Coins</strong>
+        </div>
+  
+        <button class="confirm-order-btn" (click)="confirmBooking()">
+          Lock Booking Order
+        </button>
+      </div>
+    </div>
+  </div>
+  

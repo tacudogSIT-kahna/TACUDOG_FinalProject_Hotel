@@ -57,3 +57,26 @@
     </section>
   </div>
   
+  <div class="stay-layout-wrapper">
+  
+    <!-- Left Side: Catalog Matrix Grid -->
+    <div class="catalog-side-panel">
+      <div *ngIf="checkoutAlertMessage" class="alert-box">
+        {{ checkoutAlertMessage }}
+      </div>
+  
+      <!-- Category headers loop blocks stay here untouched... -->
+      <!-- (Your existing category-block wrappers go here) -->
+    </div>
+  
+    <!-- Right Side: Sticky Interactive Check-Out Console Panel -->
+    <div class="checkout-side-console">
+      <div class="sticky-console-wrapper">
+        <app-room-list [rooms]="hotelRooms" (roomSelected)="onRoomPickedFromList($event)"></app-room-list>
+        <app-booking-form (formChanged)="onFormStateUpdated($event)"></app-booking-form>
+        <app-booking-summary [selectedRoom]="selectedRoom" [config]="bookingConfig" (submitBooking)="onFinalCheckoutSubmitted($event)"></app-booking-summary>
+      </div>
+    </div>
+  
+  </div>
+  
