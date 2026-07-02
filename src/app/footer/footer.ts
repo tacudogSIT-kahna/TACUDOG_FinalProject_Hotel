@@ -29,7 +29,7 @@ export class FooterComponent {
   };
 
   openModal(type: string, event: Event) {
-    event.preventDefault(); // Blocks page reloads
+    event.preventDefault();
     const selection = this.contents[type];
     if (selection) {
       this.modalTitle = selection.title;

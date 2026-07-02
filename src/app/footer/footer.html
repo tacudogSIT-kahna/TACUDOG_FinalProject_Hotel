@@ -2,14 +2,13 @@
     <div class="footer-content">
       <p>© 2026 The Coolest Hotel in Ooo. All Rights Mathematical.</p>
       <div class="footer-links">
-        <a (click)="openModal('privacy')">Privacy Policy</a>
-        <a (click)="openModal('terms')">Terms of Service</a>
-        <a (click)="openModal('contact')">Contact Us</a>
+        <a (click)="openModal('privacy', $event)">Privacy Policy</a>
+        <a (click)="openModal('terms', $event)">Terms of Service</a>
+        <a (click)="openModal('contact', $event)">Contact Us</a>
       </div>
     </div>
   </footer>
   
-  <!-- Interactive Glassmorphic Pop-up Modal Window Overlay -->
   <div class="modal-overlay" *ngIf="isModalOpen">
     <div class="modal-box-frame">
       <header class="modal-header-row">
@@ -17,8 +16,7 @@
         <button class="close-modal-btn" (click)="closeModal()">×</button>
       </header>
       <div class="modal-body-content">
-        <p>{{ modalContent }}</p>
+        <p>{{ modalBody }}</p>
       </div>
     </div>
   </div>
-  
