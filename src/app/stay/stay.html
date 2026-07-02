@@ -62,7 +62,7 @@
   <div class="checkout-side-console">
     <div class="sticky-console-wrapper">
       <app-room-list [rooms]="hotelRooms" (roomSelected)="onRoomPickedFromList($event)"></app-room-list>
-      <app-booking-form (formChanged)="onFormStateUpdated($event)"></app-booking-form>
+      <!-- Removed old isolated app-booking-form tag to prevent template rendering crashes -->
       <app-booking-summary [selectedRoom]="selectedRoom" [config]="bookingConfig" (submitBooking)="onFinalCheckoutSubmitted($event)"></app-booking-summary>
     </div>
   </div>
