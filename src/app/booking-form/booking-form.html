@@ -78,6 +78,31 @@
         
         <div class="invoice-summary-column">
           <app-booking-summary [selectedRoom]="selectedRoom" [config]="summaryConfig" (submitBooking)="onCheckoutSubmitted($event)"></app-booking-summary>
+
+          <div class="restaurant-addons-box">
+            <div *ngIf="restaurantState === 'idle'">
+              <button class="avail-restaurant-btn" (click)="promptRestaurantOptions()">
+                🍽️ Reserve a Resto Table
+              </button>
+            </div>
+
+            <div *ngIf="restaurantState === 'prompting'" class="restaurant-options-panel">
+              <span class="prompt-text-label">Select Reservation Coverage:</span>
+              <div class="prompt-buttons-row">
+                <button class="option-selection-btn" (click)="selectRestaurantCoverage('Whole Stay')">
+                  Whole Stay
+                </button>
+                <button class="option-selection-btn" (click)="selectRestaurantCoverage('First Day Only')">
+                  First Day Only
+                </button>
+              </div>
+            </div>
+
+            <div *ngIf="restaurantState === 'selected'" class="restaurant-confirmed-badge">
+              <span>✅ Table Booked: <strong>{{ restaurantCoverage }}</strong></span>
+              <button class="reset-addon-link" (click)="restaurantState = 'idle'">Change</button>
+            </div>
+          </div>
         </div>
         
       </div>

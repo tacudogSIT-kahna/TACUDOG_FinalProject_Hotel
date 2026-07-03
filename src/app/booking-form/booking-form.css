@@ -318,6 +318,9 @@
   border-radius: 24px;
   padding: 25px;
   box-shadow: 0 20px 40px rgba(0, 0, 0, 0.35);
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
 }
 
 .invoice-summary-column ::ng-deep {
@@ -334,4 +337,84 @@
 .invoice-summary-column ::ng-deep p,
 .invoice-summary-column ::ng-deep span:not(.counter-value) {
   color: #94a3b8 !important;
+}
+
+.restaurant-addons-box {
+  border-top: 1px solid rgba(255, 255, 255, 0.1);
+  padding-top: 20px;
+  width: 100%;
+}
+
+.avail-restaurant-btn {
+  width: 100%;
+  background: transparent;
+  border: 1px dashed #2dd4bf;
+  color: #2dd4bf;
+  padding: 12px;
+  border-radius: 10px;
+  font-weight: 600;
+  font-size: 0.95rem;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.avail-restaurant-btn:hover {
+  background: rgba(45, 212, 191, 0.1);
+}
+
+.restaurant-options-panel {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  text-align: left;
+}
+
+.prompt-text-label {
+  color: #94a3b8;
+  font-size: 0.85rem;
+  font-weight: 500;
+}
+
+.prompt-buttons-row {
+  display: flex;
+  gap: 10px;
+}
+
+.option-selection-btn {
+  flex: 1;
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  color: #ffffff;
+  padding: 10px;
+  border-radius: 8px;
+  font-size: 0.85rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.option-selection-btn:hover {
+  background: rgba(255, 255, 255, 0.15);
+  border-color: #2dd4bf;
+}
+
+.restaurant-confirmed-badge {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background: rgba(45, 212, 191, 0.1);
+  border: 1px solid rgba(45, 212, 191, 0.2);
+  padding: 12px;
+  border-radius: 10px;
+  font-size: 0.9rem;
+  color: #ffffff;
+}
+
+.reset-addon-link {
+  background: none;
+  border: none;
+  color: #f43f5e;
+  font-size: 0.8rem;
+  text-decoration: underline;
+  cursor: pointer;
 }
