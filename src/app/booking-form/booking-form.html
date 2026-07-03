@@ -1,5 +1,11 @@
 <div class="booking-page-container">
+
+  <div class="navigation-utilities-bar">
+    <button class="nav-switch-link" [class.link-active]="currentView === 'guest'" (click)="switchView('guest')">🛎️ Booking Desk</button>
+    <button class="nav-switch-link" [class.link-active]="currentView === 'manager-login' || currentView === 'manager-dashboard'" (click)="switchView('manager-login')">🛡️ Manager Panel</button>
+  </div>
   
+  <ng-container *ngIf="currentView === 'guest'">
     <div class="frosted-auth-card" *ngIf="!isUserSignedIn">
       <div class="glass-section-header">🔑 Adventurer Identification</div>
       <p class="auth-helper-text">Please input your legal kingdom credentials into the local servers before requesting quarters.</p>
@@ -9,126 +15,68 @@
           <label>Adventurer Full Name</label>
           <input type="text" [(ngModel)]="guestName" name="name" placeholder="e.g. Finn the Human" required>
         </div>
-  
         <div class="input-wrapper-field">
           <label>Crystal Network Email</label>
           <input type="email" [(ngModel)]="guestEmail" name="email" placeholder="e.g. finn@treefort.ooo" required>
         </div>
-  
         <button type="submit" class="submit-auth-btn">Initialize Booking Channel</button>
       </form>
     </div>
   
     <div class="unlocked-booking-dashboard" *ngIf="isUserSignedIn">
-      
       <div class="welcome-badge-header" *ngIf="!checkoutReceipt">
         <h2>Greetings, {{ guestName }}!</h2>
         <p>Your session identity is verified. Proceed with your hotel request layout selection below.</p>
       </div>
   
-      <!-- Dynamic Structured Receipt View -->
       <div *ngIf="checkoutReceipt" class="receipt-breakdown-card">
         <div class="receipt-header-banner">📜 Official Kingdom Lodging Receipt</div>
-        
         <div class="receipt-body-content">
           <p class="receipt-thankyou">Mathematical, {{ guestName }}! Your quarters order has been securely locked into local ledger chains.</p>
-          
           <div class="receipt-meta-grid">
             <div class="meta-item"><span>Guest Name:</span> <strong>{{ guestName }}</strong></div>
             <div class="meta-item"><span>Crystal Comm:</span> <strong>{{ guestEmail }}</strong></div>
           </div>
-
           <div class="receipt-divider-line"></div>
-          
           <div class="receipt-table-rows">
-            <div class="receipt-calc-row">
-              <span>{{ checkoutReceipt.roomName }} Base Rate:</span>
-              <strong>💰 {{ checkoutReceipt.roomBasePrice }} Gold / Night</strong>
-            </div>
-            
-            <div class="receipt-calc-row" *ngIf="checkoutReceipt.extraGuestsCount > 0">
-              <span>Extra Traveler Fees ({{ checkoutReceipt.extraGuestsCount }} × {{ checkoutReceipt.roomBasePrice / 2 }} Gold):</span>
-              <strong>💰 +{{ checkoutReceipt.extraGuestsTotalFee }} Gold / Night</strong>
-            </div>
-
-            <div class="receipt-calc-row summary-subline">
-              <span>Total Room Cost Per Night:</span>
-              <strong>💰 {{ checkoutReceipt.singleNightRoomRate }} Gold</strong>
-            </div>
-
-            <div class="receipt-calc-row highlight-nights-line">
-              <span>Duration Multiplier (× {{ checkoutReceipt.nights }} Nights):</span>
-              <strong>💰 {{ checkoutReceipt.totalRoomCost }} Gold</strong>
-            </div>
-
-            <div class="receipt-calc-row restaurant-charge-row" *ngIf="checkoutReceipt.restaurantCoverage">
-              <span>Resto Table Booking ({{ checkoutReceipt.restaurantCoverage }}):</span>
-              <strong>💰 +{{ checkoutReceipt.restaurantCost }} Gold</strong>
-            </div>
+            <div class="receipt-calc-row"><span>{{ checkoutReceipt.roomName }} Base Rate:</span> <strong>💰 {{ checkoutReceipt.roomBasePrice }} Gold / Night</strong></div>
+            <div class="receipt-calc-row" *ngIf="checkoutReceipt.extraGuestsCount > 0"><span>Extra Traveler Fees ({{ checkoutReceipt.extraGuestsCount }} × {{ checkoutReceipt.roomBasePrice / 2 }} Gold):</span> <strong>💰 +{{ checkoutReceipt.extraGuestsTotalFee }} Gold / Night</strong></div>
+            <div class="receipt-calc-row summary-subline"><span>Total Room Cost Per Night:</span> <strong>💰 {{ checkoutReceipt.singleNightRoomRate }} Gold</strong></div>
+            <div class="receipt-calc-row highlight-nights-line"><span>Duration Multiplier (× {{ checkoutReceipt.nights }} Nights):</span> <strong>💰 {{ checkoutReceipt.totalRoomCost }} Gold</strong></div>
+            <div class="receipt-calc-row restaurant-charge-row" *ngIf="checkoutReceipt.restaurantCoverage"><span>Resto Table Booking ({{ checkoutReceipt.restaurantCoverage }}):</span> <strong>💰 +{{ checkoutReceipt.restaurantCost }} Gold</strong></div>
           </div>
-
           <div class="receipt-divider-line thick-divider"></div>
-
-          <div class="receipt-grand-total">
-            <span>Aggregate Grand Total:</span>
-            <span class="final-glowing-gold">💰 {{ checkoutReceipt.grandTotal }} Gold Coins</span>
-          </div>
-
+          <div class="receipt-grand-total"><span>Aggregate Grand Total:</span> <span class="final-glowing-gold">💰 {{ checkoutReceipt.grandTotal }} Gold Coins</span></div>
           <p class="receipt-footer-hint">Check your matching crystal clear mirror ball for standard local storage data copies.</p>
-          
           <button class="reset-engine-btn" (click)="clearReceiptSession()">Configure Another Stay</button>
         </div>
       </div>
   
       <div class="booking-engine-split-grid" *ngIf="!checkoutReceipt">
-        
         <div class="selection-controls-column">
-          
           <div class="category-block" *ngFor="let cat of hotelRoomCategories">
             <h3 class="category-label-title">{{ cat.categoryName }}</h3>
-            
             <div class="custom-room-stack">
-              <div class="room-row-item" 
-                   *ngFor="let room of cat.rooms" 
-                   [class.active-selection]="selectedRoom?.name === room.name"
-                   (click)="onRoomPicked(room)">
-                
+              <div class="room-row-item" *ngFor="let room of cat.rooms" [class.active-selection]="selectedRoom?.name === room.name" (click)="onRoomPicked(room)">
                 <div class="room-main-meta">
-                  <div class="room-visual-wrapper">
-                    <img [src]="room.img" [alt]="room.name" class="room-thumbnail-img">
-                  </div>
-                  
+                  <div class="room-visual-wrapper"><img [src]="room.img" [alt]="room.name" class="room-thumbnail-img"></div>
                   <div class="room-detail-info">
-                    <div class="room-headline-row">
-                      <span class="room-title-text">{{ room.name }}</span>
-                      <span class="room-bed-badge">{{ room.beds }} • Good for {{ room.minCap }}-{{ room.maxCap }}</span>
-                    </div>
+                    <div class="room-headline-row"><span class="room-title-text">{{ room.name }}</span><span class="room-bed-badge">{{ room.beds }} • Good for {{ room.minCap }}-{{ room.maxCap }}</span></div>
                     <span class="room-pricing-tag">💰 {{ room.price }} Gold / Night</span>
                   </div>
-
-                  <button class="expand-desc-arrow" 
-                          [class.arrow-flipped]="expandedRoomIndex === room.name"
-                          (click)="toggleDescription(room.name, $event)">
-                    ▼
-                  </button>
+                  <button class="expand-desc-arrow" [class.arrow-flipped]="expandedRoomIndex === room.name" (click)="toggleDescription(room.name, $event)">▼</button>
                 </div>
-
                 <div class="room-collapsible-panel" [class.panel-open]="expandedRoomIndex === room.name">
                   <p class="room-narrative-paragraph">{{ room.desc }}</p>
-                  <div class="perks-flex-container">
-                    <span class="perk-pill-tag" *ngFor="let perk of room.perks">✦ {{ perk }}</span>
-                  </div>
+                  <div class="perks-flex-container"><span class="perk-pill-tag" *ngFor="let perk of room.perks">✦ {{ perk }}</span></div>
                 </div>
-
               </div>
             </div>
           </div>
-          
         </div>
         
         <div class="invoice-summary-column">
           <app-booking-summary [selectedRoom]="selectedRoom" [config]="summaryConfig" (submitBooking)="onCheckoutSubmitted($event)"></app-booking-summary>
-
           <div class="live-configuration-panel" *ngIf="selectedRoom">
             <div class="config-input-item">
               <label class="config-label">Length of Stay (Nights)</label>
@@ -138,12 +86,8 @@
                 <button type="button" class="btn-counter-act" (click)="changeNights(1)">+</button>
               </div>
             </div>
-
             <div class="config-input-item">
-              <div class="label-heading-row">
-                <label class="config-label">Party Size</label>
-                <span class="cap-warning-hint">Limit: {{selectedRoom.minCap}}-{{selectedRoom.maxCap}}</span>
-              </div>
+              <div class="label-heading-row"><label class="config-label">Party Size</label><span class="cap-warning-hint">Limit: {{selectedRoom.minCap}}-{{selectedRoom.maxCap}}</span></div>
               <div class="invoice-counter-bar">
                 <button type="button" class="btn-counter-act" (click)="changeGuests(-1)">-</button>
                 <span class="counter-display-val">{{ guestsCount }}</span>
@@ -151,35 +95,56 @@
               </div>
             </div>
           </div>
-
           <div class="restaurant-addons-box" *ngIf="selectedRoom">
-            <div *ngIf="restaurantState === 'idle'">
-              <button class="avail-restaurant-btn" (click)="promptRestaurantOptions()">
-                🍽️ Reserve a Resto Table
-              </button>
-            </div>
-
+            <div *ngIf="restaurantState === 'idle'"><button class="avail-restaurant-btn" (click)="promptRestaurantOptions()">🍽️ Reserve a Resto Table</button></div>
             <div *ngIf="restaurantState === 'prompting'" class="restaurant-options-panel">
               <span class="prompt-text-label">Select Reservation Coverage:</span>
               <div class="prompt-buttons-row">
-                <button class="option-selection-btn" (click)="selectRestaurantCoverage('Whole Stay')">
-                  Whole Stay
-                </button>
-                <button class="option-selection-btn" (click)="selectRestaurantCoverage('First Day Only')">
-                  First Day Only
-                </button>
+                <button class="option-selection-btn" (click)="selectRestaurantCoverage('Whole Stay')">Whole Stay</button>
+                <button class="option-selection-btn" (click)="selectRestaurantCoverage('First Day Only')">First Day Only</button>
               </div>
             </div>
-
             <div *ngIf="restaurantState === 'selected'" class="restaurant-confirmed-badge">
               <span>✅ Table Booked: <strong>{{ restaurantCoverage }}</strong></span>
               <button class="reset-addon-link" (click)="restaurantState = 'idle'">Change</button>
             </div>
           </div>
         </div>
-        
       </div>
-  
     </div>
-  
-</div>
+  </ng-container>
+
+  <div class="frosted-auth-card" *ngIf="currentView === 'manager-login'">
+    <div class="glass-section-header">🛡️ Administrative Clearance</div>
+    <p class="auth-helper-text">Please input your encrypted administrative staff key coordinates to open the accounting ledger metrics.</p>
+    
+    <div class="credential-entry-form">
+      <div class="input-wrapper-field">
+        <label>Administrative Secret Key</label>
+        <input type="password" [(ngModel)]="managerKey" placeholder="Enter administrative passcode (Try: admin123)" (keyup.enter)="handleManagerLogin()">
+      </div>
+      <div *ngIf="managerLoginError" class="manager-error-toast">❌ {{ managerLoginError }}</div>
+      <button class="submit-auth-btn" (click)="handleManagerLogin()">Unlock Ledgers</button>
+    </div>
+  </div>
+
+  <div class="unlocked-booking-dashboard manager-dashboard-container" *ngIf="currentView === 'manager-dashboard'">
+    <div class="welcome-badge-header manager-dash-header">
+      <div>
+        <h2>🏰 Royal Hotel Headquarters Dashboard</h2>
+        <p>System operational tracker. View total gold allocations and adventurer stay analytics logs below.</p>
+      </div>
+      <button class="logout-manager-btn" (click)="switchView('manager-login')">Lock Terminal</button>
+    </div>
+
+    <div class="stats-counter-strip-grid">
+      <div class="metric-block-item gold-glowing-border">
+        <span class="metric-label-txt">Total Revenue Generated</span>
+        <h3 class="metric-numeric-val">💰 {{ totalDashboardGold }} Gold</h3>
+      </div>
+      <div class="metric-block-item teal-glowing-border">
+        <span class="metric-label-txt">Total Nights Fulfilled</span>
+        <h3 class="metric-numeric-val">📅 {{ totalDashboardNights }} Nights</h3>
+      </div>
+      <div class="metric-block-item rose-glowing-border">
+        <span class="metric-label-txt">Restaurant Add-ons Active</span>

@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { BookingSummaryComponent } from '../booking-summary/booking-summary';
+import { BookingReceipt } from '../models/booking.types';
 
 @Component({
   selector: 'app-booking-form',
@@ -26,115 +27,59 @@ export class BookingFormComponent {
 
   restaurantState: 'idle' | 'prompting' | 'selected' = 'idle';
   restaurantCoverage: string = '';
-  checkoutReceipt: any = null;
+  checkoutReceipt: BookingReceipt | null = null;
+
+  currentView: 'guest' | 'manager-login' | 'manager-dashboard' = 'guest';
+  managerKey: string = '';
+  managerLoginError: string = '';
 
   hotelRoomCategories = [
     {
       categoryName: "Regular Rooms",
       rooms: [
-        { 
-          name: "Candy Kingdom Standard", 
-          price: 20, 
-          img: 'Candy Kingdom Standard.png',
-          beds: '1 Bed', 
-          minCap: 1,
-          maxCap: 2,
-          perks: ['Free Hot Cocoa', 'Local Kingdom Map Access'],
-          desc: 'A cozy standard chamber optimized for solo voyagers or traveling pairs. Features continuous clean linen and a reinforced layout framework.'
-        },
-        { 
-          name: "Slime Kingdom Den", 
-          price: 15, 
-          img: 'Slime Kingdom Den.png',
-          beds: '2 Beds', 
-          minCap: 1,
-          maxCap: 4,
-          perks: ['Bouncing Mattresses', 'Acid-Proof Linens'],
-          desc: 'An elastic subterranean double-bed chamber structured for group parties. Highly recommended for adventurers seeking chemical resistance.'
-        },
-        { 
-          name: "Wizard City Hostel", 
-          price: 25, 
-          img: 'Wizard City Hostel.png',
-          beds: '1 Bed', 
-          minCap: 1,
-          maxCap: 2,
-          perks: ['Anti-Gravity Pillow', 'Enchanted Reading Light'],
-          desc: 'A mystical space designed to accommodate short mystic stays. Perfect for apprentices looking to rest before their next trial.'
-        }
+        { name: "Candy Kingdom Standard", price: 20, img: 'Candy Kingdom Standard.png', beds: '1 Bed', minCap: 1, maxCap: 2, perks: ['Free Hot Cocoa', 'Local Kingdom Map Access'], desc: 'A cozy standard chamber optimized for solo voyagers or traveling pairs.' },
+        { name: "Slime Kingdom Den", price: 15, img: 'Slime Kingdom Den.png', beds: '2 Beds', minCap: 1, maxCap: 4, perks: ['Bouncing Mattresses', 'Acid-Proof Linens'], desc: 'An elastic subterranean double-bed chamber structured for group parties.' },
+        { name: "Wizard City Hostel", price: 25, img: 'Wizard City Hostel.png', beds: '1 Bed', minCap: 1, maxCap: 2, perks: ['Anti-Gravity Pillow', 'Enchanted Reading Light'], desc: 'A mystical space designed to accommodate short mystic stays.' }
       ]
     },
     {
       categoryName: "Deluxe Rooms",
       rooms: [
-        { 
-          name: "Wildberry Bungalow", 
-          price: 45, 
-          img: 'Wildberry Bungalow.png',
-          beds: '2 Beds', 
-          minCap: 1,
-          maxCap: 4,
-          perks: ['Fresh Berry Basket Daily', 'Private Balcony Area'],
-          desc: 'An elevated wooden framework structure boasting scenery over the outer walls. Fully furnished with artisan branch furniture.'
-        },
-        { 
-          name: "Breakfast Kingdom Diner Suite", 
-          price: 55, 
-          img: 'Breakfast Kingdom Diner Suite.png',
-          beds: '2 Beds', 
-          minCap: 1,
-          maxCap: 6,
-          perks: ['All-You-Can-Eat Pancake Bar', 'Syrup Hot Tub Access'],
-          desc: 'A deliciously scented suite boasting comfortable waffle beds and separate living tracks. Breakfast is continually active.'
-        },
-        { 
-          name: "Lumpy Space Studio", 
-          price: 60, 
-          img: 'Lumpy Space Studio.png',
-          beds: '1 Bed', 
-          minCap: 1,
-          maxCap: 10,
-          perks: ['Cloud Floating Cushion', 'Sassy Mirror Console'],
-          desc: 'An ultra-plush purple dimension suite that eliminates hard edges entirely. Perfect for travelers seeking complete isolation.'
-        }
+        { name: "Wildberry Bungalow", price: 45, img: 'Wildberry Bungalow.png', beds: '2 Beds', minCap: 1, maxCap: 4, perks: ['Fresh Berry Basket Daily', 'Private Balcony Area'], desc: 'An elevated wooden framework structure boasting scenery over the outer walls.' },
+        { name: "Breakfast Kingdom Diner Suite", price: 55, img: 'Breakfast Kingdom Diner Suite.png', beds: '2 Beds', minCap: 1, maxCap: 6, perks: ['All-You-Can-Eat Pancake Bar', 'Syrup Hot Tub Access'], desc: 'A deliciously scented suite boasting comfortable waffle beds.' },
+        { name: "Lumpy Space Studio", price: 60, img: 'Lumpy Space Studio.png', beds: '1 Bed', minCap: 1, maxCap: 10, perks: ['Cloud Floating Cushion', 'Sassy Mirror Console'], desc: 'An ultra-plush purple dimension suite that eliminates hard edges entirely.' }
       ]
     },
     {
       categoryName: "Luxury Suites",
       rooms: [
-        { 
-          name: "The Tree Fort Suite", 
-          price: 90, 
-          img: 'The Tree Fort Suite.png',
-          beds: '2 Beds', 
-          minCap: 1,
-          maxCap: 6,
-          perks: ['Weapon Rack Access', 'BMO Video Game Station', 'Curated Vinyl Record Player'],
-          desc: 'A premium treehouse environment offering unmatched overhead views of Ooo. Fully stocked with heroic tools and high-tier entertainment platforms.'
-        },
-        { 
-          name: "Candy Kingdom Royal Suite", 
-          price: 150, 
-          img: 'Candy Kingdom Royal Suite.png',
-          beds: '3 Beds', 
-          minCap: 1,
-          maxCap: 6,
-          perks: ['Banana Guard Escort', 'Gumball Butler Machine', 'Science Lab Pass'],
-          desc: 'An elite palace level suite offering pristine crystal lighting and elegant sugar craftsmanship. Built strictly for royal delegations.'
-        },
-        { 
-          name: "Fire Kingdom Flame Suite", 
-          price: 130, 
-          img: 'Fire Kingdom Flame Suite.png',
-          beds: '2 Beds', 
-          minCap: 1,
-          maxCap: 6,
-          perks: ['Thermal Shield Ward', 'Obsidian Lounge', 'Spiced Core Drinks'],
-          desc: 'A burning hot luxury chamber built safely inside controlled lava conduits. Fully insulated with top-tier cooling wards for exterior biological safety.'
-        }
+        { name: "The Tree Fort Suite", price: 90, img: 'The Tree Fort Suite.png', beds: '2 Beds', minCap: 1, maxCap: 6, perks: ['Weapon Rack Access', 'BMO Video Game Station'], desc: 'A premium treehouse environment offering unmatched overhead views of Ooo.' },
+        { name: "Candy Kingdom Royal Suite", price: 150, img: 'Candy Kingdom Royal Suite.png', beds: '3 Beds', minCap: 1, maxCap: 6, perks: ['Banana Guard Escort', 'Science Lab Pass'], desc: 'An elite palace level suite offering pristine crystal lighting.' },
+        { name: "Fire Kingdom Flame Suite", price: 130, img: 'Fire Kingdom Flame Suite.png', beds: '2 Beds', minCap: 1, maxCap: 6, perks: ['Thermal Shield Ward', 'Obsidian Lounge'], desc: 'A burning hot luxury chamber built safely inside controlled lava conduits.' }
       ]
     }
   ];
+
+  historicalBookings: BookingReceipt[] = [
+    { guestName: 'Jake the Dog', guestEmail: 'jake@treefort.ooo', roomName: 'The Tree Fort Suite', roomBasePrice: 90, extraGuestsCount: 1, extraGuestsTotalFee: 45, singleNightRoomRate: 135, nights: 3, totalRoomCost: 405, restaurantCoverage: 'Whole Stay', restaurantCost: 18, grandTotal: 423 },
+    { guestName: 'Marceline', guestEmail: 'marcy@vampqueen.ooo', roomName: 'Lumpy Space Studio', roomBasePrice: 60, extraGuestsCount: 0, extraGuestsTotalFee: 0, singleNightRoomRate: 60, nights: 5, totalRoomCost: 300, restaurantCoverage: null, restaurantCost: 0, grandTotal: 300 },
+    { guestName: 'Princess Bubblegum', guestEmail: 'pb@candy.ooo', roomName: 'Candy Kingdom Royal Suite', roomBasePrice: 150, extraGuestsCount: 2, extraGuestsTotalFee: 150, singleNightRoomRate: 300, nights: 2, totalRoomCost: 600, restaurantCoverage: 'First Day Only', restaurantCost: 9, grandTotal: 609 }
+  ];
+
+  switchView(target: 'guest' | 'manager-login' | 'manager-dashboard') {
+    this.managerLoginError = '';
+    this.managerKey = '';
+    this.currentView = target;
+  }
+
+  handleManagerLogin() {
+    if (this.managerKey === 'admin123') {
+      this.currentView = 'manager-dashboard';
+      this.managerLoginError = '';
+    } else {
+      this.managerLoginError = 'Invalid Kingdom Administrative Key!';
+    }
+  }
 
   handleSignIn() {
     if (this.guestName.trim() && this.guestEmail.trim()) {
@@ -147,8 +92,8 @@ export class BookingFormComponent {
     this.guestsCount = 1;
   }
 
-  toggleDescription(roomName: string, event: Event) {
-    event.stopPropagation();
+  toggleDescription(roomName: string, pointerEvent: Event) {
+    pointerEvent.stopPropagation();
     this.expandedRoomIndex = this.expandedRoomIndex === roomName ? null : roomName;
   }
 
@@ -177,21 +122,16 @@ export class BookingFormComponent {
 
   calculateTotal() {
     if (!this.selectedRoom) return 0;
-    
     const extraGuests = this.guestsCount - 1;
-    const singleNightRoomRate = this.selectedRoom.price + (extraGuests * (this.selectedRoom.price / 2));
-    const totalRoomCost = singleNightRoomRate * this.nightsCount;
-
-    let totalRestaurantCost = 0;
+    const totalRoomCost = (this.selectedRoom.price + (extraGuests * (this.selectedRoom.price / 2))) * this.nightsCount;
+    
+    let restaurantCost = 0;
     if (this.restaurantState === 'selected') {
-      if (this.restaurantCoverage === 'Whole Stay') {
-        totalRestaurantCost = 3 * this.guestsCount * this.nightsCount;
-      } else if (this.restaurantCoverage === 'First Day Only') {
-        totalRestaurantCost = 3 * this.guestsCount;
-      }
+      restaurantCost = this.restaurantCoverage === 'Whole Stay' 
+        ? 3 * this.guestsCount * this.nightsCount 
+        : 3 * this.guestsCount;
     }
-
-    return totalRoomCost + totalRestaurantCost;
+    return totalRoomCost + restaurantCost;
   }
 
   get summaryConfig() {
@@ -205,8 +145,7 @@ export class BookingFormComponent {
 
   onCheckoutSubmitted(invoice: any) {
     const extraGuests = this.guestsCount - 1;
-    const extraGuestFee = this.selectedRoom.price / 2;
-    const extraGuestsTotalFee = extraGuests * extraGuestFee;
+    const extraGuestsTotalFee = extraGuests * (this.selectedRoom.price / 2);
     const singleNightRoomRate = this.selectedRoom.price + extraGuestsTotalFee;
     const totalRoomCost = singleNightRoomRate * this.nightsCount;
 
@@ -217,7 +156,9 @@ export class BookingFormComponent {
         : 3 * this.guestsCount;
     }
 
-    this.checkoutReceipt = {
+    const generatedReceipt: BookingReceipt = {
+      guestName: this.guestName,
+      guestEmail: this.guestEmail,
       roomName: this.selectedRoom.name,
       roomBasePrice: this.selectedRoom.price,
       extraGuestsCount: extraGuests,
@@ -229,6 +170,9 @@ export class BookingFormComponent {
       restaurantCost: restaurantCost,
       grandTotal: this.calculateTotal()
     };
+
+    this.checkoutReceipt = generatedReceipt;
+    this.historicalBookings.unshift(generatedReceipt);
   }
 
   clearReceiptSession() {
@@ -238,5 +182,17 @@ export class BookingFormComponent {
     this.nightsCount = 1;
     this.restaurantState = 'idle';
     this.restaurantCoverage = '';
+  }
+
+  get totalDashboardGold(): number {
+    return this.historicalBookings.reduce((sum, b) => sum + b.grandTotal, 0);
+  }
+
+  get totalDashboardNights(): number {
+    return this.historicalBookings.reduce((sum, b) => sum + b.nights, 0);
+  }
+
+  get totalDashboardRestoCount(): number {
+    return this.historicalBookings.filter(b => b.restaurantCoverage).length;
   }
 }
