@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
-import { BookingSummaryModule } from '../booking-summary/booking-summary';
+import { BookingSummaryComponent } from '../booking-summary/booking-summary';
 
 @Component({
   selector: 'app-booking-form',
@@ -9,7 +9,7 @@ import { BookingSummaryModule } from '../booking-summary/booking-summary';
   imports: [
     CommonModule,
     FormsModule,
-    BookingSummaryModule
+    BookingSummaryComponent
   ],
   templateUrl: './booking-form.html',
   styleUrls: ['./booking-form.css']
