@@ -5,12 +5,12 @@
   <div class="credential-entry-form">
     <div class="input-wrapper-field">
       <label>Admin Username Address</label>
-      <input type="text" [(ngModel)]="adminUsername" name="adminUsername" placeholder="e.g. bonibel.admin@grandlodge.oo" required>
+      <input type="text" [(ngModel)]="adminUsername" name="adminUsername" placeholder="Enter admin username" required>
     </div>
 
     <div class="input-wrapper-field">
       <label>Secret Passcode</label>
-      <input type="password" [(ngModel)]="adminPassword" name="adminPassword" placeholder="••••••••••••" (keyup.enter)="handleManagerLogin()" required>
+      <input type="password" [(ngModel)]="adminPassword" name="adminPassword" placeholder="Enter passcode" (keyup.enter)="handleManagerLogin()" required>
     </div>
 
     <div *ngIf="managerLoginError" class="manager-error-toast">❌ {{ managerLoginError }}</div>
