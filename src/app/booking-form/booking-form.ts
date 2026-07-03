@@ -1,6 +1,7 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
+import { ActivatedRoute } from '@angular/router';
 import { BookingSummaryComponent } from '../booking-summary/booking-summary';
 import { ManagerLoginComponent } from '../manager-login/manager-login';
 import { ManagerDashboardComponent } from '../manager-dashboard/manager-dashboard';
@@ -19,7 +20,7 @@ import { BookingReceipt } from '../models/booking.types';
   templateUrl: './booking-form.html',
   styleUrls: ['./booking-form.css']
 })
-export class BookingFormComponent {
+export class BookingFormComponent implements OnInit {
   isUserSignedIn: boolean = false;
   guestName: string = '';
   guestEmail: string = '';
@@ -67,6 +68,18 @@ export class BookingFormComponent {
     { guestName: 'Marceline', guestEmail: 'marcy@vampqueen.ooo', roomName: 'Lumpy Space Studio', roomBasePrice: 60, extraGuestsCount: 0, extraGuestsTotalFee: 0, singleNightRoomRate: 60, nights: 5, totalRoomCost: 300, restaurantCoverage: null, restaurantCost: 0, grandTotal: 300 },
     { guestName: 'Princess Bubblegum', guestEmail: 'pb@candy.ooo', roomName: 'Candy Kingdom Royal Suite', roomBasePrice: 150, extraGuestsCount: 2, extraGuestsTotalFee: 150, singleNightRoomRate: 300, nights: 2, totalRoomCost: 600, restaurantCoverage: 'First Day Only', restaurantCost: 9, grandTotal: 609 }
   ];
+
+  constructor(private route: ActivatedRoute) {}
+
+  ngOnInit() {
+    this.route.queryParams.subscribe(params => {
+      if (params['view'] === 'manager') {
+        this.currentView = 'manager-login';
+      } else {
+        this.currentView = 'guest';
+      }
+    });
+  }
 
   switchView(target: 'guest' | 'manager-login' | 'manager-dashboard') {
     this.currentView = target;

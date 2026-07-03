@@ -4,10 +4,16 @@
   
   <div class="credential-entry-form">
     <div class="input-wrapper-field">
-      <label>Administrative Secret Key</label>
-      <input type="password" [(ngModel)]="managerKey" placeholder="Enter administrative passcode (Try: admin123)" (keyup.enter)="handleManagerLogin()">
+      <label>Admin Username Address</label>
+      <input type="text" [(ngModel)]="adminUsername" name="adminUsername" placeholder="e.g. bonibel.admin@grandlodge.oo" required>
     </div>
+
+    <div class="input-wrapper-field">
+      <label>Secret Passcode</label>
+      <input type="password" [(ngModel)]="adminPassword" name="adminPassword" placeholder="••••••••••••" (keyup.enter)="handleManagerLogin()" required>
+    </div>
+
     <div *ngIf="managerLoginError" class="manager-error-toast">❌ {{ managerLoginError }}</div>
-    <button class="submit-auth-btn" (click)="handleManagerLogin()">Unlock Ledgers</button>
+    <button type="button" class="submit-auth-btn" (click)="handleManagerLogin()">Unlock Ledgers</button>
   </div>
 </div>

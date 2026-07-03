@@ -1,9 +1,4 @@
 <div class="booking-page-container">
-
-  <div class="navigation-utilities-bar">
-    <button class="nav-switch-link" [class.link-active]="currentView === 'guest'" (click)="switchView('guest')">🛎️ Booking Desk</button>
-    <button class="nav-switch-link" [class.link-active]="currentView === 'manager-login' || currentView === 'manager-dashboard'" (click)="switchView('manager-login')">🛡️ Manager Panel</button>
-  </div>
   
   <ng-container *ngIf="currentView === 'guest'">
     <div class="frosted-auth-card" *ngIf="!isUserSignedIn">

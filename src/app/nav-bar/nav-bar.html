@@ -5,7 +5,9 @@
       <a routerLink="/home" routerLinkActive="active">HOME</a>
       <a routerLink="/stay" routerLinkActive="active">STAY</a>
       <a routerLink="/cafe-menu" routerLinkActive="active">CAFE MENU</a>
-      <a routerLink="/booking-form" routerLinkActive="active">BOOKING FORM</a>
+      <a routerLink="/booking-form" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}">BOOKING FORM</a>
+      <!-- Secure Manager Access Path Link -->
+      <a [routerLink]="['/booking-form']" [queryParams]="{ view: 'manager' }" routerLinkActive="active">MANAGER LOGIN</a>
     </div>
   </div>
 </nav>

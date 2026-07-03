@@ -9,16 +9,18 @@ import { FormsModule } from '@angular/forms';
   templateUrl: './manager-login.html'
 })
 export class ManagerLoginComponent {
-  managerKey: string = '';
+  adminUsername: string = '';
+  adminPassword: string = '';
   managerLoginError: string = '';
+  
   @Output() loginSuccess = new EventEmitter<void>();
 
   handleManagerLogin() {
-    if (this.managerKey === 'admin123') {
+    if (this.adminUsername.trim() === 'bonibel.admin@grandlodge.oo' && this.adminPassword === 'b0nib3l@admin123') {
       this.managerLoginError = '';
       this.loginSuccess.emit();
     } else {
-      this.managerLoginError = 'Invalid Kingdom Administrative Key!';
+      this.managerLoginError = 'Invalid Admin Username or Password Credentials!';
     }
   }
 }
