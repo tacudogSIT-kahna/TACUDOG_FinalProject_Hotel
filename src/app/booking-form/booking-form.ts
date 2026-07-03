@@ -179,8 +179,8 @@ export class BookingFormComponent {
     if (!this.selectedRoom) return 0;
     const extraGuests = this.guestsCount - 1;
     const extraGuestFee = this.selectedRoom.price / 2;
-    const costPerNight = this.selectedRoom.price + (extraGuests * extraGuestFee);
-    return costPerNight * this.nightsCount;
+    const singleNightRate = this.selectedRoom.price + (extraGuests * extraGuestFee);
+    return singleNightRate * this.nightsCount;
   }
 
   get summaryConfig() {
