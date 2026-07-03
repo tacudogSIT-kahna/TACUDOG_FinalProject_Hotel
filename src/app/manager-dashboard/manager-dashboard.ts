@@ -6,7 +6,9 @@ import { BookingReceipt } from '../models/booking.types';
   selector: 'app-manager-dashboard',
   standalone: true,
   imports: [CommonModule],
-  templateUrl: './manager-dashboard.html'
+  templateUrl: './manager-dashboard.html',
+  // Links layout sheets to draw your dashboard tabular columns elegantly
+  styleUrls: ['../booking-form/booking-form.css']
 })
 export class ManagerDashboardComponent {
   @Input() historicalBookings: BookingReceipt[] = [];
