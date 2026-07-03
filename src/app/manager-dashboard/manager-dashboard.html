@@ -1,4 +1,5 @@
 <div class="unlocked-booking-dashboard manager-dashboard-container">
+  
   <div class="welcome-badge-header manager-dash-header">
     <div>
       <h2>🏰 Royal Hotel Headquarters Dashboard</h2>
@@ -38,7 +39,10 @@
         </thead>
         <tbody>
           <tr *ngFor="let log of historicalBookings">
-            <td class="bold-guest-name">{{ log.guestName }} <br><small class="gray-subtext">{{ log.guestEmail }}</small></td>
+            <td class="bold-guest-name">
+              {{ log.guestName }} <br>
+              <small class="gray-subtext">{{ log.guestEmail }}</small>
+            </td>
             <td>{{ log.roomName }}</td>
             <td>{{ log.nights }} Nights</td>
             <td>{{ log.extraGuestsCount + 1 }} Guest(s)</td>
@@ -49,10 +53,11 @@
             <td class="gold-bold-price">💰 {{ log.grandTotal }} Gold</td>
           </tr>
           <tr *ngIf="historicalBookings.length === 0">
-            <td colspan="6" class="centered-empty-msg">No entries present inside active local registers.</td>
+            <td colspan="6" class="centered-empty-msg">No entries present inside active registers.</td>
           </tr>
         </tbody>
       </table>
     </div>
   </div>
+
 </div>
