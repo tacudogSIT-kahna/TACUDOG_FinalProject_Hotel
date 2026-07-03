@@ -35,7 +35,6 @@ export class BookingFormComponent {
         { 
           name: "Candy Kingdom Standard", 
           price: 20, 
-          extraGuestFee: 10,
           img: 'Candy Kingdom Standard.png',
           beds: '1 Bed', 
           minCap: 1,
@@ -46,7 +45,6 @@ export class BookingFormComponent {
         { 
           name: "Slime Kingdom Den", 
           price: 15, 
-          extraGuestFee: 5,
           img: 'Slime Kingdom Den.png',
           beds: '2 Beds', 
           minCap: 1,
@@ -57,7 +55,6 @@ export class BookingFormComponent {
         { 
           name: "Wizard City Hostel", 
           price: 25, 
-          extraGuestFee: 12,
           img: 'Wizard City Hostel.png',
           beds: '1 Bed', 
           minCap: 1,
@@ -73,7 +70,6 @@ export class BookingFormComponent {
         { 
           name: "Wildberry Bungalow", 
           price: 45, 
-          extraGuestFee: 20,
           img: 'Wildberry Bungalow.png',
           beds: '2 Beds', 
           minCap: 1,
@@ -84,7 +80,6 @@ export class BookingFormComponent {
         { 
           name: "Breakfast Kingdom Diner Suite", 
           price: 55, 
-          extraGuestFee: 25,
           img: 'Breakfast Kingdom Diner Suite.png',
           beds: '2 Beds', 
           minCap: 1,
@@ -95,7 +90,6 @@ export class BookingFormComponent {
         { 
           name: "Lumpy Space Studio", 
           price: 60, 
-          extraGuestFee: 30,
           img: 'Lumpy Space Studio.png',
           beds: '1 Bed', 
           minCap: 1,
@@ -111,7 +105,6 @@ export class BookingFormComponent {
         { 
           name: "The Tree Fort Suite", 
           price: 90, 
-          extraGuestFee: 45,
           img: 'The Tree Fort Suite.png',
           beds: '2 Beds', 
           minCap: 1,
@@ -122,7 +115,6 @@ export class BookingFormComponent {
         { 
           name: "Candy Kingdom Royal Suite", 
           price: 150, 
-          extraGuestFee: 75,
           img: 'Candy Kingdom Royal Suite.png',
           beds: '3 Beds', 
           minCap: 1,
@@ -133,7 +125,6 @@ export class BookingFormComponent {
         { 
           name: "Fire Kingdom Flame Suite", 
           price: 130, 
-          extraGuestFee: 65,
           img: 'Fire Kingdom Flame Suite.png',
           beds: '2 Beds', 
           minCap: 1,
@@ -187,7 +178,8 @@ export class BookingFormComponent {
   calculateTotal() {
     if (!this.selectedRoom) return 0;
     const extraGuests = this.guestsCount - 1;
-    const singleNightRate = this.selectedRoom.price + (extraGuests * this.selectedRoom.extraGuestFee);
+    const extraGuestFee = this.selectedRoom.price / 2;
+    const singleNightRate = this.selectedRoom.price + (extraGuests * extraGuestFee);
     return singleNightRate * this.nightsCount;
   }
 
