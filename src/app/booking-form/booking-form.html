@@ -51,7 +51,7 @@
                   <div class="room-detail-info">
                     <div class="room-headline-row">
                       <span class="room-title-text">{{ room.name }}</span>
-                      <span class="room-bed-badge">{{ room.beds }} • {{ room.capacity }}</span>
+                      <span class="room-bed-badge">{{ room.beds }} • Good for {{ room.minCap }}-{{ room.maxCap }}</span>
                     </div>
                     <span class="room-pricing-tag">💰 {{ room.price }} Gold / Night</span>
                   </div>
@@ -78,6 +78,29 @@
         
         <div class="invoice-summary-column">
           <app-booking-summary [selectedRoom]="selectedRoom" [config]="summaryConfig" (submitBooking)="onCheckoutSubmitted($event)"></app-booking-summary>
+
+          <div class="live-configuration-panel" *ngIf="selectedRoom">
+            <div class="config-input-item">
+              <label class="config-label">Length of Stay (Nights)</label>
+              <div class="invoice-counter-bar">
+                <button type="button" class="btn-counter-act" (click)="changeNights(-1)">-</button>
+                <span class="counter-display-val">{{ nightsCount }}</span>
+                <button type="button" class="btn-counter-act" (click)="changeNights(1)">+</button>
+              </div>
+            </div>
+
+            <div class="config-input-item">
+              <div class="label-heading-row">
+                <label class="config-label">Party Size</label>
+                <span class="cap-warning-hint">Limit: {{selectedRoom.minCap}}-{{selectedRoom.maxCap}}</span>
+              </div>
+              <div class="invoice-counter-bar">
+                <button type="button" class="btn-counter-act" (click)="changeGuests(-1)">-</button>
+                <span class="counter-display-val">{{ guestsCount }}</span>
+                <button type="button" class="btn-counter-act" (click)="changeGuests(1)">+</button>
+              </div>
+            </div>
+          </div>
 
           <div class="restaurant-addons-box" *ngIf="selectedRoom">
             <div *ngIf="restaurantState === 'idle'">

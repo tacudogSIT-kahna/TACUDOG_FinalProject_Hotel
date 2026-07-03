@@ -37,7 +37,8 @@ export class BookingFormComponent {
           price: 20, 
           img: 'Candy Kingdom Standard.png',
           beds: '1 Bed', 
-          capacity: 'Good for 1-2 Adventurers',
+          minCap: 1,
+          maxCap: 2,
           perks: ['Free Hot Cocoa', 'Local Kingdom Map Access'],
           desc: 'A cozy standard chamber optimized for solo voyagers or traveling pairs. Features continuous clean linen and a reinforced layout framework.'
         },
@@ -46,7 +47,8 @@ export class BookingFormComponent {
           price: 15, 
           img: 'Slime Kingdom Den.png',
           beds: '2 Beds', 
-          capacity: 'Good for 2-4 Adventurers',
+          minCap: 2,
+          maxCap: 4,
           perks: ['Bouncing Mattresses', 'Acid-Proof Linens'],
           desc: 'An elastic subterranean double-bed chamber structured for group parties. Highly recommended for adventurers seeking chemical resistance.'
         },
@@ -55,7 +57,8 @@ export class BookingFormComponent {
           price: 25, 
           img: 'Wizard City Hostel.png',
           beds: '1 Bed', 
-          capacity: 'Good for 1-2 Adventurers',
+          minCap: 1,
+          maxCap: 2,
           perks: ['Anti-Gravity Pillow', 'Enchanted Reading Light'],
           desc: 'A mystical space designed to accommodate short mystic stays. Perfect for apprentices looking to rest before their next trial.'
         }
@@ -69,7 +72,8 @@ export class BookingFormComponent {
           price: 45, 
           img: 'Wildberry Bungalow.png',
           beds: '2 Beds', 
-          capacity: 'Good for 2-4 Adventurers',
+          minCap: 2,
+          maxCap: 4,
           perks: ['Fresh Berry Basket Daily', 'Private Balcony Area'],
           desc: 'An elevated wooden framework structure boasting scenery over the outer walls. Fully furnished with artisan branch furniture.'
         },
@@ -78,7 +82,8 @@ export class BookingFormComponent {
           price: 55, 
           img: 'Breakfast Kingdom Diner Suite.png',
           beds: '2 Beds', 
-          capacity: 'Good for 4-6 Adventurers',
+          minCap: 4,
+          maxCap: 6,
           perks: ['All-You-Can-Eat Pancake Bar', 'Syrup Hot Tub Access'],
           desc: 'A deliciously scented suite boasting comfortable waffle beds and separate living tracks. Breakfast is continually active.'
         },
@@ -87,7 +92,8 @@ export class BookingFormComponent {
           price: 60, 
           img: 'Lumpy Space Studio.png',
           beds: '1 Bed', 
-          capacity: 'Good for 8-10 Adventurers',
+          minCap: 8,
+          maxCap: 10,
           perks: ['Cloud Floating Cushion', 'Sassy Mirror Console'],
           desc: 'An ultra-plush purple dimension suite that eliminates hard edges entirely. Perfect for travelers seeking complete isolation.'
         }
@@ -101,7 +107,8 @@ export class BookingFormComponent {
           price: 90, 
           img: 'The Tree Fort Suite.png',
           beds: '2 Beds', 
-          capacity: 'Good for 4-6 Adventurers',
+          minCap: 4,
+          maxCap: 6,
           perks: ['Weapon Rack Access', 'BMO Video Game Station', 'Curated Vinyl Record Player'],
           desc: 'A premium treehouse environment offering unmatched overhead views of Ooo. Fully stocked with heroic tools and high-tier entertainment platforms.'
         },
@@ -110,7 +117,8 @@ export class BookingFormComponent {
           price: 150, 
           img: 'Candy Kingdom Royal Suite.png',
           beds: '3 Beds', 
-          capacity: 'Good for 4-6 Adventurers',
+          minCap: 4,
+          maxCap: 6,
           perks: ['Banana Guard Escort', 'Gumball Butler Machine', 'Science Lab Pass'],
           desc: 'An elite palace level suite offering pristine crystal lighting and elegant sugar craftsmanship. Built strictly for royal delegations.'
         },
@@ -119,7 +127,8 @@ export class BookingFormComponent {
           price: 130, 
           img: 'Fire Kingdom Flame Suite.png',
           beds: '2 Beds', 
-          capacity: 'Good for 4-6 Adventurers',
+          minCap: 4,
+          maxCap: 6,
           perks: ['Thermal Shield Ward', 'Obsidian Lounge', 'Spiced Core Drinks'],
           desc: 'A burning hot luxury chamber built safely inside controlled lava conduits. Fully insulated with top-tier cooling wards for exterior biological safety.'
         }
@@ -135,6 +144,11 @@ export class BookingFormComponent {
 
   onRoomPicked(room: any) {
     this.selectedRoom = room;
+    if (this.guestsCount < room.minCap) {
+      this.guestsCount = room.minCap;
+    } else if (this.guestsCount > room.maxCap) {
+      this.guestsCount = room.maxCap;
+    }
   }
 
   toggleDescription(roomName: string, event: Event) {
@@ -149,6 +163,20 @@ export class BookingFormComponent {
   selectRestaurantCoverage(coverage: string) {
     this.restaurantCoverage = coverage;
     this.restaurantState = 'selected';
+  }
+
+  changeGuests(amount: number) {
+    if (!this.selectedRoom) return;
+    const newCount = this.guestsCount + amount;
+    if (newCount >= this.selectedRoom.minCap && newCount <= this.selectedRoom.maxCap) {
+      this.guestsCount = newCount;
+    }
+  }
+
+  changeNights(amount: number) {
+    if (this.nightsCount + amount >= 1) {
+      this.nightsCount += amount;
+    }
   }
 
   get summaryConfig() {
