@@ -35,7 +35,6 @@ export class BookingFormComponent {
         { 
           name: "Candy Kingdom Standard", 
           price: 20, 
-          extraGuestFee: 10,
           img: 'Candy Kingdom Standard.png',
           beds: '1 Bed', 
           minCap: 1,
@@ -46,10 +45,9 @@ export class BookingFormComponent {
         { 
           name: "Slime Kingdom Den", 
           price: 15, 
-          extraGuestFee: 5,
           img: 'Slime Kingdom Den.png',
           beds: '2 Beds', 
-          minCap: 2,
+          minCap: 1,
           maxCap: 4,
           perks: ['Bouncing Mattresses', 'Acid-Proof Linens'],
           desc: 'An elastic subterranean double-bed chamber structured for group parties. Highly recommended for adventurers seeking chemical resistance.'
@@ -57,7 +55,6 @@ export class BookingFormComponent {
         { 
           name: "Wizard City Hostel", 
           price: 25, 
-          extraGuestFee: 12,
           img: 'Wizard City Hostel.png',
           beds: '1 Bed', 
           minCap: 1,
@@ -73,10 +70,9 @@ export class BookingFormComponent {
         { 
           name: "Wildberry Bungalow", 
           price: 45, 
-          extraGuestFee: 20,
           img: 'Wildberry Bungalow.png',
           beds: '2 Beds', 
-          minCap: 2,
+          minCap: 1,
           maxCap: 4,
           perks: ['Fresh Berry Basket Daily', 'Private Balcony Area'],
           desc: 'An elevated wooden framework structure boasting scenery over the outer walls. Fully furnished with artisan branch furniture.'
@@ -84,10 +80,9 @@ export class BookingFormComponent {
         { 
           name: "Breakfast Kingdom Diner Suite", 
           price: 55, 
-          extraGuestFee: 25,
           img: 'Breakfast Kingdom Diner Suite.png',
           beds: '2 Beds', 
-          minCap: 4,
+          minCap: 1,
           maxCap: 6,
           perks: ['All-You-Can-Eat Pancake Bar', 'Syrup Hot Tub Access'],
           desc: 'A deliciously scented suite boasting comfortable waffle beds and separate living tracks. Breakfast is continually active.'
@@ -95,10 +90,9 @@ export class BookingFormComponent {
         { 
           name: "Lumpy Space Studio", 
           price: 60, 
-          extraGuestFee: 30,
           img: 'Lumpy Space Studio.png',
           beds: '1 Bed', 
-          minCap: 8,
+          minCap: 1,
           maxCap: 10,
           perks: ['Cloud Floating Cushion', 'Sassy Mirror Console'],
           desc: 'An ultra-plush purple dimension suite that eliminates hard edges entirely. Perfect for travelers seeking complete isolation.'
@@ -111,10 +105,9 @@ export class BookingFormComponent {
         { 
           name: "The Tree Fort Suite", 
           price: 90, 
-          extraGuestFee: 45,
           img: 'The Tree Fort Suite.png',
           beds: '2 Beds', 
-          minCap: 4,
+          minCap: 1,
           maxCap: 6,
           perks: ['Weapon Rack Access', 'BMO Video Game Station', 'Curated Vinyl Record Player'],
           desc: 'A premium treehouse environment offering unmatched overhead views of Ooo. Fully stocked with heroic tools and high-tier entertainment platforms.'
@@ -122,10 +115,9 @@ export class BookingFormComponent {
         { 
           name: "Candy Kingdom Royal Suite", 
           price: 150, 
-          extraGuestFee: 75,
           img: 'Candy Kingdom Royal Suite.png',
           beds: '3 Beds', 
-          minCap: 4,
+          minCap: 1,
           maxCap: 6,
           perks: ['Banana Guard Escort', 'Gumball Butler Machine', 'Science Lab Pass'],
           desc: 'An elite palace level suite offering pristine crystal lighting and elegant sugar craftsmanship. Built strictly for royal delegations.'
@@ -133,10 +125,9 @@ export class BookingFormComponent {
         { 
           name: "Fire Kingdom Flame Suite", 
           price: 130, 
-          extraGuestFee: 65,
           img: 'Fire Kingdom Flame Suite.png',
           beds: '2 Beds', 
-          minCap: 4,
+          minCap: 1,
           maxCap: 6,
           perks: ['Thermal Shield Ward', 'Obsidian Lounge', 'Spiced Core Drinks'],
           desc: 'A burning hot luxury chamber built safely inside controlled lava conduits. Fully insulated with top-tier cooling wards for exterior biological safety.'
@@ -153,11 +144,7 @@ export class BookingFormComponent {
 
   onRoomPicked(room: any) {
     this.selectedRoom = room;
-    if (this.guestsCount < room.minCap) {
-      this.guestsCount = room.minCap;
-    } else if (this.guestsCount > room.maxCap) {
-      this.guestsCount = room.maxCap;
-    }
+    this.guestsCount = 1;
   }
 
   toggleDescription(roomName: string, event: Event) {
@@ -190,8 +177,9 @@ export class BookingFormComponent {
 
   calculateTotal() {
     if (!this.selectedRoom) return 0;
-    const extraGuests = Math.max(0, this.guestsCount - this.selectedRoom.minCap);
-    const costPerNight = this.selectedRoom.price + (extraGuests * this.selectedRoom.extraGuestFee);
+    const extraGuests = this.guestsCount - 1;
+    const extraGuestFee = this.selectedRoom.price / 2;
+    const costPerNight = this.selectedRoom.price + (extraGuests * extraGuestFee);
     return costPerNight * this.nightsCount;
   }
 
