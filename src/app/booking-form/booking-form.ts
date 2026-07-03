@@ -1,7 +1,6 @@
 import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
-import { RoomListModule } from '../room-list/room-list';
 import { BookingSummaryModule } from '../booking-summary/booking-summary';
 
 @Component({
@@ -10,7 +9,6 @@ import { BookingSummaryModule } from '../booking-summary/booking-summary';
   imports: [
     CommonModule,
     FormsModule,
-    RoomListModule,
     BookingSummaryModule
   ],
   templateUrl: './booking-form.html',
