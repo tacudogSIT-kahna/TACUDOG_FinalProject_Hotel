@@ -21,16 +21,66 @@
   
     <div class="unlocked-booking-dashboard" *ngIf="isUserSignedIn">
       
-      <div class="welcome-badge-header">
+      <div class="welcome-badge-header" *ngIf="!checkoutReceipt">
         <h2>Greetings, {{ guestName }}!</h2>
         <p>Your session identity is verified. Proceed with your hotel request layout selection below.</p>
       </div>
   
-      <div *ngIf="successMessage" class="alert-box-success">
-        {{ successMessage }}
+      <!-- Dynamic Structured Receipt View -->
+      <div *ngIf="checkoutReceipt" class="receipt-breakdown-card">
+        <div class="receipt-header-banner">📜 Official Kingdom Lodging Receipt</div>
+        
+        <div class="receipt-body-content">
+          <p class="receipt-thankyou">Mathematical, {{ guestName }}! Your quarters order has been securely locked into local ledger chains.</p>
+          
+          <div class="receipt-meta-grid">
+            <div class="meta-item"><span>Guest Name:</span> <strong>{{ guestName }}</strong></div>
+            <div class="meta-item"><span>Crystal Comm:</span> <strong>{{ guestEmail }}</strong></div>
+          </div>
+
+          <div class="receipt-divider-line"></div>
+          
+          <div class="receipt-table-rows">
+            <div class="receipt-calc-row">
+              <span>{{ checkoutReceipt.roomName }} Base Rate:</span>
+              <strong>💰 {{ checkoutReceipt.roomBasePrice }} Gold / Night</strong>
+            </div>
+            
+            <div class="receipt-calc-row" *ngIf="checkoutReceipt.extraGuestsCount > 0">
+              <span>Extra Traveler Fees ({{ checkoutReceipt.extraGuestsCount }} × {{ checkoutReceipt.roomBasePrice / 2 }} Gold):</span>
+              <strong>💰 +{{ checkoutReceipt.extraGuestsTotalFee }} Gold / Night</strong>
+            </div>
+
+            <div class="receipt-calc-row summary-subline">
+              <span>Total Room Cost Per Night:</span>
+              <strong>💰 {{ checkoutReceipt.singleNightRoomRate }} Gold</strong>
+            </div>
+
+            <div class="receipt-calc-row highlight-nights-line">
+              <span>Duration Multiplier (× {{ checkoutReceipt.nights }} Nights):</span>
+              <strong>💰 {{ checkoutReceipt.totalRoomCost }} Gold</strong>
+            </div>
+
+            <div class="receipt-calc-row restaurant-charge-row" *ngIf="checkoutReceipt.restaurantCoverage">
+              <span>Resto Table Booking ({{ checkoutReceipt.restaurantCoverage }}):</span>
+              <strong>💰 +{{ checkoutReceipt.restaurantCost }} Gold</strong>
+            </div>
+          </div>
+
+          <div class="receipt-divider-line thick-divider"></div>
+
+          <div class="receipt-grand-total">
+            <span>Aggregate Grand Total:</span>
+            <span class="final-glowing-gold">💰 {{ checkoutReceipt.grandTotal }} Gold Coins</span>
+          </div>
+
+          <p class="receipt-footer-hint">Check your matching crystal clear mirror ball for standard local storage data copies.</p>
+          
+          <button class="reset-engine-btn" (click)="clearReceiptSession()">Configure Another Stay</button>
+        </div>
       </div>
   
-      <div class="booking-engine-split-grid" *ngIf="!successMessage">
+      <div class="booking-engine-split-grid" *ngIf="!checkoutReceipt">
         
         <div class="selection-controls-column">
           

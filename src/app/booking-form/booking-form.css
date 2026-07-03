@@ -1,485 +1,132 @@
-.booking-page-container {
-  font-family: 'Plus Jakarta Sans', sans-serif;
-  padding: 40px;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  min-height: calc(100vh - 140px);
+.receipt-breakdown-card {
+  background: rgba(15, 23, 42, 0.6);
+  border: 1px solid #2dd4bf;
+  border-radius: 24px;
+  padding: 30px;
+  max-width: 600px;
   width: 100%;
-  box-sizing: border-box;
+  margin: 0 auto;
+  box-shadow: 0 20px 50px rgba(0, 0, 0, 0.5);
+  text-align: left;
 }
 
-.frosted-auth-card {
-  background: rgba(14, 116, 144, 0.35);
-  backdrop-filter: blur(24px);
-  -webkit-backdrop-filter: blur(24px);
-  border: 1px solid rgba(255, 255, 255, 0.18);
-  border-radius: 24px;
-  padding: 35px;
-  width: 100%;
-  max-width: 480px;
-  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.35);
+.receipt-header-banner {
+  font-size: 1.3rem;
+  font-weight: 700;
+  color: #2dd4bf;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  border-bottom: 2px dashed rgba(45, 212, 191, 0.3);
+  padding-bottom: 14px;
   text-align: center;
 }
 
-.glass-section-header {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  width: 100%;
-  background: rgba(14, 116, 144, 0.45);
+.receipt-thankyou {
   color: #ffffff;
-  font-size: 1.2rem;
-  font-weight: 700;
-  padding: 12px;
-  border-radius: 12px;
-  border: 1px solid rgba(255, 255, 255, 0.15);
-  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.15);
-}
-
-.auth-helper-text {
-  font-size: 0.9rem;
-  color: #cbd5e1;
-  margin: 15px 0 25px 0;
-  line-height: 1.5;
-}
-
-.credential-entry-form {
-  display: flex;
-  flex-direction: column;
-  gap: 20px;
-}
-
-.input-wrapper-field {
-  display: flex;
-  flex-direction: column;
-  gap: 8px;
-  text-align: left;
-}
-
-.input-wrapper-field label {
-  color: #94a3b8;
-  font-size: 0.85rem;
-  font-weight: 600;
-}
-
-.input-wrapper-field input {
-  background: rgba(15, 23, 42, 0.5);
-  border: 1px solid rgba(255, 255, 255, 0.12);
-  border-radius: 10px;
-  padding: 12px 16px;
-  color: #ffffff;
-  font-family: inherit;
   font-size: 0.95rem;
-  outline: none;
-  transition: border-color 0.2s;
-}
-
-.input-wrapper-field input:focus {
-  border-color: #2dd4bf;
-}
-
-.submit-auth-btn {
-  font-family: 'Plus Jakarta Sans', sans-serif;
-  background: #fbbf24;
-  color: #0f172a;
-  border: none;
-  padding: 14px;
-  border-radius: 10px;
-  font-weight: 700;
-  font-size: 1rem;
-  cursor: pointer;
-  margin-top: 10px;
-  transition: background 0.2s;
-}
-
-.submit-auth-btn:hover {
-  background: #f59e0b;
-}
-
-.unlocked-booking-dashboard {
-  width: 100%;
-  max-width: 1200px;
-  display: flex;
-  flex-direction: column;
-  gap: 25px;
-}
-
-.welcome-badge-header {
-  background: rgba(255, 255, 255, 0.05);
-  border-radius: 16px;
-  padding: 20px;
-  border: 1px solid rgba(255, 255, 255, 0.1);
-  text-align: left;
-}
-
-.welcome-badge-header h2 {
-  margin: 0 0 4px 0;
-  color: #ffffff;
-  font-size: 1.4rem;
-}
-
-.welcome-badge-header p {
-  margin: 0;
-  color: #94a3b8;
-  font-size: 0.9rem;
-}
-
-.alert-box-success {
-  background: rgba(45, 212, 191, 0.15);
-  color: #2dd4bf;
-  padding: 20px;
-  border-radius: 16px;
-  border: 1px solid #2dd4bf;
-  font-weight: 500;
   line-height: 1.6;
+  margin: 15px 0;
 }
 
-.booking-engine-split-grid {
+.receipt-meta-grid {
   display: grid;
-  grid-template-columns: 1fr 420px;
-  gap: 35px;
-  align-items: flex-start;
-  width: 100%;
+  grid-template-columns: 1fr 1fr;
+  gap: 15px;
+  background: rgba(255, 255, 255, 0.03);
+  padding: 12px 16px;
+  border-radius: 12px;
 }
 
-.selection-controls-column {
-  background: rgba(15, 23, 42, 0.3);
-  border: 1px solid rgba(255, 255, 255, 0.08);
-  border-radius: 20px;
-  padding: 25px;
-  display: flex;
-  flex-direction: column;
-  gap: 25px;
+.meta-item span {
+  color: #64748b;
+  font-size: 0.85rem;
+  display: block;
 }
 
-.category-block {
-  display: flex;
-  flex-direction: column;
-  gap: 12px;
+.meta-item strong {
+  color: #cbd5e1;
+  font-size: 0.95rem;
 }
 
-.category-label-title {
-  color: #2dd4bf;
-  font-size: 1.1rem;
-  font-weight: 700;
-  margin: 0;
-  text-transform: uppercase;
-  letter-spacing: 1px;
-  border-left: 3px solid #2dd4bf;
-  padding-left: 10px;
-}
-
-.custom-room-stack {
-  display: flex;
-  flex-direction: column;
-  gap: 12px;
-}
-
-.room-row-item {
-  background: rgba(30, 41, 59, 0.4);
-  border: 1px solid rgba(255, 255, 255, 0.05);
-  border-radius: 14px;
-  padding: 16px;
-  cursor: pointer;
-  transition: all 0.2s ease-in-out;
-  display: flex;
-  flex-direction: column;
-}
-
-.room-row-item:hover {
-  background: rgba(30, 41, 59, 0.6);
-  border-color: rgba(255, 255, 255, 0.15);
-}
-
-.room-row-item.active-selection {
-  background: rgba(14, 116, 144, 0.25);
-  border-color: #2dd4bf;
-  box-shadow: 0 0 15px rgba(45, 212, 191, 0.15);
-}
-
-.room-main-meta {
-  display: flex;
-  align-items: center;
-  gap: 16px;
-  width: 100%;
-}
-
-.room-visual-wrapper {
-  width: 70px;
-  height: 50px;
-  border-radius: 8px;
-  overflow: hidden;
-  background: #0f172a;
-  flex-shrink: 0;
-}
-
-.room-thumbnail-img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-}
-
-.room-detail-info {
-  display: flex;
-  flex-direction: column;
-  gap: 4px;
-  flex-grow: 1;
-}
-
-.room-headline-row {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  gap: 10px;
-}
-
-.room-title-text {
-  color: #ffffff;
-  font-weight: 600;
-  font-size: 1.05rem;
-}
-
-.room-bed-badge {
+.receipt-divider-line {
+  height: 1px;
   background: rgba(255, 255, 255, 0.08);
-  color: #94a3b8;
-  font-size: 0.75rem;
-  padding: 3px 8px;
-  border-radius: 20px;
-  font-weight: 500;
+  margin: 20px 0;
 }
 
-.room-pricing-tag {
-  color: #fbbf24;
+.receipt-divider-line.thick-divider {
+  background: rgba(255, 255, 255, 0.2);
+  height: 2px;
+}
+
+.receipt-table-rows {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.receipt-calc-row {
+  display: flex;
+  justify-content: space-between;
   font-size: 0.9rem;
-  font-weight: 600;
+  color: #94a3b8;
 }
 
-.expand-desc-arrow {
-  background: none;
-  border: none;
+.receipt-calc-row strong {
+  color: #ffffff;
+}
+
+.summary-subline {
+  border-top: 1px solid rgba(255, 255, 255, 0.05);
+  padding-top: 10px;
+  margin-top: 4px;
+}
+
+.highlight-nights-line strong {
+  color: #fbbf24;
+}
+
+.restaurant-charge-row strong {
+  color: #2dd4bf;
+}
+
+.receipt-grand-total {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 1.15rem;
+  font-weight: 700;
+  color: #ffffff;
+}
+
+.final-glowing-gold {
+  color: #fbbf24 !important;
+  font-size: 1.3rem;
+  text-shadow: 0 0 15px rgba(251, 191, 36, 0.3);
+}
+
+.receipt-footer-hint {
   color: #64748b;
   font-size: 0.8rem;
-  cursor: pointer;
-  padding: 8px;
-  transition: transform 0.2s ease, color 0.2s;
+  text-align: center;
+  margin-top: 25px;
+  font-style: italic;
 }
 
-.expand-desc-arrow:hover {
-  color: #ffffff;
-}
-
-.arrow-flipped {
-  transform: rotate(180deg);
-  color: #2dd4bf;
-}
-
-.room-collapsible-panel {
-  max-height: 0;
-  overflow: hidden;
-  transition: max-height 0.25s ease-out, margin-top 0.25s;
-  display: flex;
-  flex-direction: column;
-  gap: 10px;
-}
-
-.room-collapsible-panel.panel-open {
-  max-height: 200px;
-  margin-top: 14px;
-  border-top: 1px solid rgba(255, 255, 255, 0.06);
-  padding-top: 12px;
-}
-
-.room-narrative-paragraph {
-  margin: 0;
-  color: #cbd5e1;
-  font-size: 0.85rem;
-  line-height: 1.5;
-}
-
-.perks-flex-container {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 8px;
-}
-
-.perk-pill-tag {
-  background: rgba(45, 212, 191, 0.1);
-  color: #2dd4bf;
-  font-size: 0.75rem;
-  padding: 4px 10px;
-  border-radius: 6px;
-  font-weight: 500;
-}
-
-.invoice-summary-column {
-  background: rgba(15, 23, 42, 0.45);
-  border: 1px solid rgba(255, 255, 255, 0.12);
-  border-radius: 24px;
-  padding: 25px;
-  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.35);
-  display: flex;
-  flex-direction: column;
-  gap: 20px;
-}
-
-.invoice-summary-column ::ng-deep {
-  color: #ffffff;
-}
-
-.invoice-summary-column ::ng-deep h1,
-.invoice-summary-column ::ng-deep h2,
-.invoice-summary-column ::ng-deep h3,
-.invoice-summary-column ::ng-deep h4 {
-  color: #ffffff !important;
-}
-
-.invoice-summary-column ::ng-deep p,
-.invoice-summary-column ::ng-deep span:not(.counter-display-val) {
-  color: #94a3b8 !important;
-}
-
-.live-configuration-panel {
-  display: flex;
-  flex-direction: column;
-  gap: 16px;
-  border-top: 1px solid rgba(255, 255, 255, 0.08);
-  padding-top: 16px;
-}
-
-.config-input-item {
-  display: flex;
-  flex-direction: column;
-  gap: 8px;
-  text-align: left;
-}
-
-.label-heading-row {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-}
-
-.config-label {
-  color: #94a3b8;
-  font-size: 0.85rem;
-  font-weight: 500;
-}
-
-.cap-warning-hint {
-  color: #2dd4bf;
-  font-size: 0.75rem;
-  font-weight: 600;
-}
-
-.invoice-counter-bar {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  background: rgba(15, 23, 42, 0.4);
-  border: 1px solid rgba(255, 255, 255, 0.08);
-  border-radius: 10px;
-  padding: 4px;
-}
-
-.btn-counter-act {
-  background: rgba(255, 255, 255, 0.04);
-  border: 1px solid rgba(255, 255, 255, 0.08);
-  color: #ffffff;
-  width: 34px;
-  height: 34px;
-  border-radius: 8px;
-  font-size: 1.1rem;
-  cursor: pointer;
-  transition: background 0.2s;
-}
-
-.btn-counter-act:hover {
-  background: rgba(255, 255, 255, 0.12);
-}
-
-.counter-display-val {
-  color: #ffffff;
-  font-weight: 600;
-  font-size: 1.05rem;
-}
-
-.restaurant-addons-box {
-  border-top: 1px solid rgba(255, 255, 255, 0.1);
-  padding-top: 20px;
-  width: 100%;
-}
-
-.avail-restaurant-btn {
+.reset-engine-btn {
   width: 100%;
   background: transparent;
-  border: 1px dashed #2dd4bf;
+  border: 1px solid #2dd4bf;
   color: #2dd4bf;
   padding: 12px;
-  border-radius: 10px;
+  border-radius: 12px;
   font-weight: 600;
   font-size: 0.95rem;
   cursor: pointer;
+  margin-top: 15px;
   transition: all 0.2s ease;
 }
 
-.avail-restaurant-btn:hover {
+.reset-engine-btn:hover {
   background: rgba(45, 212, 191, 0.1);
-}
-
-.restaurant-options-panel {
-  display: flex;
-  flex-direction: column;
-  gap: 10px;
-  text-align: left;
-}
-
-.prompt-text-label {
-  color: #94a3b8;
-  font-size: 0.85rem;
-  font-weight: 500;
-}
-
-.prompt-buttons-row {
-  display: flex;
-  gap: 10px;
-}
-
-.option-selection-btn {
-  flex: 1;
-  background: rgba(255, 255, 255, 0.05);
-  border: 1px solid rgba(255, 255, 255, 0.1);
-  color: #ffffff;
-  padding: 10px;
-  border-radius: 8px;
-  font-size: 0.85rem;
-  font-weight: 600;
-  cursor: pointer;
-  transition: all 0.2s;
-}
-
-.option-selection-btn:hover {
-  background: rgba(255, 255, 255, 0.15);
-  border-color: #2dd4bf;
-}
-
-.restaurant-confirmed-badge {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  background: rgba(45, 212, 191, 0.1);
-  border: 1px solid rgba(45, 212, 191, 0.2);
-  padding: 12px;
-  border-radius: 10px;
-  font-size: 0.9rem;
-  color: #ffffff;
-}
-
-.reset-addon-link {
-  background: none;
-  border: none;
-  color: #f43f5e;
-  font-size: 0.8rem;
-  text-decoration: underline;
-  cursor: pointer;
 }
