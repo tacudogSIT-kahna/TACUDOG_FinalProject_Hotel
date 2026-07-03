@@ -1,0 +1,173 @@
+.unlocked-booking-dashboard {
+  width: 100%;
+  max-width: 1200px;
+  display: flex;
+  flex-direction: column;
+  gap: 25px;
+  margin: 0 auto;
+}
+
+.welcome-badge-header {
+  background: rgba(255, 255, 255, 0.05);
+  border-radius: 16px;
+  padding: 20px;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  text-align: left;
+}
+
+.welcome-badge-header h2 {
+  margin: 0 0 4px 0;
+  color: #ffffff;
+  font-size: 1.4rem;
+}
+
+.welcome-badge-header p {
+  margin: 0;
+  color: #94a3b8;
+  font-size: 0.9rem;
+}
+
+.manager-dash-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+}
+
+.logout-manager-btn {
+  background: rgba(244, 63, 94, 0.1);
+  border: 1px solid rgba(244, 63, 94, 0.3);
+  color: #f43f5e;
+  padding: 10px 18px;
+  border-radius: 10px;
+  font-weight: 600;
+  font-size: 0.85rem;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.logout-manager-btn:hover {
+  background: #f43f5e;
+  color: #ffffff;
+}
+
+.stats-counter-strip-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 20px;
+  width: 100%;
+}
+
+.metric-block-item {
+  background: rgba(15, 23, 42, 0.45);
+  border: 1px solid rgba(255, 255, 255, 0.05);
+  border-radius: 16px;
+  padding: 20px;
+  text-align: left;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
+}
+
+.gold-glowing-border { border-color: rgba(251, 191, 36, 0.3); box-shadow: 0 4px 20px rgba(251, 191, 36, 0.05); }
+.teal-glowing-border { border-color: rgba(45, 212, 191, 0.3); box-shadow: 0 4px 20px rgba(45, 212, 191, 0.05); }
+.rose-glowing-border { border-color: rgba(244, 63, 94, 0.3); box-shadow: 0 4px 20px rgba(244, 63, 94, 0.05); }
+
+.metric-label-txt {
+  color: #64748b;
+  font-size: 0.85rem;
+  font-weight: 500;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.metric-numeric-val {
+  margin: 0;
+  font-size: 1.4rem;
+  font-weight: 700;
+  color: #ffffff;
+}
+
+.ledger-table-wrapper-box {
+  background: rgba(15, 23, 42, 0.45);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 20px;
+  padding: 25px;
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+  width: 100%;
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.35);
+}
+
+.ledger-header-row-title {
+  color: #2dd4bf;
+  font-size: 1.1rem;
+  font-weight: 700;
+  text-align: left;
+}
+
+.ledger-scrollable-area {
+  width: 100%;
+  overflow-x: auto;
+}
+
+.manager-native-data-table {
+  width: 100%;
+  border-collapse: collapse;
+  text-align: left;
+  font-size: 0.9rem;
+}
+
+.manager-native-data-table th {
+  color: #64748b;
+  font-weight: 600;
+  padding: 12px 16px;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+  text-transform: uppercase;
+  font-size: 0.75rem;
+  letter-spacing: 0.5px;
+}
+
+.manager-native-data-table td {
+  padding: 16px;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.04);
+  color: #cbd5e1;
+  vertical-align: middle;
+}
+
+.bold-guest-name {
+  color: #ffffff !important;
+  font-weight: 600;
+}
+
+.gray-subtext {
+  color: #64748b;
+  font-size: 0.8rem;
+}
+
+.gold-bold-price {
+  color: #fbbf24 !important;
+  font-weight: 700;
+}
+
+.resto-addon-badge-cell {
+  background: rgba(45, 212, 191, 0.1);
+  color: #2dd4bf;
+  padding: 4px 8px;
+  border-radius: 6px;
+  font-size: 0.8rem;
+  font-weight: 500;
+}
+
+.resto-addon-none {
+  color: #475569;
+  font-size: 0.85rem;
+}
+
+.centered-empty-msg {
+  text-align: center;
+  color: #64748b;
+  padding: 30px !important;
+}
