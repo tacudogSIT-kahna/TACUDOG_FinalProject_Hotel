@@ -47,7 +47,7 @@ export class CafeMenuComponent {
       items: [
         { name: "Super Porp", desc: "Pop open an ancient tradition! The refreshing, fizzy purple fruit soda beverage that has ruled the refreshment underground empire for cycles. Cool, sparkling, and deeply carbonated.", img: "/Super Porp.png" },
         { name: "Big Baby Rootbeer", desc: "Rich, creamy, and heavily frothy rootbeer poured fresh from the gigantic oak barrels stored deep inside the Candy Kingdom palace vats. Topped with a thick sweet cloud of foam.", img: "/Big Baby Rootbeer.png" },
-        { name: "Bug Milk", desc: "A unique, nutrient-dense natural juice harvested directly from the finest subterranean dairy insects. Offers an earthy, high-protein health boost to rapidly restore lost hearts.", img: "/Bug Milk.png" },
+        { name: "Bug Milk", desc: "A unique, nutrient-dense natural juice harvested directly from the finest subterranean dairy insects. Offers an earthy, high-protein health boost to rapidly restore lost hearts.", img: "/Bug milk.png" },
         { name: "Jake's Espresso", desc: "A high-octane, pitch-black dark roast brew prepared personally by Jake to keep your eyes locked wide open during dangerous midnight dungeon crawls or intense card tournament matches.", img: "/Jake's Espresso.png" }
       ]
     }
