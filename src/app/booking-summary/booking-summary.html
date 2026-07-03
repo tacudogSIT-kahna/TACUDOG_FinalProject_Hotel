@@ -19,10 +19,13 @@
           <span>Party Size:</span>
           <strong>{{ config.guests }} Guest(s)</strong>
         </div>
+        <div class="invoice-row" *ngIf="config.restaurantReservation">
+          <span>Restaurant Table:</span>
+          <strong style="color: #2dd4bf;">🍽️ {{ config.restaurantReservation }}</strong>
+        </div>
         <div class="invoice-divider"></div>
         <div class="invoice-row total-row">
           <span>Total Cost:</span>
-          <!-- Changed from totalPrice to config.computedTotal to read live calculations -->
           <strong class="glowing-total">💰 {{ config.computedTotal }} Gold Coins</strong>
         </div>
   
@@ -31,4 +34,4 @@
         </button>
       </div>
     </div>
-  </div>
+</div>

@@ -8,29 +8,17 @@ import { CommonModule } from '@angular/common';
   templateUrl: './booking-summary.html',
   styleUrls: ['./booking-summary.css']
 })
-export class BookingSummaryModule {
+export class BookingSummaryComponent {
   @Input() selectedRoom: any = null;
-  @Input() config: any = { guests: 1, nights: 1 };
-  
+  @Input() config: any = { guests: 1, nights: 1, computedTotal: 0, restaurantReservation: null };
   @Output() submitBooking = new EventEmitter<any>();
 
- // Look for your total cost variable or getter calculation inside the booking summary child file:
-get totalCost() {
-  if (!this.selectedRoom || !this.config) return 0;
-  
-  // Fall back to config.customPrice if present, otherwise use standard room baseline price
-  const activeNightRate = this.config.customPrice || this.selectedRoom.price;
-  
-  return activeNightRate * this.config.nights;
-}
-
   confirmBooking() {
-    if (this.selectedRoom) {
-      this.submitBooking.emit({
-        room: this.selectedRoom,
-        details: this.config,
-        total: this.totalPrice
-      });
-    }
+    if (!this.selectedRoom) return;
+    this.submitBooking.emit({
+      room: this.selectedRoom,
+      details: this.config,
+      total: this.config.computedTotal
+    });
   }
 }
