@@ -14,10 +14,15 @@ export class BookingSummaryModule {
   
   @Output() submitBooking = new EventEmitter<any>();
 
-  get totalPrice(): number {
-    if (!this.selectedRoom) return 0;
-    return this.selectedRoom.price * this.config.nights;
-  }
+ // Look for your total cost variable or getter calculation inside the booking summary child file:
+get totalCost() {
+  if (!this.selectedRoom || !this.config) return 0;
+  
+  // Fall back to config.customPrice if present, otherwise use standard room baseline price
+  const activeNightRate = this.config.customPrice || this.selectedRoom.price;
+  
+  return activeNightRate * this.config.nights;
+}
 
   confirmBooking() {
     if (this.selectedRoom) {

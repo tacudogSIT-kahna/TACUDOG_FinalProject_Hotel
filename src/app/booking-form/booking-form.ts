@@ -183,11 +183,16 @@ export class BookingFormComponent {
     return singleNightRate * this.nightsCount;
   }
 
-  get summaryConfig() {
+    get summaryConfig() {
+    const extraGuests = this.guestsCount - 1;
+    const extraGuestFee = this.selectedRoom ? (this.selectedRoom.price / 2) : 0;
+    const dynamicSingleNightRate = this.selectedRoom ? (this.selectedRoom.price + (extraGuests * extraGuestFee)) : 0;
+
     return {
       guests: this.guestsCount,
       nights: this.nightsCount,
-      computedTotal: this.calculateTotal(),
+      // We overwrite the base price property so the child template scales up automatically
+      customPrice: dynamicSingleNightRate,
       restaurantReservation: this.restaurantState === 'selected' ? this.restaurantCoverage : null
     };
   }

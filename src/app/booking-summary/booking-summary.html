@@ -22,7 +22,8 @@
         <div class="invoice-divider"></div>
         <div class="invoice-row total-row">
           <span>Total Cost:</span>
-          <strong class="glowing-total">💰 {{ totalPrice }} Gold Coins</strong>
+          <!-- Changed from totalPrice to config.computedTotal to read live calculations -->
+          <strong class="glowing-total">💰 {{ config.computedTotal }} Gold Coins</strong>
         </div>
   
         <button class="confirm-order-btn" (click)="confirmBooking()">
@@ -31,4 +32,3 @@
       </div>
     </div>
   </div>
-  
