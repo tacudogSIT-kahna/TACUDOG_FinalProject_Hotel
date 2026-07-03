@@ -186,9 +186,21 @@ export class BookingFormComponent {
 
   calculateTotal() {
     if (!this.selectedRoom) return 0;
+    
     const extraGuests = this.guestsCount - 1;
-    const singleNightRate = this.selectedRoom.price + (extraGuests * this.selectedRoom.extraGuestFee);
-    return singleNightRate * this.nightsCount;
+    const singleNightRoomRate = this.selectedRoom.price + (extraGuests * (this.selectedRoom.price / 2));
+    const totalRoomCost = singleNightRoomRate * this.nightsCount;
+
+    let totalRestaurantCost = 0;
+    if (this.restaurantState === 'selected') {
+      if (this.restaurantCoverage === 'Whole Stay') {
+        totalRestaurantCost = 3 * this.guestsCount * this.nightsCount;
+      } else if (this.restaurantCoverage === 'First Day Only') {
+        totalRestaurantCost = 3 * this.guestsCount;
+      }
+    }
+
+    return totalRoomCost + totalRestaurantCost;
   }
 
   get summaryConfig() {
