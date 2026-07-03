@@ -114,37 +114,8 @@
     </div>
   </ng-container>
 
-  <div class="frosted-auth-card" *ngIf="currentView === 'manager-login'">
-    <div class="glass-section-header">🛡️ Administrative Clearance</div>
-    <p class="auth-helper-text">Please input your encrypted administrative staff key coordinates to open the accounting ledger metrics.</p>
-    
-    <div class="credential-entry-form">
-      <div class="input-wrapper-field">
-        <label>Administrative Secret Key</label>
-        <input type="password" [(ngModel)]="managerKey" placeholder="Enter administrative passcode (Try: admin123)" (keyup.enter)="handleManagerLogin()">
-      </div>
-      <div *ngIf="managerLoginError" class="manager-error-toast">❌ {{ managerLoginError }}</div>
-      <button class="submit-auth-btn" (click)="handleManagerLogin()">Unlock Ledgers</button>
-    </div>
-  </div>
+  <app-manager-login *ngIf="currentView === 'manager-login'" (loginSuccess)="switchView('manager-dashboard')"></app-manager-login>
 
-  <div class="unlocked-booking-dashboard manager-dashboard-container" *ngIf="currentView === 'manager-dashboard'">
-    <div class="welcome-badge-header manager-dash-header">
-      <div>
-        <h2>🏰 Royal Hotel Headquarters Dashboard</h2>
-        <p>System operational tracker. View total gold allocations and adventurer stay analytics logs below.</p>
-      </div>
-      <button class="logout-manager-btn" (click)="switchView('manager-login')">Lock Terminal</button>
-    </div>
+  <app-manager-dashboard *ngIf="currentView === 'manager-dashboard'" [historicalBookings]="historicalBookings" (logoutTerminal)="switchView('manager-login')"></app-manager-dashboard>
 
-    <div class="stats-counter-strip-grid">
-      <div class="metric-block-item gold-glowing-border">
-        <span class="metric-label-txt">Total Revenue Generated</span>
-        <h3 class="metric-numeric-val">💰 {{ totalDashboardGold }} Gold</h3>
-      </div>
-      <div class="metric-block-item teal-glowing-border">
-        <span class="metric-label-txt">Total Nights Fulfilled</span>
-        <h3 class="metric-numeric-val">📅 {{ totalDashboardNights }} Nights</h3>
-      </div>
-      <div class="metric-block-item rose-glowing-border">
-        <span class="metric-label-txt">Restaurant Add-ons Active</span>
+</div>

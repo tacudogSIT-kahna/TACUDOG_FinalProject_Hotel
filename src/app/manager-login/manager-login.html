@@ -1,1 +1,13 @@
-<p>manager-login works!</p>
+<div class="frosted-auth-card">
+  <div class="glass-section-header">🛡️ Administrative Clearance</div>
+  <p class="auth-helper-text">Please input your encrypted administrative staff key coordinates to open the accounting ledger metrics.</p>
+  
+  <div class="credential-entry-form">
+    <div class="input-wrapper-field">
+      <label>Administrative Secret Key</label>
+      <input type="password" [(ngModel)]="managerKey" placeholder="Enter administrative passcode (Try: admin123)" (keyup.enter)="handleManagerLogin()">
+    </div>
+    <div *ngIf="managerLoginError" class="manager-error-toast">❌ {{ managerLoginError }}</div>
+    <button class="submit-auth-btn" (click)="handleManagerLogin()">Unlock Ledgers</button>
+  </div>
+</div>

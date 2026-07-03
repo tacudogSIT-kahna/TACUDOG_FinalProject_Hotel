@@ -2,6 +2,8 @@ import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { BookingSummaryComponent } from '../booking-summary/booking-summary';
+import { ManagerLoginComponent } from '../manager-login/manager-login';
+import { ManagerDashboardComponent } from '../manager-dashboard/manager-dashboard';
 import { BookingReceipt } from '../models/booking.types';
 
 @Component({
@@ -10,7 +12,9 @@ import { BookingReceipt } from '../models/booking.types';
   imports: [
     CommonModule,
     FormsModule,
-    BookingSummaryComponent
+    BookingSummaryComponent,
+    ManagerLoginComponent,
+    ManagerDashboardComponent
   ],
   templateUrl: './booking-form.html',
   styleUrls: ['./booking-form.css']
@@ -30,8 +34,6 @@ export class BookingFormComponent {
   checkoutReceipt: BookingReceipt | null = null;
 
   currentView: 'guest' | 'manager-login' | 'manager-dashboard' = 'guest';
-  managerKey: string = '';
-  managerLoginError: string = '';
 
   hotelRoomCategories = [
     {
@@ -67,18 +69,7 @@ export class BookingFormComponent {
   ];
 
   switchView(target: 'guest' | 'manager-login' | 'manager-dashboard') {
-    this.managerLoginError = '';
-    this.managerKey = '';
     this.currentView = target;
-  }
-
-  handleManagerLogin() {
-    if (this.managerKey === 'admin123') {
-      this.currentView = 'manager-dashboard';
-      this.managerLoginError = '';
-    } else {
-      this.managerLoginError = 'Invalid Kingdom Administrative Key!';
-    }
   }
 
   handleSignIn() {
@@ -92,8 +83,8 @@ export class BookingFormComponent {
     this.guestsCount = 1;
   }
 
-  toggleDescription(roomName: string, pointerEvent: Event) {
-    pointerEvent.stopPropagation();
+  toggleDescription(roomName: string, event: Event) {
+    event.stopPropagation();
     this.expandedRoomIndex = this.expandedRoomIndex === roomName ? null : roomName;
   }
 
@@ -182,17 +173,5 @@ export class BookingFormComponent {
     this.nightsCount = 1;
     this.restaurantState = 'idle';
     this.restaurantCoverage = '';
-  }
-
-  get totalDashboardGold(): number {
-    return this.historicalBookings.reduce((sum, b) => sum + b.grandTotal, 0);
-  }
-
-  get totalDashboardNights(): number {
-    return this.historicalBookings.reduce((sum, b) => sum + b.nights, 0);
-  }
-
-  get totalDashboardRestoCount(): number {
-    return this.historicalBookings.filter(b => b.restaurantCoverage).length;
   }
 }

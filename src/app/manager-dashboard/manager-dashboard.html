@@ -1,1 +1,58 @@
-<p>manager-dashboard works!</p>
+<div class="unlocked-booking-dashboard manager-dashboard-container">
+  <div class="welcome-badge-header manager-dash-header">
+    <div>
+      <h2>🏰 Royal Hotel Headquarters Dashboard</h2>
+      <p>System operational tracker. View total gold allocations and adventurer stay analytics logs below.</p>
+    </div>
+    <button class="logout-manager-btn" (click)="logoutTerminal.emit()">Lock Terminal</button>
+  </div>
+
+  <div class="stats-counter-strip-grid">
+    <div class="metric-block-item gold-glowing-border">
+      <span class="metric-label-txt">Total Revenue Generated</span>
+      <h3 class="metric-numeric-val">💰 {{ totalDashboardGold }} Gold</h3>
+    </div>
+    <div class="metric-block-item teal-glowing-border">
+      <span class="metric-label-txt">Total Nights Fulfilled</span>
+      <h3 class="metric-numeric-val">📅 {{ totalDashboardNights }} Nights</h3>
+    </div>
+    <div class="metric-block-item rose-glowing-border">
+      <span class="metric-label-txt">Restaurant Add-ons Active</span>
+      <h3 class="metric-numeric-val">🍽️ {{ totalDashboardRestoCount }} Tables</h3>
+    </div>
+  </div>
+
+  <div class="ledger-table-wrapper-box">
+    <div class="ledger-header-row-title">📋 Live Transaction Ledger History</div>
+    <div class="ledger-scrollable-area">
+      <table class="manager-native-data-table">
+        <thead>
+          <tr>
+            <th>Adventurer Name</th>
+            <th>Suite Selected</th>
+            <th>Nights</th>
+            <th>Guests</th>
+            <th>Add-ons Included</th>
+            <th>Total Remitted</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let log of historicalBookings">
+            <td class="bold-guest-name">{{ log.guestName }} <br><small class="gray-subtext">{{ log.guestEmail }}</small></td>
+            <td>{{ log.roomName }}</td>
+            <td>{{ log.nights }} Nights</td>
+            <td>{{ log.extraGuestsCount + 1 }} Guest(s)</td>
+            <td>
+              <span class="resto-addon-badge-cell" *ngIf="log.restaurantCoverage">🍽️ Resto ({{ log.restaurantCoverage }})</span>
+              <span class="resto-addon-none" *ngIf="!log.restaurantCoverage">None</span>
+            </td>
+            <td class="gold-bold-price">💰 {{ log.grandTotal }} Gold</td>
+          </tr>
+          <tr *ngIf="historicalBookings.length === 0">
+            <td colspan="6" class="centered-empty-msg">No entries present inside active local registers.</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>
