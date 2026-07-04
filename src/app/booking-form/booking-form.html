@@ -38,7 +38,7 @@
             <div class="receipt-calc-row" *ngIf="checkoutReceipt.extraGuestsCount > 0"><span>Extra Traveler Fees ({{ checkoutReceipt.extraGuestsCount }} × {{ checkoutReceipt.roomBasePrice / 2 }} Gold):</span> <strong>💰 +{{ checkoutReceipt.extraGuestsTotalFee }} Gold / Night</strong></div>
             <div class="receipt-calc-row summary-subline"><span>Total Room Cost Per Night:</span> <strong>💰 {{ checkoutReceipt.singleNightRoomRate }} Gold</strong></div>
             <div class="receipt-calc-row highlight-nights-line"><span>Duration Multiplier (× {{ checkoutReceipt.nights }} Nights):</span> <strong>💰 {{ checkoutReceipt.totalRoomCost }} Gold</strong></div>
-            <div class="receipt-calc-row restaurant-charge-row" *ngIf="checkoutReceipt.restaurantCoverage"><span>Resto Table Booking ({{ checkoutReceipt.restaurantCoverage }}):</span> <strong>💰 +{{ checkoutReceipt.restaurantCost }} Gold</strong></div>
+            <div class="receipt-calc-row restaurant-charge-row" *ngIf="checkoutReceipt.restaurantCoverage"><span>Cafe Table Booking ({{ checkoutReceipt.restaurantCoverage }}):</span> <strong>💰 +{{ checkoutReceipt.restaurantCost }} Gold</strong></div>
           </div>
           <div class="receipt-divider-line thick-divider"></div>
           <div class="receipt-grand-total"><span>Aggregate Grand Total:</span> <span class="final-glowing-gold">💰 {{ checkoutReceipt.grandTotal }} Gold Coins</span></div>
@@ -91,7 +91,7 @@
             </div>
           </div>
           <div class="restaurant-addons-box" *ngIf="selectedRoom">
-            <div *ngIf="restaurantState === 'idle'"><button class="avail-restaurant-btn" (click)="promptRestaurantOptions()">🍽️ Reserve a Resto Table</button></div>
+            <div *ngIf="restaurantState === 'idle'"><button class="avail-restaurant-btn" (click)="promptRestaurantOptions()">🍽️ Reserve a Cafe Table</button></div>
             <div *ngIf="restaurantState === 'prompting'" class="restaurant-options-panel">
               <span class="prompt-text-label">Select Reservation Coverage:</span>
               <div class="prompt-buttons-row">

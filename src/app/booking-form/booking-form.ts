@@ -63,11 +63,7 @@ export class BookingFormComponent implements OnInit {
     }
   ];
 
-  historicalBookings: BookingReceipt[] = [
-    { guestName: 'Jake the Dog', guestEmail: 'jake@treefort.ooo', roomName: 'The Tree Fort Suite', roomBasePrice: 90, extraGuestsCount: 1, extraGuestsTotalFee: 45, singleNightRoomRate: 135, nights: 3, totalRoomCost: 405, restaurantCoverage: 'Whole Stay', restaurantCost: 18, grandTotal: 423 },
-    { guestName: 'Marceline', guestEmail: 'marcy@vampqueen.ooo', roomName: 'Lumpy Space Studio', roomBasePrice: 60, extraGuestsCount: 0, extraGuestsTotalFee: 0, singleNightRoomRate: 60, nights: 5, totalRoomCost: 300, restaurantCoverage: null, restaurantCost: 0, grandTotal: 300 },
-    { guestName: 'Princess Bubblegum', guestEmail: 'pb@candy.ooo', roomName: 'Candy Kingdom Royal Suite', roomBasePrice: 150, extraGuestsCount: 2, extraGuestsTotalFee: 150, singleNightRoomRate: 300, nights: 2, totalRoomCost: 600, restaurantCoverage: 'First Day Only', restaurantCost: 9, grandTotal: 609 }
-  ];
+  historicalBookings: BookingReceipt[] = [];
 
   constructor(private route: ActivatedRoute) {}
 
