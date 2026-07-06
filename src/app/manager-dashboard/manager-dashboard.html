@@ -5,7 +5,11 @@
       <h2>🏰 Royal Hotel Headquarters Dashboard</h2>
       <p>System operational tracker. View total gold allocations and adventurer stay analytics logs below.</p>
     </div>
-    <button class="logout-manager-btn" (click)="logoutTerminal.emit()">Lock Terminal</button>
+    
+    <div style="display: flex; gap: 10px;">
+      <button class="logout-manager-btn" style="background-color: #2b7a78;" (click)="refreshDashboardData()">🔄 Refresh Feed</button>
+      <button class="logout-manager-btn" (click)="logoutTerminal.emit()">Lock Terminal</button>
+    </div>
   </div>
 
   <div class="stats-counter-strip-grid">
@@ -14,8 +18,8 @@
       <h3 class="metric-numeric-val">💰 {{ totalDashboardGold }} Gold</h3>
     </div>
     <div class="metric-block-item teal-glowing-border">
-      <span class="metric-label-txt">Total Nights Fulfilled</span>
-      <h3 class="metric-numeric-val">📅 {{ totalDashboardNights }} Nights</h3>
+      <span class="metric-label-txt">Total Stays Tracked</span>
+      <h3 class="metric-numeric-val">📅 {{ databaseBookings.length }} Bookings</h3>
     </div>
     <div class="metric-block-item rose-glowing-border">
       <span class="metric-label-txt">Cafe Reservation Active</span>
@@ -31,29 +35,28 @@
           <tr>
             <th>Adventurer Name</th>
             <th>Suite Selected</th>
-            <th>Nights</th>
             <th>Guests</th>
             <th>Cafe Reservation Included</th>
             <th>Total Remitted</th>
           </tr>
         </thead>
         <tbody>
-          <tr *ngFor="let log of historicalBookings">
+          <tr *ngFor="let log of databaseBookings">
             <td class="bold-guest-name">
-              {{ log.guestName }} <br>
-              <small class="gray-subtext">{{ log.guestEmail }}</small>
+              {{ log.name }} <br>
+              <small class="gray-subtext">{{ log.email }}</small>
             </td>
-            <td>{{ log.roomName }}</td>
-            <td>{{ log.nights }} Nights</td>
-            <td>{{ log.extraGuestsCount + 1 }} Guest(s)</td>
+            <td>{{ log.selectedRoom }}</td>
+            <td>{{ log.partySize }} Guest(s)</td>
             <td>
-              <span class="resto-addon-badge-cell" *ngIf="log.restaurantCoverage">🍽️ Resto ({{ log.restaurantCoverage }})</span>
-              <span class="resto-addon-none" *ngIf="!log.restaurantCoverage">None</span>
+              <span class="resto-addon-badge-cell" *ngIf="log.reservedRestaurantTable">🍽️ Resto Active</span>
+              <span class="resto-addon-none" *ngIf="!log.reservedRestaurantTable">None</span>
             </td>
-            <td class="gold-bold-price">💰 {{ log.grandTotal }} Gold</td>
+            <td class="gold-bold-price">💰 {{ log.total }} Gold</td>
           </tr>
-          <tr *ngIf="historicalBookings.length === 0">
-            <td colspan="6" class="centered-empty-msg">No entries present inside active registers.</td>
+          
+          <tr *ngIf="databaseBookings.length === 0">
+            <td colspan="5" class="centered-empty-msg">No entries present inside active registers.</td>
           </tr>
         </tbody>
       </table>

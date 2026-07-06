@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, inject } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { ActivatedRoute } from '@angular/router';
@@ -6,6 +6,7 @@ import { BookingSummaryComponent } from '../booking-summary/booking-summary';
 import { ManagerLoginComponent } from '../manager-login/manager-login';
 import { ManagerDashboardComponent } from '../manager-dashboard/manager-dashboard';
 import { BookingReceipt } from '../models/booking.types';
+import { BookingService } from '../booking-service';
 
 @Component({
   selector: 'app-booking-form',
@@ -21,6 +22,8 @@ import { BookingReceipt } from '../models/booking.types';
   styleUrls: ['./booking-form.css']
 })
 export class BookingFormComponent implements OnInit {
+  private bookingService = inject(BookingService);
+
   isUserSignedIn: boolean = false;
   guestName: string = '';
   guestEmail: string = '';
@@ -173,6 +176,24 @@ export class BookingFormComponent implements OnInit {
 
     this.checkoutReceipt = generatedReceipt;
     this.historicalBookings.unshift(generatedReceipt);
+
+    const dbPayload = {
+      name: this.guestName,
+      email: this.guestEmail,
+      selectedRoom: this.selectedRoom.name,
+      partySize: this.guestsCount,
+      reservedRestaurantTable: this.restaurantState === 'selected',
+      total: this.calculateTotal()
+    };
+
+    this.bookingService.saveBooking(dbPayload).subscribe({
+      next: (response) => {
+        console.log('Saved to MongoDB successfully:', response);
+      },
+      error: (err) => {
+        console.error('Failed to update database tracking:', err);
+      }
+    });
   }
 
   clearReceiptSession() {
