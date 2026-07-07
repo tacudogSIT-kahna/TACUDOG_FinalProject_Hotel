@@ -36,8 +36,13 @@
           <div class="receipt-table-rows">
             <div class="receipt-calc-row"><span>{{ checkoutReceipt.roomName }} Base Rate:</span> <strong>💰 {{ checkoutReceipt.roomBasePrice }} Gold / Night</strong></div>
             <div class="receipt-calc-row" *ngIf="checkoutReceipt.extraGuestsCount > 0"><span>Extra Traveler Fees ({{ checkoutReceipt.extraGuestsCount }} × {{ checkoutReceipt.roomBasePrice / 2 }} Gold):</span> <strong>💰 +{{ checkoutReceipt.extraGuestsTotalFee }} Gold / Night</strong></div>
+            
+            <!-- 🗓️ Explicit Check-In and Check-Out Date Display Lines Added Right Here -->
+            <div class="receipt-calc-row" style="color: #a3a3a3; font-size: 13px;"><span>📅 Scheduled Check-In Date:</span> <strong style="color: #b1f8f2;">{{ checkInDate }}</strong></div>
+            <div class="receipt-calc-row" style="color: #a3a3a3; font-size: 13px; margin-bottom: 6px;"><span>🚪 Scheduled Check-Out Date:</span> <strong style="color: #b1f8f2;">{{ checkOutDate }}</strong></div>
+            
             <div class="receipt-calc-row summary-subline"><span>Total Room Cost Per Night:</span> <strong>💰 {{ checkoutReceipt.singleNightRoomRate }} Gold</strong></div>
-            <div class="receipt-calc-row highlight-nights-line"><span>Duration Multiplier (× {{ checkoutReceipt.nights }} Nights):</span> <strong>💰 {{ checkoutReceipt.totalRoomCost }} Gold</strong></div>
+            <div class="receipt-calc-row highlight-nights-line"><span>Duration Multiplier (× {{ checkoutReceipt.nights }} {{ checkoutReceipt.nights === 1 ? 'Night' : 'Nights' }}):</span> <strong>💰 {{ checkoutReceipt.totalRoomCost }} Gold</strong></div>
             <div class="receipt-calc-row restaurant-charge-row" *ngIf="checkoutReceipt.restaurantCoverage"><span>Cafe Table Booking ({{ checkoutReceipt.restaurantCoverage }}):</span> <strong>💰 +{{ checkoutReceipt.restaurantCost }} Gold</strong></div>
           </div>
           <div class="receipt-divider-line thick-divider"></div>
@@ -71,7 +76,6 @@
         </div>
         
         <div class="invoice-summary-column">
-          <!-- 1. Custom Integrated Native Notification Banner Block -->
           <div *ngIf="uiErrorMessage" class="native-custom-alert-box" style="background-color: #ffd2d2; border: 2px solid #ef233c; padding: 12px; border-radius: 8px; margin-bottom: 15px; color: #d90429; font-weight: 500; font-size: 13px; display: flex; justify-content: space-between; align-items: center; box-shadow: 0 4px 6px rgba(0,0,0,0.15);">
             <span>⚠️ {{ uiErrorMessage }}</span>
             <button (click)="uiErrorMessage = ''" style="background: none; border: none; color: #d90429; font-weight: bold; font-size: 16px; cursor: pointer; padding: 0 5px;">×</button>
@@ -80,8 +84,6 @@
           <app-booking-summary [selectedRoom]="selectedRoom" [config]="summaryConfig" (submitBooking)="onCheckoutSubmitted($event)"></app-booking-summary>
           
           <div class="live-configuration-panel" *ngIf="selectedRoom">
-            
-            <!-- 2. Check-In Date Field linked to auto availability tracker -->
             <div class="config-input-item" style="margin-bottom: 12px;">
               <label class="config-label" style="display: block; margin-bottom: 4px;">📅 Check-In Date</label>
               <input 
@@ -93,7 +95,6 @@
                 required>
             </div>
 
-            <!-- 3. Check-Out Date Field linked to auto availability tracker -->
             <div class="config-input-item" style="margin-bottom: 12px;">
               <label class="config-label" style="display: block; margin-bottom: 4px;">🚪 Check-Out Date</label>
               <input 
