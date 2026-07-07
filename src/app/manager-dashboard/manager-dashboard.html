@@ -27,60 +27,56 @@
     </div>
   </div>
 
-  <div class="ledger-table-wrapper-box">
-    <div class="ledger-header-row-title">📋 Live Transaction Ledger History</div>
-    <div class="ledger-scrollable-area">
-      <table class="manager-native-data-table">
-        <thead>
-          <tr>
-            <th>Adventurer Name</th>
-            <th>Suite Selected</th>
-            <th>Check-In</th> <!-- 1. Split Date Heading 1 -->
-            <th>Check-Out</th> <!-- 2. Split Date Heading 2 -->
-            <th>Guests</th>
-            <th>Cafe Reservation Status</th>
-            <th>Dining Coverage</th>
-            <th>Total Remitted</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr *ngFor="let log of databaseBookings">
-            <td class="bold-guest-name">
-              {{ log.name }} <br>
-              <small class="gray-subtext">{{ log.email }}</small>
-            </td>
-            <td>{{ log.selectedRoom }}</td>
-            
-            <!-- 3. Explicit Check-In Date display cell -->
-            <td style="font-weight: 500; color: #52b788;">📅 {{ log.stayDate || 'N/A' }}</td>
-            
-            <!-- 4. Explicit Check-Out Date display cell -->
-            <td style="font-weight: 500; color: #e63946;">🚪 {{ log.checkOutDate || 'N/A' }}</td>
-            
-            <td>{{ log.partySize }} {{ log.partySize === 1 ? 'Guest' : 'Guests' }}</td>
-            <td>
-              <span class="resto-addon-badge-cell" *ngIf="log.reservedRestaurantTable">
-                🍽️ {{ log.partySize }} {{ log.partySize === 1 ? 'seat' : 'seats' }} Reserved
-              </span>
-              <span class="resto-addon-none" *ngIf="!log.reservedRestaurantTable">None</span>
-            </td>
-            <td>
-              <span *ngIf="log.reservedRestaurantTable && log.restaurantCoverage" style="font-weight: 500;">
-                {{ log.restaurantCoverage }}
-              </span>
-              <span *ngIf="log.reservedRestaurantTable && !log.restaurantCoverage" style="font-weight: 500;">
-                {{ log.total > (log.partySize * 3) ? 'Whole Stay' : 'First Day Only' }}
-              </span>
-              <span class="resto-addon-none" *ngIf="!log.reservedRestaurantTable">-</span>
-            </td>
-            <td class="gold-bold-price">💰 {{ log.total }} Gold</td>
-          </tr>
-          
-          <tr *ngIf="databaseBookings.length === 0">
-            <td colspan="8" class="centered-empty-msg">No entries present inside active registers.</td>
-          </tr>
-        </tbody>
-      </table>
+  <!-- Vertical Ledger History Layout -->
+  <div class="ledger-table-wrapper-box" style="padding: 15px 20px;">
+    <div class="ledger-header-row-title" style="margin-bottom: 15px;">📋 Live Transaction Ledger History</div>
+    
+    <div class="vertical-ledger-container" style="display: flex; flex-direction: column; gap: 15px; width: 100%;">
+      
+      <!-- Loop through each transaction as a cleanly formatted vertical card block -->
+      <div class="registration-record-card" *ngFor="let log of databaseBookings" style="background: rgba(255, 255, 255, 0.03); border: 1px solid rgba(255, 255, 255, 0.08); border-radius: 8px; padding: 15px; display: flex; flex-direction: column; gap: 8px;">
+        
+        <div style="display: flex; justify-content: space-between; align-items: flex-start; border-bottom: 1px solid rgba(255, 255, 255, 0.06); padding-bottom: 6px; margin-bottom: 4px;">
+          <div>
+            <strong style="color: #fff; font-size: 16px;">REGISTRATION: {{ log.name }}</strong><br>
+            <small style="color: #a3a3a3; font-size: 12px;">{{ log.email }}</small>
+          </div>
+          <span style="font-weight: bold; color: #ffb703; font-size: 15px;">💰 {{ log.total }} Gold Remitted</span>
+        </div>
+
+        <div style="font-size: 13px; color: #e0e0e0; display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 10px;">
+          <div>🏨 <strong>SUITE SELECTED:</strong> {{ log.selectedRoom }}</div>
+          <div>👥 <strong>PARTY SIZE:</strong> {{ log.partySize }} {{ log.partySize === 1 ? 'Guest' : 'Guests' }}</div>
+        </div>
+
+        <div style="font-size: 13px; display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 10px; padding: 4px 0;">
+          <div style="color: #52b788;">📅 <strong>CHECK IN:</strong> {{ log.stayDate || 'N/A' }}</div>
+          <div style="color: #e63946;">🚪 <strong>CHECK OUT:</strong> {{ log.checkOutDate || 'N/A' }}</div>
+        </div>
+
+        <div style="font-size: 13px; border-top: 1px solid rgba(255, 255, 255, 0.04); padding-top: 6px; display: flex; gap: 20px;">
+          <div>
+            🍽️ <strong>CAFE STATUS:</strong> 
+            <span *ngIf="log.reservedRestaurantTable" style="color: #48cae4; font-weight: 500;">
+              {{ log.partySize }} {{ log.partySize === 1 ? 'seat' : 'seats' }} Reserved
+            </span>
+            <span *ngIf="!log.reservedRestaurantTable" style="color: #888;">None</span>
+          </div>
+          <div *ngIf="log.reservedRestaurantTable">
+            🥣 <strong>DINING COVERAGE:</strong> 
+            <span style="font-weight: 500; color: #b1f8f2;">
+              {{ log.restaurantCoverage || (log.total > (log.partySize * 3) ? 'Whole Stay' : 'First Day Only') }}
+            </span>
+          </div>
+        </div>
+
+      </div>
+
+      <!-- Fallback when array tracker is empty -->
+      <div *ngIf="databaseBookings.length === 0" style="text-align: center; padding: 40px; color: #888; background: rgba(0,0,0,0.2); border-radius: 8px;">
+        No entries present inside active registers.
+      </div>
+
     </div>
   </div>
 
