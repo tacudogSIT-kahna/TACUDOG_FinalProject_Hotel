@@ -32,9 +32,10 @@ export class BookingFormComponent implements OnInit {
   
   checkInDate: string = '';
   checkOutDate: string = '';
-  
-  // Track today's date string to restrict past calendar options
   minCheckInDate: string = '';
+  
+  // Array storage property for displaying unclickable taken date badge blocks
+  takenDatesList: string[] = [];
 
   uiErrorMessage: string = '';
   isDateSelectionConflict: boolean = false;
@@ -89,14 +90,12 @@ export class BookingFormComponent implements OnInit {
       }
     });
 
-    // Set standard linear lower bound restriction to avoid historical past date bookings
     const today = new Date();
     const yyyy = today.getFullYear();
     const mm = String(today.getMonth() + 1).padStart(2, '0');
     const dd = String(today.getDate()).padStart(2, '0');
     this.minCheckInDate = `${yyyy}-${mm}-${dd}`;
   }
-
   get nightsCount(): number {
     if (!this.checkInDate || !this.checkOutDate) return 1;
     
@@ -109,6 +108,20 @@ export class BookingFormComponent implements OnInit {
     return Math.ceil(timeDiff / (1000 * 3600 * 24));
   }
 
+  // Fetch taken dates from MongoDB for the selected room
+  fetchTakenDatesForActiveRoom() {
+    this.takenDatesList = [];
+    if (!this.selectedRoom) return;
+
+    this.http.get<any[]>('http://localhost:3000/api/bookings').subscribe({
+      next: (bookings) => {
+        this.takenDatesList = bookings
+          .filter(b => b.selectedRoom === this.selectedRoom.name && b.stayDate)
+          .map(b => b.stayDate);
+      }
+    });
+  }
+
   validateSelectedDatesLive() {
     this.uiErrorMessage = '';
     this.isDateSelectionConflict = false;
@@ -119,27 +132,18 @@ export class BookingFormComponent implements OnInit {
       if (new Date(this.checkOutDate) <= new Date(this.checkInDate)) {
         this.uiErrorMessage = 'Check-Out date must be set after your Check-In date!';
         this.isDateSelectionConflict = true;
-        this.checkOutDate = ''; // Reset conflicting element instantly
+        this.checkOutDate = '';
         return;
       }
     }
 
     if (!this.checkInDate) return;
 
-    // Scan database collection logs asynchronously to see if this day is already taken
-    this.http.get<any[]>('http://localhost:3000/api/bookings').subscribe({
-      next: (bookings) => {
-        const isTaken = bookings.some(b => 
-          b.selectedRoom === this.selectedRoom.name && b.stayDate === this.checkInDate
-        );
-
-        if (isTaken) {
-          this.uiErrorMessage = `The ${this.selectedRoom.name} is ALREADY taken on ${this.checkInDate}! Quarters unavailable.`;
-          this.isDateSelectionConflict = true;
-          this.checkInDate = ''; // Gray out and instantly empty picker content to clear errors
-        }
-      }
-    });
+    if (this.takenDatesList.includes(this.checkInDate)) {
+      this.uiErrorMessage = `The ${this.selectedRoom.name} is ALREADY taken on ${this.checkInDate}! Quarters unavailable.`;
+      this.isDateSelectionConflict = true;
+      this.checkInDate = ''; 
+    }
   }
 
   switchView(target: 'guest' | 'manager-login' | 'manager-dashboard') {
@@ -155,6 +159,7 @@ export class BookingFormComponent implements OnInit {
   onRoomPicked(room: any) {
     this.selectedRoom = room;
     this.guestsCount = 1;
+    this.fetchTakenDatesForActiveRoom(); 
     this.validateSelectedDatesLive();
   }
 
@@ -248,5 +253,41 @@ export class BookingFormComponent implements OnInit {
       partySize: this.guestsCount,
       reservedRestaurantTable: this.restaurantState === 'selected',
       restaurantCoverage: this.restaurantState === 'selected' ? this.restaurantCoverage : '',
-      stayDate: this.checkInDate,checkOutDate: this.checkOutDate,total: this.calculateTotal()};this.bookingService.saveBooking(dbPayload).subscribe({next: (response) => {console.log('Saved to MongoDB successfully:', response);this.checkoutReceipt = generatedReceipt;this.historicalBookings.unshift(generatedReceipt);},error: (err) => {console.error('Failed to update database tracking:', err);if (err.status === 409) {this.uiErrorMessage = err.error.message;this.isDateSelectionConflict = true;this.checkInDate = '';} else {this.uiErrorMessage = 'An error occurred while handling your booking request.';}}});}clearReceiptSession() {this.checkoutReceipt = null;this.selectedRoom = null;this.guestsCount = 1;this.restaurantState = 'idle';this.restaurantCoverage = '';this.checkInDate = '';this.checkOutDate = '';this.uiErrorMessage = '';this.isDateSelectionConflict = false;}}
-      
+      stayDate: this.checkInDate,
+      checkOutDate: this.checkOutDate,
+      total: this.calculateTotal()
+    };
+
+    this.bookingService.saveBooking(dbPayload).subscribe({
+      next: (response) => {
+        console.log('Saved to MongoDB successfully:', response);
+        this.checkoutReceipt = generatedReceipt;
+        this.historicalBookings.unshift(generatedReceipt);
+        this.fetchTakenDatesForActiveRoom(); 
+      },
+      error: (err) => {
+        console.error('Failed to update database tracking:', err);
+        if (err.status === 409) {
+          this.uiErrorMessage = err.error.message;
+          this.isDateSelectionConflict = true;
+          this.checkInDate = '';
+        } else {
+          this.uiErrorMessage = 'An error occurred while handling your booking request.';
+        }
+      }
+    });
+  }
+
+  clearReceiptSession() {
+    this.checkoutReceipt = null;
+    this.selectedRoom = null;
+    this.guestsCount = 1;
+    this.restaurantState = 'idle';
+    this.restaurantCoverage = '';
+    this.checkInDate = '';
+    this.checkOutDate = '';
+    this.uiErrorMessage = '';
+    this.isDateSelectionConflict = false;
+    this.takenDatesList = [];
+  }
+}

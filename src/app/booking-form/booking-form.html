@@ -1,11 +1,10 @@
 <div class="booking-page-container">
-
+  
   <ng-container *ngIf="currentView === 'guest'">
     <div class="frosted-auth-card" *ngIf="!isUserSignedIn">
       <div class="glass-section-header">🔑 Adventurer Identification</div>
-      <p class="auth-helper-text">Please input your legal kingdom credentials into the local servers before requesting
-        quarters.</p>
-
+      <p class="auth-helper-text">Please input your legal kingdom credentials into the local servers before requesting quarters.</p>
+      
       <form (ngSubmit)="handleSignIn()" class="credential-entry-form">
         <div class="input-wrapper-field">
           <label>Adventurer Full Name</label>
@@ -18,114 +17,106 @@
         <button type="submit" class="submit-auth-btn">Initialize Booking Channel</button>
       </form>
     </div>
-
+  
     <div class="unlocked-booking-dashboard" *ngIf="isUserSignedIn">
       <div class="welcome-badge-header" *ngIf="!checkoutReceipt">
         <h2>Greetings, {{ guestName }}!</h2>
         <p>Your session identity is verified. Proceed with your hotel request layout selection below.</p>
       </div>
-
+  
       <div *ngIf="checkoutReceipt" class="receipt-breakdown-card">
         <div class="receipt-header-banner">📜 Official Kingdom Lodging Receipt</div>
         <div class="receipt-body-content">
-          <p class="receipt-thankyou">Mathematical, {{ guestName }}! Your quarters order has been securely locked into
-            local ledger chains.</p>
+          <p class="receipt-thankyou">Mathematical, {{ guestName }}! Your quarters order has been securely locked into local ledger chains.</p>
           <div class="receipt-meta-grid">
             <div class="meta-item"><span>Guest Name:</span> <strong>{{ guestName }}</strong></div>
             <div class="meta-item"><span>Crystal Comm:</span> <strong>{{ guestEmail }}</strong></div>
           </div>
           <div class="receipt-divider-line"></div>
           <div class="receipt-table-rows">
-            <div class="receipt-calc-row"><span>{{ checkoutReceipt.roomName }} Base Rate:</span> <strong>💰 {{
-                checkoutReceipt.roomBasePrice }} Gold / Night</strong></div>
-            <div class="receipt-calc-row" *ngIf="checkoutReceipt.extraGuestsCount > 0"><span>Extra Traveler Fees ({{
-                checkoutReceipt.extraGuestsCount }} × {{ checkoutReceipt.roomBasePrice / 2 }} Gold):</span> <strong>💰
-                +{{ checkoutReceipt.extraGuestsTotalFee }} Gold / Night</strong></div>
-
-            <!-- 🗓️ Explicit Check-In and Check-Out Date Display Lines Added Right Here -->
-            <div class="receipt-calc-row" style="color: #a3a3a3; font-size: 13px;"><span>📅 Scheduled Check-In
-                Date:</span> <strong style="color: #b1f8f2;">{{ checkInDate }}</strong></div>
-            <div class="receipt-calc-row" style="color: #a3a3a3; font-size: 13px; margin-bottom: 6px;"><span>🚪
-                Scheduled Check-Out Date:</span> <strong style="color: #b1f8f2;">{{ checkOutDate }}</strong></div>
-
-            <div class="receipt-calc-row summary-subline"><span>Total Room Cost Per Night:</span> <strong>💰 {{
-                checkoutReceipt.singleNightRoomRate }} Gold</strong></div>
-            <div class="receipt-calc-row highlight-nights-line"><span>Duration Multiplier (× {{ checkoutReceipt.nights
-                }} {{ checkoutReceipt.nights === 1 ? 'Night' : 'Nights' }}):</span> <strong>💰 {{
-                checkoutReceipt.totalRoomCost }} Gold</strong></div>
-            <div class="receipt-calc-row restaurant-charge-row" *ngIf="checkoutReceipt.restaurantCoverage"><span>Cafe
-                Table Booking ({{ checkoutReceipt.restaurantCoverage }}):</span> <strong>💰 +{{
-                checkoutReceipt.restaurantCost }} Gold</strong></div>
+            <div class="receipt-calc-row"><span>{{ checkoutReceipt.roomName }} Base Rate:</span> <strong>💰 {{ checkoutReceipt.roomBasePrice }} Gold / Night</strong></div>
+            <div class="receipt-calc-row" *ngIf="checkoutReceipt.extraGuestsCount > 0"><span>Extra Traveler Fees ({{ checkoutReceipt.extraGuestsCount }} × {{ checkoutReceipt.roomBasePrice / 2 }} Gold):</span> <strong>💰 +{{ checkoutReceipt.extraGuestsTotalFee }} Gold / Night</strong></div>
+            
+            <div class="receipt-calc-row" style="color: #a3a3a3; font-size: 13px;"><span>📅 Scheduled Check-In Date:</span> <strong style="color: #b1f8f2;">{{ checkInDate }}</strong></div>
+            <div class="receipt-calc-row" style="color: #a3a3a3; font-size: 13px; margin-bottom: 6px;"><span>🚪 Scheduled Check-Out Date:</span> <strong style="color: #b1f8f2;">{{ checkOutDate }}</strong></div>
+            
+            <div class="receipt-calc-row summary-subline"><span>Total Room Cost Per Night:</span> <strong>💰 {{ checkoutReceipt.singleNightRoomRate }} Gold</strong></div>
+            <div class="receipt-calc-row highlight-nights-line"><span>Duration Multiplier (× {{ checkoutReceipt.nights }} {{ checkoutReceipt.nights === 1 ? 'Night' : 'Nights' }}):</span> <strong>💰 {{ checkoutReceipt.totalRoomCost }} Gold</strong></div>
+            <div class="receipt-calc-row restaurant-charge-row" *ngIf="checkoutReceipt.restaurantCoverage"><span>Cafe Table Booking ({{ checkoutReceipt.restaurantCoverage }}):</span> <strong>💰 +{{ checkoutReceipt.restaurantCost }} Gold</strong></div>
           </div>
           <div class="receipt-divider-line thick-divider"></div>
-          <div class="receipt-grand-total"><span>Aggregate Grand Total:</span> <span class="final-glowing-gold">💰 {{
-              checkoutReceipt.grandTotal }} Gold Coins</span></div>
-          <p class="receipt-footer-hint">Check your matching crystal clear mirror ball for standard local storage data
-            copies.</p>
+          <div class="receipt-grand-total"><span>Aggregate Grand Total:</span> <span class="final-glowing-gold">💰 {{ checkoutReceipt.grandTotal }} Gold Coins</span></div>
+          <p class="receipt-footer-hint">Check your matching crystal clear mirror ball for standard local storage data copies.</p>
           <button class="reset-engine-btn" (click)="clearReceiptSession()">Configure Another Stay</button>
         </div>
       </div>
-
+  
       <div class="booking-engine-split-grid" *ngIf="!checkoutReceipt">
         <div class="selection-controls-column">
           <div class="category-block" *ngFor="let cat of hotelRoomCategories">
             <h3 class="category-label-title">{{ cat.categoryName }}</h3>
             <div class="custom-room-stack">
-              <div class="room-row-item" *ngFor="let room of cat.rooms"
-                [class.active-selection]="selectedRoom?.name === room.name" (click)="onRoomPicked(room)">
+              <div class="room-row-item" *ngFor="let room of cat.rooms" [class.active-selection]="selectedRoom?.name === room.name" (click)="onRoomPicked(room)">
                 <div class="room-main-meta">
-                  <div class="room-visual-wrapper"><img [src]="room.img" [alt]="room.name" class="room-thumbnail-img">
-                  </div>
+                  <div class="room-visual-wrapper"><img [src]="room.img" [alt]="room.name" class="room-thumbnail-img"></div>
                   <div class="room-detail-info">
-                    <div class="room-headline-row"><span class="room-title-text">{{ room.name }}</span><span
-                        class="room-bed-badge">{{ room.beds }} • Good for {{ room.minCap }}-{{ room.maxCap }}</span>
-                    </div>
+                    <div class="room-headline-row"><span class="room-title-text">{{ room.name }}</span><span class="room-bed-badge">{{ room.beds }} • Good for {{ room.minCap }}-{{ room.maxCap }}</span></div>
                     <span class="room-pricing-tag">💰 {{ room.price }} Gold / Night</span>
                   </div>
-                  <button class="expand-desc-arrow" [class.arrow-flipped]="expandedRoomIndex === room.name"
-                    (click)="toggleDescription(room.name, $event)">▼</button>
+                  <button class="expand-desc-arrow" [class.arrow-flipped]="expandedRoomIndex === room.name" (click)="toggleDescription(room.name, $event)">▼</button>
                 </div>
                 <div class="room-collapsible-panel" [class.panel-open]="expandedRoomIndex === room.name">
                   <p class="room-narrative-paragraph">{{ room.desc }}</p>
-                  <div class="perks-flex-container"><span class="perk-pill-tag" *ngFor="let perk of room.perks">✦ {{
-                      perk }}</span></div>
+                  <div class="perks-flex-container"><span class="perk-pill-tag" *ngFor="let perk of room.perks">✦ {{ perk }}</span></div>
                 </div>
               </div>
             </div>
           </div>
         </div>
-
         <div class="invoice-summary-column">
-          <div *ngIf="uiErrorMessage" class="native-custom-alert-box"
-            style="background-color: #ffd2d2; border: 2px solid #ef233c; padding: 12px; border-radius: 8px; margin-bottom: 15px; color: #d90429; font-weight: 500; font-size: 13px; display: flex; justify-content: space-between; align-items: center; box-shadow: 0 4px 6px rgba(0,0,0,0.15);">
+          <div *ngIf="uiErrorMessage" class="native-custom-alert-box" style="background-color: #ffd2d2; border: 2px solid #ef233c; padding: 12px; border-radius: 8px; margin-bottom: 15px; color: #d90429; font-weight: 500; font-size: 13px; display: flex; justify-content: space-between; align-items: center; box-shadow: 0 4px 6px rgba(0,0,0,0.15);">
             <span>⚠️ {{ uiErrorMessage }}</span>
-            <button (click)="uiErrorMessage = ''"
-              style="background: none; border: none; color: #d90429; font-weight: bold; font-size: 16px; cursor: pointer; padding: 0 5px;">×</button>
+            <button type="button" (click)="uiErrorMessage = ''" style="background: none; border: none; color: #d90429; font-weight: bold; font-size: 16px; cursor: pointer; padding: 0 5px;">×</button>
           </div>
 
-          <app-booking-summary [selectedRoom]="selectedRoom" [config]="summaryConfig"
-            (submitBooking)="onCheckoutSubmitted($event)"></app-booking-summary>
-
+          <app-booking-summary [selectedRoom]="selectedRoom" [config]="summaryConfig" (submitBooking)="onCheckoutSubmitted($event)"></app-booking-summary>
+          
           <div class="live-configuration-panel" *ngIf="selectedRoom">
-            <!-- Check-In Input Field inside your configuration panel wrapper -->
             <div class="config-input-item" style="margin-bottom: 12px;">
               <label class="config-label" style="display: block; margin-bottom: 4px;">📅 Check-In Date</label>
-              <input type="date" [(ngModel)]="checkInDate" name="checkInDate" [min]="minCheckInDate"
+              <input 
+                type="date" 
+                [(ngModel)]="checkInDate" 
+                name="checkInDate" 
+                [min]="minCheckInDate"
+                (change)="validateSelectedDatesLive()"
+                style="width: 100%; padding: 8px; border-radius: 4px; border: 1px solid #444; background: #222; color: #fff; font-family: inherit;"
+                required>
+                
+              <!-- Dynamic Taken Dates Gray Banner List -->
+              <div *ngIf="takenDatesList.length > 0" style="margin-top: 8px; padding: 8px; background: rgba(255,255,255,0.05); border-radius: 4px; border: 1px dashed rgba(255,255,255,0.1);">
+                <span style="font-size: 11px; color: #ff4d6d; text-transform: uppercase; font-weight: 600; display: block; margin-bottom: 4px;">🚫 Already Taken Dates:</span>
+                <div style="display: flex; flex-wrap: wrap; gap: 6px;">
+                  <span *ngFor="let date of takenDatesList" style="font-size: 12px; background: #333; color: #888; padding: 2px 6px; border-radius: 4px; text-decoration: line-through; opacity: 0.6;">
+                    {{ date }}
+                  </span>
+                </div>
+              </div>
+            </div>
+
+            <div class="config-input-item" style="margin-bottom: 12px;">
+              <label class="config-label" style="display: block; margin-bottom: 4px;">🚪 Check-Out Date</label>
+              <input 
+                type="date" 
+                [(ngModel)]="checkOutDate" 
+                name="checkOutDate" 
                 (change)="validateSelectedDatesLive()"
                 style="width: 100%; padding: 8px; border-radius: 4px; border: 1px solid #444; background: #222; color: #fff; font-family: inherit;"
                 required>
             </div>
 
-            <div class="config-input-item" style="margin-bottom: 12px;">
-              <label class="config-label" style="display: block; margin-bottom: 4px;">🚪 Check-Out Date</label>
-              <input type="date" [(ngModel)]="checkOutDate" name="checkOutDate" (change)="validateSelectedDatesLive()"
-                style="width: 100%; padding: 8px; border-radius: 4px; border: 1px solid #444; background: #222; color: #fff; font-family: inherit;"
-                required>
-            </div>
-
             <div class="config-input-item">
-              <div class="label-heading-row"><label class="config-label">Party Size</label><span
-                  class="cap-warning-hint">Limit: {{selectedRoom.minCap}}-{{selectedRoom.maxCap}}</span></div>
+              <div class="label-heading-row"><label class="config-label">Party Size</label><span class="cap-warning-hint">Limit: {{selectedRoom.minCap}}-{{selectedRoom.maxCap}}</span></div>
               <div class="invoice-counter-bar">
                 <button type="button" class="btn-counter-act" (click)="changeGuests(-1)">-</button>
                 <span class="counter-display-val">{{ guestsCount }}</span>
@@ -134,20 +125,17 @@
             </div>
           </div>
           <div class="restaurant-addons-box" *ngIf="selectedRoom">
-            <div *ngIf="restaurantState === 'idle'"><button class="avail-restaurant-btn"
-                (click)="promptRestaurantOptions()">🍽️ Reserve a Cafe Table</button></div>
+            <div *ngIf="restaurantState === 'idle'"><button type="button" class="avail-restaurant-btn" (click)="promptRestaurantOptions()">🍽️ Reserve a Cafe Table</button></div>
             <div *ngIf="restaurantState === 'prompting'" class="restaurant-options-panel">
               <span class="prompt-text-label">Select Reservation Coverage:</span>
               <div class="prompt-buttons-row">
-                <button class="option-selection-btn" (click)="selectRestaurantCoverage('Whole Stay')">Whole
-                  Stay</button>
-                <button class="option-selection-btn" (click)="selectRestaurantCoverage('First Day Only')">First Day
-                  Only</button>
+                <button type="button" class="option-selection-btn" (click)="selectRestaurantCoverage('Whole Stay')">Whole Stay</button>
+                <button type="button" class="option-selection-btn" (click)="selectRestaurantCoverage('First Day Only')">First Day Only</button>
               </div>
             </div>
             <div *ngIf="restaurantState === 'selected'" class="restaurant-confirmed-badge">
               <span>✅ Table Booked: <strong>{{ restaurantCoverage }}</strong></span>
-              <button class="reset-addon-link" (click)="restaurantState = 'idle'">Change</button>
+              <button type="button" class="reset-addon-link" (click)="restaurantState = 'idle'">Change</button>
             </div>
           </div>
         </div>
@@ -155,10 +143,8 @@
     </div>
   </ng-container>
 
-  <app-manager-login *ngIf="currentView === 'manager-login'"
-    (loginSuccess)="switchView('manager-dashboard')"></app-manager-login>
+  <app-manager-login *ngIf="currentView === 'manager-login'" (loginSuccess)="switchView('manager-dashboard')"></app-manager-login>
 
-  <app-manager-dashboard *ngIf="currentView === 'manager-dashboard'" [historicalBookings]="historicalBookings"
-    (logoutTerminal)="switchView('manager-login')"></app-manager-dashboard>
+  <app-manager-dashboard *ngIf="currentView === 'manager-dashboard'" [historicalBookings]="historicalBookings" (logoutTerminal)="switchView('manager-login')"></app-manager-dashboard>
 
 </div>
