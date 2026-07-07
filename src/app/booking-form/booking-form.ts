@@ -27,11 +27,13 @@ export class BookingFormComponent implements OnInit {
   isUserSignedIn: boolean = false;
   guestName: string = '';
   guestEmail: string = '';
-  stayDate: string = '';
+  
+  // Changed from stayDate to checkIn/checkOut tracking parameters
+  checkInDate: string = '';
+  checkOutDate: string = '';
 
   selectedRoom: any = null;
   guestsCount: number = 1;
-  nightsCount: number = 1;
   expandedRoomIndex: string | null = null;
 
   restaurantState: 'idle' | 'prompting' | 'selected' = 'idle';
@@ -81,6 +83,19 @@ export class BookingFormComponent implements OnInit {
     });
   }
 
+  // Dynamic automatic calculation of nights count based on input strings
+  get nightsCount(): number {
+    if (!this.checkInDate || !this.checkOutDate) return 1;
+    
+    const start = new Date(this.checkInDate);
+    const end = new Date(this.checkOutDate);
+    const timeDiff = end.getTime() - start.getTime();
+    
+    if (timeDiff <= 0) return 1; // Safeguard calculation fallback minimum parameter
+    
+    return Math.ceil(timeDiff / (1000 * 3600 * 24));
+  }
+
   switchView(target: 'guest' | 'manager-login' | 'manager-dashboard') {
     this.currentView = target;
   }
@@ -118,12 +133,6 @@ export class BookingFormComponent implements OnInit {
     }
   }
 
-  changeNights(amount: number) {
-    if (this.nightsCount + amount >= 1) {
-      this.nightsCount += amount;
-    }
-  }
-
   calculateTotal() {
     if (!this.selectedRoom) return 0;
     const extraGuests = this.guestsCount - 1;
@@ -148,8 +157,13 @@ export class BookingFormComponent implements OnInit {
   }
 
   onCheckoutSubmitted(invoice: any) {
-    if (!this.stayDate) {
-      alert('Please select a stay date first!');
+    if (!this.checkInDate || !this.checkOutDate) {
+      alert('Please fill out both Check-In and Check-Out date fields first!');
+      return;
+    }
+
+    if (new Date(this.checkOutDate) <= new Date(this.checkInDate)) {
+      alert('Check-Out date must be set after your selected Check-In date!');
       return;
     }
 
@@ -187,7 +201,8 @@ export class BookingFormComponent implements OnInit {
       partySize: this.guestsCount,
       reservedRestaurantTable: this.restaurantState === 'selected',
       restaurantCoverage: this.restaurantState === 'selected' ? this.restaurantCoverage : '',
-      stayDate: this.stayDate,
+      stayDate: this.checkInDate, // We can preserve Check-In date as the unique index anchor
+      checkOutDate: this.checkOutDate,
       total: this.calculateTotal()
     };
 
@@ -212,9 +227,9 @@ export class BookingFormComponent implements OnInit {
     this.checkoutReceipt = null;
     this.selectedRoom = null;
     this.guestsCount = 1;
-    this.nightsCount = 1;
     this.restaurantState = 'idle';
     this.restaurantCoverage = '';
-    this.stayDate = '';
+    this.checkInDate = '';
+    this.checkOutDate = '';
   }
 }
