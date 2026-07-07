@@ -37,7 +37,7 @@
             <th>Suite Selected</th>
             <th>Guests</th>
             <th>Cafe Reservation Status</th>
-            <th>Dining Coverage</th> <!-- 1. New Column Added -->
+            <th>Dining Coverage</th>
             <th>Total Remitted</th>
           </tr>
         </thead>
@@ -48,19 +48,23 @@
               <small class="gray-subtext">{{ log.email }}</small>
             </td>
             <td>{{ log.selectedRoom }}</td>
-            <td>{{ log.partySize }} Guest(s)</td>
             
-            <!-- 2. Updated Table Cell for Reservation Text -->
+            <!-- Dynamic singular/plural label for Guests -->
+            <td>{{ log.partySize }} {{ log.partySize === 1 ? 'Guest' : 'Guests' }}</td>
+            
+            <!-- Fixed dynamic singular/plural label for Cafe Seats -->
             <td>
               <span class="resto-addon-badge-cell" *ngIf="log.reservedRestaurantTable">
-                🍽️ {{ log.partySize }} seats Reserved
+                🍽️ {{ log.partySize }} {{ log.partySize === 1 ? 'seat' : 'seats' }} Reserved
               </span>
               <span class="resto-addon-none" *ngIf="!log.reservedRestaurantTable">None</span>
             </td>
 
-            <!-- 3. Dynamic Cell for First Day vs Whole Stay Coverage -->
             <td>
-              <span *ngIf="log.reservedRestaurantTable" style="font-weight: 500;">
+              <span *ngIf="log.reservedRestaurantTable && log.restaurantCoverage" style="font-weight: 500;">
+                {{ log.restaurantCoverage }}
+              </span>
+              <span *ngIf="log.reservedRestaurantTable && !log.restaurantCoverage" style="font-weight: 500;">
                 {{ log.total > (log.partySize * 3) ? 'Whole Stay' : 'First Day Only' }}
               </span>
               <span class="resto-addon-none" *ngIf="!log.reservedRestaurantTable">-</span>
