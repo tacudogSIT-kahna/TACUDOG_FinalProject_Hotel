@@ -35,6 +35,7 @@
           <tr>
             <th>Adventurer Name</th>
             <th>Suite Selected</th>
+            <th>Stay Date</th>
             <th>Guests</th>
             <th>Cafe Reservation Status</th>
             <th>Dining Coverage</th>
@@ -48,18 +49,14 @@
               <small class="gray-subtext">{{ log.email }}</small>
             </td>
             <td>{{ log.selectedRoom }}</td>
-            
-            <!-- Dynamic singular/plural label for Guests -->
+            <td style="font-weight: 600; color: #52b788;">🗓️ {{ log.stayDate || 'N/A' }}</td>
             <td>{{ log.partySize }} {{ log.partySize === 1 ? 'Guest' : 'Guests' }}</td>
-            
-            <!-- Fixed dynamic singular/plural label for Cafe Seats -->
             <td>
               <span class="resto-addon-badge-cell" *ngIf="log.reservedRestaurantTable">
                 🍽️ {{ log.partySize }} {{ log.partySize === 1 ? 'seat' : 'seats' }} Reserved
               </span>
               <span class="resto-addon-none" *ngIf="!log.reservedRestaurantTable">None</span>
             </td>
-
             <td>
               <span *ngIf="log.reservedRestaurantTable && log.restaurantCoverage" style="font-weight: 500;">
                 {{ log.restaurantCoverage }}
@@ -69,12 +66,11 @@
               </span>
               <span class="resto-addon-none" *ngIf="!log.reservedRestaurantTable">-</span>
             </td>
-
             <td class="gold-bold-price">💰 {{ log.total }} Gold</td>
           </tr>
           
           <tr *ngIf="databaseBookings.length === 0">
-            <td colspan="6" class="centered-empty-msg">No entries present inside active registers.</td>
+            <td colspan="7" class="centered-empty-msg">No entries present inside active registers.</td>
           </tr>
         </tbody>
       </table>

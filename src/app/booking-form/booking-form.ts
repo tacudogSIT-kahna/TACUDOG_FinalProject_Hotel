@@ -27,6 +27,7 @@ export class BookingFormComponent implements OnInit {
   isUserSignedIn: boolean = false;
   guestName: string = '';
   guestEmail: string = '';
+  stayDate: string = '';
 
   selectedRoom: any = null;
   guestsCount: number = 1;
@@ -147,6 +148,11 @@ export class BookingFormComponent implements OnInit {
   }
 
   onCheckoutSubmitted(invoice: any) {
+    if (!this.stayDate) {
+      alert('Please select a stay date first!');
+      return;
+    }
+
     const extraGuests = this.guestsCount - 1;
     const extraGuestsTotalFee = extraGuests * (this.selectedRoom.price / 2);
     const singleNightRoomRate = this.selectedRoom.price + extraGuestsTotalFee;
@@ -174,10 +180,6 @@ export class BookingFormComponent implements OnInit {
       grandTotal: this.calculateTotal()
     };
 
-    this.checkoutReceipt = generatedReceipt;
-    this.historicalBookings.unshift(generatedReceipt);
-
-    // Integrated restaurantCoverage directly into our database payload
     const dbPayload = {
       name: this.guestName,
       email: this.guestEmail,
@@ -185,15 +187,23 @@ export class BookingFormComponent implements OnInit {
       partySize: this.guestsCount,
       reservedRestaurantTable: this.restaurantState === 'selected',
       restaurantCoverage: this.restaurantState === 'selected' ? this.restaurantCoverage : '',
+      stayDate: this.stayDate,
       total: this.calculateTotal()
     };
 
     this.bookingService.saveBooking(dbPayload).subscribe({
       next: (response) => {
         console.log('Saved to MongoDB successfully:', response);
+        this.checkoutReceipt = generatedReceipt;
+        this.historicalBookings.unshift(generatedReceipt);
       },
       error: (err) => {
         console.error('Failed to update database tracking:', err);
+        if (err.status === 409) {
+          alert(err.error.message);
+        } else {
+          alert('An error occurred while handling your booking request.');
+        }
       }
     });
   }
@@ -205,5 +215,6 @@ export class BookingFormComponent implements OnInit {
     this.nightsCount = 1;
     this.restaurantState = 'idle';
     this.restaurantCoverage = '';
+    this.stayDate = '';
   }
 }

@@ -14,14 +14,14 @@ mongoose.connect(mongoURI)
     .then(() => console.log('Hotel Management Database Connected Successfully'))
     .catch(err => console.error('MongoDB Connection Error:', err));
 
-// Updated schema configuration to validate and save the dining option string
 const bookingSchema = new mongoose.Schema({
     name: { type: String, required: true },
     email: { type: String, required: true },
     selectedRoom: { type: String, required: true },
     partySize: { type: Number, required: true },
     reservedRestaurantTable: { type: Boolean, default: false },
-    restaurantCoverage: { type: String, default: '' }, // 👈 Added this line right here
+    restaurantCoverage: { type: String, default: '' },
+    stayDate: { type: String, required: true },
     total: { type: Number, required: true },
     createdAt: { type: Date, default: Date.now }
 });
@@ -30,6 +30,16 @@ const Booking = mongoose.model('Booking', bookingSchema);
 
 app.post('/api/bookings', async (req, res) => {
     try {
+        const { selectedRoom, stayDate } = req.body;
+
+        // Prevent double booking for the same room on the same date
+        const existingBooking = await Booking.findOne({ selectedRoom, stayDate });
+        if (existingBooking) {
+            return res.status(409).send({ 
+                message: `The ${selectedRoom} is already reserved for ${stayDate}. Please choose another date or room.` 
+            });
+        }
+
         const newBooking = new Booking(req.body);
         await newBooking.save();
         res.status(201).send(newBooking);
