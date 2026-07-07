@@ -1,79 +1,143 @@
+```html
 <div class="unlocked-booking-dashboard manager-dashboard-container">
-  
+
   <div class="welcome-badge-header manager-dash-header">
     <div>
       <h2>🏰 Royal Hotel Headquarters Dashboard</h2>
-      <p>System operational tracker. View total gold allocations and adventurer stay analytics logs below.</p>
+      <p>
+        System operational tracker. View total gold allocations and adventurer
+        stay analytics logs below.
+      </p>
     </div>
-    
+
     <div style="display: flex; gap: 10px;">
-      <button class="logout-manager-btn" style="background-color: #2b7a78;" (click)="refreshDashboardData()">🔄 Refresh Feed</button>
-      <button class="logout-manager-btn" (click)="logoutTerminal.emit()">Lock Terminal</button>
+      <button
+        class="logout-manager-btn"
+        style="background-color: #2b7a78;"
+        (click)="refreshDashboardData()">
+        🔄 Refresh Feed
+      </button>
+
+      <button
+        class="logout-manager-btn"
+        (click)="logoutTerminal.emit()">
+        Lock Terminal
+      </button>
     </div>
   </div>
 
   <div class="stats-counter-strip-grid">
     <div class="metric-block-item gold-glowing-border">
       <span class="metric-label-txt">Total Revenue Generated</span>
-      <h3 class="metric-numeric-val">💰 {{ totalDashboardGold }} Gold</h3>
+      <h3 class="metric-numeric-val">
+        💰 {{ totalDashboardGold }} Gold
+      </h3>
     </div>
+
     <div class="metric-block-item teal-glowing-border">
       <span class="metric-label-txt">Total Stays Tracked</span>
-      <h3 class="metric-numeric-val">📅 {{ databaseBookings.length }} Bookings</h3>
+      <h3 class="metric-numeric-val">
+        📅 {{ databaseBookings.length }} Bookings
+      </h3>
     </div>
+
     <div class="metric-block-item rose-glowing-border">
       <span class="metric-label-txt">Cafe Reservation Active</span>
-      <h3 class="metric-numeric-val">🍽️ {{ totalDashboardRestoCount }} Tables</h3>
+      <h3 class="metric-numeric-val">
+        🍽️ {{ totalDashboardRestoCount }} Tables
+      </h3>
     </div>
   </div>
 
-  <!-- Vertical Ledger Card List Wrapper Container -->
   <div class="ledger-table-wrapper-box">
-    <div class="ledger-header-row-title">📋 Live Transaction Ledger History</div>
-    
+    <div class="ledger-header-row-title">
+      📋 Live Transaction Ledger History
+    </div>
+
     <div class="vertical-ledger-list">
-      
-      <div class="registration-record-card" *ngFor="let log of databaseBookings">
-        
-        <!-- Top Card Title Panel Section -->
+
+      <div
+        class="registration-record-card"
+        *ngFor="let log of databaseBookings">
+
         <div class="card-header-panel">
-          
-            <span class="registration-main-title">REGISTRATION: {{ log.name }}</span>
-            <span class="guest-subtitle-email">{{ log.email }}</span>
-          </div>
-          <span class="remitted-gold-badge">💰 {{ log.total }} Gold Remitted</span>
+          <span class="registration-main-title">
+            REGISTRATION: {{ log.name }}
+          </span>
+
+          <span class="guest-subtitle-email">
+            {{ log.email }}
+          </span>
+
+          <span class="remitted-gold-badge">
+            💰 {{ log.total }} Gold Remitted
+          </span>
         </div>
 
-        <!-- Room Allocation Details Grid Rows Section -->
         <div class="card-details-grid">
-          <div class="detail-cell">🏨 <strong>SUITE SELECTED:</strong> {{ log.selectedRoom }}</div>
-          <div class="detail-cell">👥 <strong>PARTY SIZE:</strong> {{ log.partySize }} {{ log.partySize === 1 ? 'Guest' : 'Guests' }}</div>
-          <div class="detail-cell date-in-highlight">📅 <strong>CHECK IN:</strong> {{ log.stayDate || 'N/A' }}</div>
-          <div class="detail-cell date-out-highlight">🚪 <strong>CHECK OUT:</strong> {{ log.checkOutDate || 'N/A' }}</div>
+          <div class="detail-cell">
+            🏨 <strong>SUITE SELECTED:</strong>
+            {{ log.selectedRoom }}
+          </div>
+
+          <div class="detail-cell">
+            👥 <strong>PARTY SIZE:</strong>
+            {{ log.partySize }}
+            {{ log.partySize === 1 ? 'Guest' : 'Guests' }}
+          </div>
+
+          <div class="detail-cell date-in-highlight">
+            📅 <strong>CHECK IN:</strong>
+            {{ log.stayDate || 'N/A' }}
+          </div>
+
+          <div class="detail-cell date-out-highlight">
+            🚪 <strong>CHECK OUT:</strong>
+            {{ log.checkOutDate || 'N/A' }}
+          </div>
         </div>
 
-        <!-- Bottom Dining Options Log Status Row Section -->
         <div class="card-dining-footer">
           <div class="dining-status-block">
-            🍽️ <strong>CAFE STATUS:</strong> 
-            <span *ngIf="log.reservedRestaurantTable" class="cafe-active-text">
-              {{ log.partySize }} {{ log.partySize === 1 ? 'seat' : 'seats' }} Reserved
+            🍽️ <strong>CAFE STATUS:</strong>
+
+            <span
+              *ngIf="log.reservedRestaurantTable"
+              class="cafe-active-text">
+              {{ log.partySize }}
+              {{ log.partySize === 1 ? 'seat' : 'seats' }}
+              Reserved
             </span>
-            <span *ngIf="!log.reservedRestaurantTable" class="cafe-inactive-text">None</span>
+
+            <span
+              *ngIf="!log.reservedRestaurantTable"
+              class="cafe-inactive-text">
+              None
+            </span>
           </div>
-          
-          <div class="dining-status-block" *ngIf="log.reservedRestaurantTable">
-            🥣 <strong>DINING COVERAGE:</strong> 
+
+          <div
+            class="dining-status-block"
+            *ngIf="log.reservedRestaurantTable">
+
+            🥣 <strong>DINING COVERAGE:</strong>
+
             <span class="coverage-highlight-text">
-              {{ log.restaurantCoverage || (log.total > (log.partySize * 3) ? 'Whole Stay' : 'First Day Only') }}
+              {{
+                log.restaurantCoverage ||
+                (log.total > (log.partySize * 3)
+                  ? 'Whole Stay'
+                  : 'First Day Only')
+              }}
             </span>
           </div>
         </div>
 
       </div>
 
-      <!-- Blank State Fallback Prompt Notification Block -->
-      <div *ngIf="databaseBookings.length === 0" class="empty-register-fallback">
+      <div
+        *ngIf="databaseBookings.length === 0"
+        class="empty-register-fallback">
         No entries present inside active registers.
       </div>
 
@@ -81,3 +145,4 @@
   </div>
 
 </div>
+```
