@@ -9,8 +9,8 @@ import { CommonModule } from '@angular/common';
   styleUrls: ['./cafe-menu.css']
 })
 export class CafeMenuComponent {
-  menuTitle = "⚔️ The Candy Kingdom Tavern Menu";
-  menuSubtitle = "Mathematical dishes crafted with level-99 baking science and cosmic flavor profiles.";
+  menuTitle = "Peppermint Butler's Cafe Menu";
+  menuSubtitle = "Mathematical desserts crafted with level-99 baking science and cosmic flavor profiles.";
 
   categories = [
     {
