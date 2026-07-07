@@ -35,7 +35,8 @@
           <tr>
             <th>Adventurer Name</th>
             <th>Suite Selected</th>
-            <th>Stay Date</th>
+            <th>Check-In</th> <!-- 1. Split Date Heading 1 -->
+            <th>Check-Out</th> <!-- 2. Split Date Heading 2 -->
             <th>Guests</th>
             <th>Cafe Reservation Status</th>
             <th>Dining Coverage</th>
@@ -49,7 +50,13 @@
               <small class="gray-subtext">{{ log.email }}</small>
             </td>
             <td>{{ log.selectedRoom }}</td>
-            <td style="font-weight: 600; color: #52b788;">🗓️ {{ log.stayDate || 'N/A' }}</td>
+            
+            <!-- 3. Explicit Check-In Date display cell -->
+            <td style="font-weight: 500; color: #52b788;">📅 {{ log.stayDate || 'N/A' }}</td>
+            
+            <!-- 4. Explicit Check-Out Date display cell -->
+            <td style="font-weight: 500; color: #e63946;">🚪 {{ log.checkOutDate || 'N/A' }}</td>
+            
             <td>{{ log.partySize }} {{ log.partySize === 1 ? 'Guest' : 'Guests' }}</td>
             <td>
               <span class="resto-addon-badge-cell" *ngIf="log.reservedRestaurantTable">
@@ -70,7 +77,7 @@
           </tr>
           
           <tr *ngIf="databaseBookings.length === 0">
-            <td colspan="7" class="centered-empty-msg">No entries present inside active registers.</td>
+            <td colspan="8" class="centered-empty-msg">No entries present inside active registers.</td>
           </tr>
         </tbody>
       </table>
