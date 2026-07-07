@@ -1,10 +1,11 @@
 /* Core Layout Wrapper Frame */
 .unlocked-booking-dashboard {
-  padding: 20px;
+  padding: 30px 20px;
   max-width: 1200px;
   margin: 0 auto;
   font-family: inherit;
   color: #fff;
+  box-sizing: border-box;
 }
 
 /* Header Sections Styling */
@@ -12,85 +13,126 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
-  margin-bottom: 25px;
-  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
-  padding-bottom: 15px;
+  margin-bottom: 30px;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+  padding-bottom: 20px;
+  flex-wrap: wrap;
+  gap: 20px;
 }
 
-.welcome-badge-header h2 {
-  font-size: 24px;
-  margin-bottom: 5px;
+.header-text-group h2 {
+  font-size: 26px;
+  margin: 0 0 8px 0;
   color: #fff;
+  font-weight: 700;
 }
 
-.welcome-badge-header p {
+.header-text-group p {
   color: #8892b0;
   font-size: 14px;
+  margin: 0;
+}
+
+.header-buttons-group {
+  display: flex;
+  gap: 12px;
+  align-items: center;
+}
+
+/* Base button cleanup */
+.logout-manager-btn {
+  padding: 10px 18px;
+  border-radius: 6px;
+  font-weight: 600;
+  font-size: 14px;
+  cursor: pointer;
+  border: none;
+  color: #fff;
+  transition: background-color 0.2s ease, transform 0.1s ease;
+}
+
+.refresh-btn {
+  background-color: #2b7a78;
+}
+.refresh-btn:hover {
+  background-color: #3a9693;
+}
+
+.lock-btn {
+  background-color: #e63946;
+}
+.lock-btn:hover {
+  background-color: #ff4d6d;
 }
 
 /* Stats Counter Grid Layout Elements */
 .stats-counter-strip-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-  gap: 20px;
-  margin-bottom: 30px;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 24px;
+  margin-bottom: 35px;
 }
 
 .metric-block-item {
-  background: rgba(20, 24, 33, 0.6);
-  padding: 20px;
-  border-radius: 8px;
-  border: 1px solid rgba(255, 255, 255, 0.05);
+  background: #11141c;
+  padding: 24px;
+  border-radius: 10px;
+  border: 1px solid rgba(255, 255, 255, 0.06);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
 }
 
-.gold-glowing-border { border-left: 4px solid #ffb703; }
-.teal-glowing-border { border-left: 4px solid #2b7a78; }
-.rose-glowing-border { border-left: 4px solid #ff4d6d; }
+.gold-glowing-border { border-left: 5px solid #ffb703; }
+.teal-glowing-border { border-left: 5px solid #00b4d8; }
+.rose-glowing-border { border-left: 5px solid #ff4d6d; }
 
 .metric-label-txt {
-  font-size: 12px;
+  font-size: 13px;
   text-transform: uppercase;
   color: #8892b0;
-  letter-spacing: 0.5px;
+  letter-spacing: 0.8px;
+  display: block;
 }
 
 .metric-numeric-val {
-  font-size: 22px;
-  margin-top: 8px;
+  font-size: 24px;
+  margin: 10px 0 0 0;
   font-weight: 700;
+  color: #fff;
 }
 
 /* Ledger Box Wrapper Frame */
 .ledger-table-wrapper-box {
-  background: rgba(20, 24, 33, 0.85);
+  background: #11141c;
   border-radius: 12px;
   border: 1px solid rgba(255, 255, 255, 0.08);
-  padding: 24px;
-  box-sizing: border-box;
+  padding: 30px;
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.25);
 }
 
 .ledger-header-row-title {
-  font-size: 16px;
+  font-size: 18px;
   font-weight: 600;
   color: #b1f8f2;
-  margin-bottom: 20px;
+  margin-bottom: 24px;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+  padding-bottom: 12px;
 }
 
 /* Vertical Stack Card Elements Configuration */
 .vertical-ledger-list {
   display: flex;
   flex-direction: column;
-  gap: 16px;
+  gap: 20px;
 }
 
 .registration-record-card {
   background: rgba(255, 255, 255, 0.02);
   border: 1px solid rgba(255, 255, 255, 0.08);
   border-radius: 10px;
-  padding: 20px;
+  padding: 22px;
   display: flex;
   flex-direction: column;
-  gap: 14px;
+  gap: 16px;
 }
 
 .card-header-panel {
@@ -98,42 +140,53 @@
   justify-content: space-between;
   align-items: center;
   border-bottom: 1px solid rgba(255, 255, 255, 0.08);
-  padding-bottom: 12px;
+  padding-bottom: 14px;
   flex-wrap: wrap;
-  gap: 10px;
+  gap: 12px;
+}
+
+.guest-identity-info {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
 }
 
 .registration-main-title {
   color: #fff;
-  font-size: 16px;
+  font-size: 18px;
   font-weight: 700;
+  letter-spacing: 0.3px;
 }
 
 .guest-subtitle-email {
   color: #8892b0;
   font-size: 13px;
-  margin-left: 10px;
 }
 
 .remitted-gold-badge {
   font-weight: 700;
   color: #ffb703;
-  font-size: 14px;
-  background: rgba(255, 183, 3, 0.08);
-  padding: 4px 10px;
-  border-radius: 4px;
+  font-size: 15px;
+  background: rgba(255, 183, 3, 0.1);
+  padding: 6px 14px;
+  border-radius: 6px;
+  border: 1px solid rgba(255, 183, 3, 0.2);
 }
 
 /* Metrics Row Grid Matrix */
 .card-details-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-  gap: 12px;
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  gap: 16px;
+  padding: 4px 0;
 }
 
 .detail-cell {
   font-size: 14px;
   color: #ccd6f6;
+  display: flex;
+  align-items: center;
+  gap: 6px;
 }
 
 .detail-cell strong {
@@ -147,9 +200,9 @@
 /* Bottom Status Row Tray Section */
 .card-dining-footer {
   display: flex;
-  gap: 24px;
-  border-top: 1px solid rgba(255, 255, 255, 0.05);
-  padding-top: 12px;
+  gap: 30px;
+  border-top: 1px solid rgba(255, 255, 255, 0.08);
+  padding-top: 14px;
   flex-wrap: wrap;
 }
 
@@ -160,6 +213,7 @@
 
 .dining-status-block strong {
   color: #8892b0;
+  font-weight: 600;
 }
 
 .cafe-active-text { color: #48cae4; font-weight: 600; }
@@ -168,8 +222,10 @@
 
 .empty-register-fallback {
   text-align: center;
-  padding: 40px;
+  padding: 50px;
   color: #64748b;
   background: rgba(0, 0, 0, 0.2);
   border-radius: 8px;
+  border: 1px dashed rgba(255, 255, 255, 0.06);
+  font-size: 15px;
 }
