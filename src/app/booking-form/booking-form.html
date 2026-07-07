@@ -71,28 +71,36 @@
         </div>
         
         <div class="invoice-summary-column">
+          <!-- 1. Custom Integrated Native Notification Banner Block -->
+          <div *ngIf="uiErrorMessage" class="native-custom-alert-box" style="background-color: #ffd2d2; border: 2px solid #ef233c; padding: 12px; border-radius: 8px; margin-bottom: 15px; color: #d90429; font-weight: 500; font-size: 13px; display: flex; justify-content: space-between; align-items: center; box-shadow: 0 4px 6px rgba(0,0,0,0.15);">
+            <span>⚠️ {{ uiErrorMessage }}</span>
+            <button (click)="uiErrorMessage = ''" style="background: none; border: none; color: #d90429; font-weight: bold; font-size: 16px; cursor: pointer; padding: 0 5px;">×</button>
+          </div>
+
           <app-booking-summary [selectedRoom]="selectedRoom" [config]="summaryConfig" (submitBooking)="onCheckoutSubmitted($event)"></app-booking-summary>
           
           <div class="live-configuration-panel" *ngIf="selectedRoom">
             
-            <!-- 🗓️ Check-In Date Field Integration Panel -->
+            <!-- 2. Check-In Date Field linked to auto availability tracker -->
             <div class="config-input-item" style="margin-bottom: 12px;">
               <label class="config-label" style="display: block; margin-bottom: 4px;">📅 Check-In Date</label>
               <input 
                 type="date" 
                 [(ngModel)]="checkInDate" 
                 name="checkInDate" 
+                (change)="validateSelectedDatesLive()"
                 style="width: 100%; padding: 8px; border-radius: 4px; border: 1px solid #444; background: #222; color: #fff; font-family: inherit;"
                 required>
             </div>
 
-            <!-- 🗓️ Check-Out Date Field Integration Panel -->
+            <!-- 3. Check-Out Date Field linked to auto availability tracker -->
             <div class="config-input-item" style="margin-bottom: 12px;">
               <label class="config-label" style="display: block; margin-bottom: 4px;">🚪 Check-Out Date</label>
               <input 
                 type="date" 
                 [(ngModel)]="checkOutDate" 
                 name="checkOutDate" 
+                (change)="validateSelectedDatesLive()"
                 style="width: 100%; padding: 8px; border-radius: 4px; border: 1px solid #444; background: #222; color: #fff; font-family: inherit;"
                 required>
             </div>

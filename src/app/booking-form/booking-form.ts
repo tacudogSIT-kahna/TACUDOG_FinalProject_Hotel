@@ -7,6 +7,7 @@ import { ManagerLoginComponent } from '../manager-login/manager-login';
 import { ManagerDashboardComponent } from '../manager-dashboard/manager-dashboard';
 import { BookingReceipt } from '../models/booking.types';
 import { BookingService } from '../booking-service';
+import { HttpClient } from '@angular/common/http';
 
 @Component({
   selector: 'app-booking-form',
@@ -23,14 +24,18 @@ import { BookingService } from '../booking-service';
 })
 export class BookingFormComponent implements OnInit {
   private bookingService = inject(BookingService);
+  private http = inject(HttpClient);
 
   isUserSignedIn: boolean = false;
   guestName: string = '';
   guestEmail: string = '';
   
-  // Changed from stayDate to checkIn/checkOut tracking parameters
   checkInDate: string = '';
   checkOutDate: string = '';
+  
+  // Custom message banner variable string parameter tracker
+  uiErrorMessage: string = '';
+  isDateSelectionConflict: boolean = false;
 
   selectedRoom: any = null;
   guestsCount: number = 1;
@@ -83,7 +88,6 @@ export class BookingFormComponent implements OnInit {
     });
   }
 
-  // Dynamic automatic calculation of nights count based on input strings
   get nightsCount(): number {
     if (!this.checkInDate || !this.checkOutDate) return 1;
     
@@ -91,9 +95,41 @@ export class BookingFormComponent implements OnInit {
     const end = new Date(this.checkOutDate);
     const timeDiff = end.getTime() - start.getTime();
     
-    if (timeDiff <= 0) return 1; // Safeguard calculation fallback minimum parameter
+    if (timeDiff <= 0) return 1;
     
     return Math.ceil(timeDiff / (1000 * 3600 * 24));
+  }
+
+  // Live checker routine scans database while user configures options
+  validateSelectedDatesLive() {
+    this.uiErrorMessage = '';
+    this.isDateSelectionConflict = false;
+
+    if (!this.selectedRoom) return;
+
+    if (this.checkInDate && this.checkOutDate) {
+      if (new Date(this.checkOutDate) <= new Date(this.checkInDate)) {
+        this.uiErrorMessage = 'Check-Out date must be set after your Check-In date!';
+        this.isDateSelectionConflict = true;
+        return;
+      }
+    }
+
+    if (!this.checkInDate) return;
+
+    // Checks current register availability directly before user proceeds to order checkout
+    this.http.get<any[]>('http://localhost:3000/api/bookings').subscribe({
+      next: (bookings) => {
+        const isTaken = bookings.some(b => 
+          b.selectedRoom === this.selectedRoom.name && b.stayDate === this.checkInDate
+        );
+
+        if (isTaken) {
+          this.uiErrorMessage = `The ${this.selectedRoom.name} is already reserved for ${this.checkInDate}. Please select another date!`;
+          this.isDateSelectionConflict = true;
+        }
+      }
+    });
   }
 
   switchView(target: 'guest' | 'manager-login' | 'manager-dashboard') {
@@ -109,6 +145,7 @@ export class BookingFormComponent implements OnInit {
   onRoomPicked(room: any) {
     this.selectedRoom = room;
     this.guestsCount = 1;
+    this.validateSelectedDatesLive(); // Re-runs verification whenever room changes
   }
 
   toggleDescription(roomName: string, event: Event) {
@@ -158,12 +195,12 @@ export class BookingFormComponent implements OnInit {
 
   onCheckoutSubmitted(invoice: any) {
     if (!this.checkInDate || !this.checkOutDate) {
-      alert('Please fill out both Check-In and Check-Out date fields first!');
+      this.uiErrorMessage = 'Please fill out both Check-In and Check-Out date fields first!';
       return;
     }
 
-    if (new Date(this.checkOutDate) <= new Date(this.checkInDate)) {
-      alert('Check-Out date must be set after your selected Check-In date!');
+    if (this.isDateSelectionConflict) {
+      this.uiErrorMessage = 'Cannot proceed. The selected dates are conflicting or unavailable!';
       return;
     }
 
@@ -201,7 +238,7 @@ export class BookingFormComponent implements OnInit {
       partySize: this.guestsCount,
       reservedRestaurantTable: this.restaurantState === 'selected',
       restaurantCoverage: this.restaurantState === 'selected' ? this.restaurantCoverage : '',
-      stayDate: this.checkInDate, // We can preserve Check-In date as the unique index anchor
+      stayDate: this.checkInDate,
       checkOutDate: this.checkOutDate,
       total: this.calculateTotal()
     };
@@ -214,22 +251,15 @@ export class BookingFormComponent implements OnInit {
       },
       error: (err) => {
         console.error('Failed to update database tracking:', err);
-        if (err.status === 409) {
-          alert(err.error.message);
-        } else {
-          alert('An error occurred while handling your booking request.');
-        }
-      }
-    });
-  }
-
-  clearReceiptSession() {
-    this.checkoutReceipt = null;
-    this.selectedRoom = null;
-    this.guestsCount = 1;
-    this.restaurantState = 'idle';
-    this.restaurantCoverage = '';
-    this.checkInDate = '';
-    this.checkOutDate = '';
-  }
-}
+        if (err.status === 409) {this.uiErrorMessage = err.error.message;this.isDateSelectionConflict = true;} 
+        else {this.uiErrorMessage = 'An error occurred while handling your booking request.';}}});
+      }clearReceiptSession() {
+        this.checkoutReceipt = null;
+        this.selectedRoom = null;
+        this.guestsCount = 1;
+        this.restaurantState = 'idle';
+        this.restaurantCoverage = '';
+        this.checkInDate = '';
+        this.checkOutDate = '';
+        this.uiErrorMessage = '';
+        this.isDateSelectionConflict = false;}}
