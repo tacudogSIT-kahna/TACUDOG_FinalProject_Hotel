@@ -8,7 +8,7 @@
   box-sizing: border-box;
 }
 
-/* Header Sections Styling */
+/* Header Sections Spacing & Layout */
 .welcome-badge-header {
   display: flex;
   justify-content: space-between;
@@ -20,55 +20,56 @@
   gap: 20px;
 }
 
-.header-text-group h2 {
+.welcome-badge-header h2 {
   font-size: 26px;
   margin: 0 0 8px 0;
   color: #fff;
   font-weight: 700;
 }
 
-.header-text-group p {
+.welcome-badge-header p {
   color: #8892b0;
   font-size: 14px;
   margin: 0;
 }
 
-.header-buttons-group {
-  display: flex;
-  gap: 12px;
-  align-items: center;
+/* Header Action Buttons Fix */
+.welcome-badge-header div[style*="display: flex"] {
+  display: flex !important;
+  gap: 12px !important;
+  align-items: center !important;
 }
 
-/* Base button cleanup */
 .logout-manager-btn {
-  padding: 10px 18px;
-  border-radius: 6px;
-  font-weight: 600;
-  font-size: 14px;
-  cursor: pointer;
-  border: none;
-  color: #fff;
-  transition: background-color 0.2s ease, transform 0.1s ease;
+  padding: 10px 18px !important;
+  border-radius: 6px !important;
+  font-weight: 600 !important;
+  font-size: 14px !important;
+  cursor: pointer !important;
+  border: none !important;
+  color: #fff !important;
+  transition: background-color 0.2s ease, transform 0.1s ease !important;
 }
 
-.refresh-btn {
-  background-color: #2b7a78;
+/* Target buttons based on internal text content rules */
+.logout-manager-btn:first-of-type {
+  background-color: #2b7a78 !important;
 }
-.refresh-btn:hover {
-  background-color: #3a9693;
-}
-
-.lock-btn {
-  background-color: #e63946;
-}
-.lock-btn:hover {
-  background-color: #ff4d6d;
+.logout-manager-btn:first-of-type:hover {
+  background-color: #3a9693 !important;
 }
 
-/* Stats Counter Grid Layout Elements */
+.logout-manager-btn:last-of-type {
+  background-color: #e63946 !important;
+}
+.logout-manager-btn:last-of-type:hover {
+  background-color: #ff4d6d !important;
+}
+
+/* Stats Counter Grid Panel Layout */
 .stats-counter-strip-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
   gap: 24px;
   margin-bottom: 35px;
 }
@@ -100,7 +101,7 @@
   color: #fff;
 }
 
-/* Ledger Box Wrapper Frame */
+/* Ledger Box Wrapper Background Canvas */
 .ledger-table-wrapper-box {
   background: #11141c;
   border-radius: 12px;
@@ -118,7 +119,7 @@
   padding-bottom: 12px;
 }
 
-/* Vertical Stack Card Elements Configuration */
+/* Vertical Ledger Container Setup */
 .vertical-ledger-list {
   display: flex;
   flex-direction: column;
@@ -129,26 +130,21 @@
   background: rgba(255, 255, 255, 0.02);
   border: 1px solid rgba(255, 255, 255, 0.08);
   border-radius: 10px;
-  padding: 22px;
+  padding: 24px;
   display: flex;
   flex-direction: column;
-  gap: 16px;
+  gap: 18px;
 }
 
+/* Card Header Sub-Section Flex Rows */
 .card-header-panel {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
   padding-bottom: 14px;
   flex-wrap: wrap;
-  gap: 12px;
-}
-
-.guest-identity-info {
-  display: flex;
-  flex-direction: column;
-  gap: 4px;
+  gap: 15px;
 }
 
 .registration-main-title {
@@ -161,6 +157,7 @@
 .guest-subtitle-email {
   color: #8892b0;
   font-size: 13px;
+  margin-left: 15px;
 }
 
 .remitted-gold-badge {
@@ -173,34 +170,42 @@
   border: 1px solid rgba(255, 183, 3, 0.2);
 }
 
-/* Metrics Row Grid Matrix */
+/* 🎯 THE CORE GRIDS FIX: Side-by-Side Column Placements */
 .card-details-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
-  gap: 16px;
-  padding: 4px 0;
+  display: grid !important;
+  /* Split layout perfectly into 2 equal-width side-by-side columns */
+  grid-template-columns: repeat(2, 1fr) !important;
+  gap: 16px 30px !important;
+  padding: 6px 0 !important;
 }
 
+/* Keep cells structurally aligned without wrapping content overlapping */
 .detail-cell {
   font-size: 14px;
   color: #ccd6f6;
-  display: flex;
-  align-items: center;
-  gap: 6px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 
 .detail-cell strong {
   color: #8892b0;
   font-weight: 600;
+  margin-right: 4px;
 }
 
-.date-in-highlight { color: #52b788 !important; }
-.date-out-highlight { color: #ff4d6d !important; }
+/* Dynamic color highlight parameters for check-in / check-out dates text */
+.date-in-highlight { 
+  color: #52b788 !important; 
+}
+.date-out-highlight { 
+  color: #ff4d6d !important; 
+}
 
-/* Bottom Status Row Tray Section */
+/* Bottom Actions Status Tray Footer Panel */
 .card-dining-footer {
   display: flex;
-  gap: 30px;
+  gap: 40px;
   border-top: 1px solid rgba(255, 255, 255, 0.08);
   padding-top: 14px;
   flex-wrap: wrap;
@@ -214,6 +219,7 @@
 .dining-status-block strong {
   color: #8892b0;
   font-weight: 600;
+  margin-right: 4px;
 }
 
 .cafe-active-text { color: #48cae4; font-weight: 600; }
@@ -226,6 +232,4 @@
   color: #64748b;
   background: rgba(0, 0, 0, 0.2);
   border-radius: 8px;
-  border: 1px dashed rgba(255, 255, 255, 0.06);
-  font-size: 15px;
 }

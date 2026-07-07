@@ -1,16 +1,16 @@
 <div class="unlocked-booking-dashboard manager-dashboard-container">
 
   <div class="welcome-badge-header manager-dash-header">
-    <div class="header-text-group">
+    <div>
       <h2>🏰 Royal Hotel Headquarters Dashboard</h2>
       <p>System operational tracker. View total gold allocations and adventurer stay analytics logs below.</p>
     </div>
 
-    <div class="header-buttons-group">
-      <button class="logout-manager-btn refresh-btn" (click)="refreshDashboardData()">
+    <div style="display: flex; gap: 10px;">
+      <button class="logout-manager-btn" style="background-color: #2b7a78;" (click)="refreshDashboardData()">
         🔄 Refresh Feed
       </button>
-      <button class="logout-manager-btn lock-btn" (click)="logoutTerminal.emit()">
+      <button class="logout-manager-btn" (click)="logoutTerminal.emit()">
         Lock Terminal
       </button>
     </div>
@@ -39,10 +39,8 @@
 
       <div class="registration-record-card" *ngFor="let log of databaseBookings">
         <div class="card-header-panel">
-          
-            <span class="registration-main-title">REGISTRATION: {{ log.name }}</span>
-            <span class="guest-subtitle-email">{{ log.email }}</span>
-          </div>
+          <span class="registration-main-title">REGISTRATION: {{ log.name }}</span>
+          <span class="guest-subtitle-email">{{ log.email }}</span>
           <span class="remitted-gold-badge">💰 {{ log.total }} Gold Remitted</span>
         </div>
 
