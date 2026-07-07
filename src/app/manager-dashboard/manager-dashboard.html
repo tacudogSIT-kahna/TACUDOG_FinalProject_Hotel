@@ -36,7 +36,8 @@
             <th>Adventurer Name</th>
             <th>Suite Selected</th>
             <th>Guests</th>
-            <th>Cafe Reservation Included</th>
+            <th>Cafe Reservation Status</th>
+            <th>Dining Coverage</th> <!-- 1. New Column Added -->
             <th>Total Remitted</th>
           </tr>
         </thead>
@@ -48,15 +49,28 @@
             </td>
             <td>{{ log.selectedRoom }}</td>
             <td>{{ log.partySize }} Guest(s)</td>
+            
+            <!-- 2. Updated Table Cell for Reservation Text -->
             <td>
-              <span class="resto-addon-badge-cell" *ngIf="log.reservedRestaurantTable">🍽️ Resto Active</span>
+              <span class="resto-addon-badge-cell" *ngIf="log.reservedRestaurantTable">
+                🍽️ {{ log.partySize }} seats Reserved
+              </span>
               <span class="resto-addon-none" *ngIf="!log.reservedRestaurantTable">None</span>
             </td>
+
+            <!-- 3. Dynamic Cell for First Day vs Whole Stay Coverage -->
+            <td>
+              <span *ngIf="log.reservedRestaurantTable" style="font-weight: 500;">
+                {{ log.total > (log.partySize * 3) ? 'Whole Stay' : 'First Day Only' }}
+              </span>
+              <span class="resto-addon-none" *ngIf="!log.reservedRestaurantTable">-</span>
+            </td>
+
             <td class="gold-bold-price">💰 {{ log.total }} Gold</td>
           </tr>
           
           <tr *ngIf="databaseBookings.length === 0">
-            <td colspan="5" class="centered-empty-msg">No entries present inside active registers.</td>
+            <td colspan="6" class="centered-empty-msg">No entries present inside active registers.</td>
           </tr>
         </tbody>
       </table>

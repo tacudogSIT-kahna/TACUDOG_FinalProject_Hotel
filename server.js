@@ -14,12 +14,14 @@ mongoose.connect(mongoURI)
     .then(() => console.log('Hotel Management Database Connected Successfully'))
     .catch(err => console.error('MongoDB Connection Error:', err));
 
+// Updated schema configuration to validate and save the dining option string
 const bookingSchema = new mongoose.Schema({
     name: { type: String, required: true },
     email: { type: String, required: true },
     selectedRoom: { type: String, required: true },
     partySize: { type: Number, required: true },
     reservedRestaurantTable: { type: Boolean, default: false },
+    restaurantCoverage: { type: String, default: '' }, // 👈 Added this line right here
     total: { type: Number, required: true },
     createdAt: { type: Date, default: Date.now }
 });

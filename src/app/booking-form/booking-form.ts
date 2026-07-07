@@ -177,12 +177,14 @@ export class BookingFormComponent implements OnInit {
     this.checkoutReceipt = generatedReceipt;
     this.historicalBookings.unshift(generatedReceipt);
 
+    // Integrated restaurantCoverage directly into our database payload
     const dbPayload = {
       name: this.guestName,
       email: this.guestEmail,
       selectedRoom: this.selectedRoom.name,
       partySize: this.guestsCount,
       reservedRestaurantTable: this.restaurantState === 'selected',
+      restaurantCoverage: this.restaurantState === 'selected' ? this.restaurantCoverage : '',
       total: this.calculateTotal()
     };
 
